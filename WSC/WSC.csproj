@@ -94,7 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Database1.accdb" />
+    <Content Include="App_Data\WSCDatabase.accdb" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
