@@ -31,12 +31,9 @@
                 <Nodes>
                     <asp:TreeNode Value="Home" NavigateUrl="~/Default.aspx" Text="Home" Target="Content" Expanded="False"></asp:TreeNode>
                     <asp:TreeNode Value="CatalogMain" NavigateUrl="~/Catalog.aspx" Text="Catalog" Target="Content" Expanded="True">
-                        <asp:TreeNode Value="CatalogPrint" NavigateUrl="Catalogue.aspx?cat=P" Text="Printable" Target="Content" Expanded="False" />
-                        <asp:TreeNode Value="CatalogEngravable" NavigateUrl="Catalogue.aspx?cat=E" Text="Engravable" Target="Content" Expanded="False" />
                     </asp:TreeNode>
                     <asp:TreeNode Value="Employee" Text="Employee" Target="Content" Expanded="True">
-                        <asp:TreeNode Value="ViewTransaction" NavigateUrl="Employee/ViewTransaction.aspx" Text="View Transaction" Target="Content" Expanded="False" />
-                        <asp:TreeNode Value="ManageInventory" NavigateUrl="Employee/ManageInventory.aspx" Text="Manage Inventory" Target="Content" Expanded="False" />
+                        <asp:TreeNode Value="ViewTransaction" NavigateUrl="Employee/ViewTransaction.aspx" Text="View Transaction" Target="Content" Expanded="False" />                     
                     </asp:TreeNode>
                     <asp:TreeNode Value="Administration" Text="Administration" Target="Content" Expanded="True">
                         <asp:TreeNode Value="ManageEmployees" NavigateUrl="Admin/ManageEmployees.aspx" Text="Manage Employees" Target="Content" Expanded="False" />
