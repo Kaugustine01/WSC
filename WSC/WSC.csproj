@@ -99,6 +99,7 @@
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="App_Data\WSCDatabase.accdb" />
     <Content Include="App_Themes\StyleSheet.css" />
+    <Content Include="Catalog.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ViewTransaction.aspx" />
     <Content Include="Images\WSC.png" />
@@ -142,6 +143,13 @@
     </Compile>
     <Compile Include="Admin\ManageUsers.aspx.designer.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Catalog.aspx.cs">
+      <DependentUpon>Catalog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Catalog.aspx.designer.cs">
+      <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
