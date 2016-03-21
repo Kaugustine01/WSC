@@ -102,7 +102,6 @@
     <Content Include="Default.aspx" />
     <Content Include="Employee\ViewTransaction.aspx" />
     <Content Include="Images\WSC.png" />
-    <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -153,10 +152,6 @@
     </Compile>
     <Compile Include="Employee\ViewTransaction.aspx.designer.cs">
       <DependentUpon>ViewTransaction.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MasterPage.master.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
