@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="WSC.Admin.ManageUsers" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -14,25 +15,50 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
                 DataKeyNames="CustID" DataSourceID="SqlDataSource1" ShowFooter="True"> 
                 <Columns>
-                    <asp:BoundField DataField="CustID" HeaderText="Customer ID" InsertVisible="False"
-                        ReadOnly="True" SortExpression="CustID" />
+                    <asp:BoundField DataField="CustID" HeaderText="ID" InsertVisible="False"
+                        ReadOnly="True" SortExpression="CustID">
+                        
+                        </asp:BoundField>
                     <asp:BoundField DataField="FirstName" HeaderText="First Name"
-                        SortExpression="FirstName" />
+                        SortExpression="FirstName" >
+                        
+                        </asp:BoundField>
+
                     <asp:BoundField DataField="LastName" HeaderText="Last Name"
-                        SortExpression="LastName" />
+                        SortExpression="LastName" >
+                        
+                        </asp:BoundField>
+ 
                     <asp:BoundField DataField="Address" HeaderText="Address"
-                        SortExpression="Address" />
+                        SortExpression="Address" >
+                        
+                        </asp:BoundField>
+               
                     <asp:BoundField DataField="City" HeaderText="City"
-                        SortExpression="City" />
+                        SortExpression="City" >
+                        
+                        </asp:BoundField>
+                   
                     <asp:BoundField DataField="State" HeaderText="State"
-                        SortExpression="State" />
+                        SortExpression="State" >
+                       
+                        </asp:BoundField>
+                    
                     <asp:BoundField DataField="Zip" HeaderText="Zip Code"
-                        SortExpression="Zip" />
+                        SortExpression="Zip" >
+                       
+                        </asp:BoundField>
+                    
                     <asp:BoundField DataField="PhoneNumber" HeaderText="Phone Number"
-                        SortExpression="PhoneNumber" />
+                        SortExpression="PhoneNumber" >
+                        
+                        </asp:BoundField>
+                   
                     <asp:CommandField ShowEditButton="True" />
                     <asp:CommandField ShowDeleteButton="True" />
+                    <asp:CommandField ShowInsertButton="true" />
                 </Columns>
+                <EditRowStyle CssClass="GridViewEditRow" />
             </asp:GridView>
         </center>
 

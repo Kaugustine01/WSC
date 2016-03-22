@@ -86,3 +86,11 @@ h1 {
     margin-bottom: 4px;
     font-weight: bold;
 }
+
+/*
+    Grid View Edit Size
+*/
+.GridViewEditRow
+{
+    input[type=text]{width: 20px;}
+}
