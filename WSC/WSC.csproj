@@ -100,7 +100,6 @@
     <Content Include="App_Data\WSCDatabase.accdb" />
     <Content Include="App_Themes\StyleSheet.css" />
     <Content Include="Catalog.aspx" />
-    <Content Include="Default.aspx" />
     <Content Include="Employee\ViewTransaction.aspx" />
     <Content Include="Images\WSC.png" />
     <Content Include="Login.aspx" />
@@ -108,6 +107,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="MasterPage.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -150,10 +150,6 @@
     <Compile Include="Catalog.aspx.designer.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Employee\ViewTransaction.aspx.cs">
       <DependentUpon>ViewTransaction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -167,6 +163,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.master.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.aspx.cs">
