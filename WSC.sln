@@ -3,17 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DAL", "DAL\DAL.xproj", "{01F52C1E-DA59-420A-8973-D0C85EF2DC5C}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BAL", "BAL\BAL.xproj", "{0402AB2D-378A-4C1B-95A6-01C87DB62022}"
-	ProjectSection(ProjectDependencies) = postProject
-		{01F52C1E-DA59-420A-8973-D0C85EF2DC5C} = {01F52C1E-DA59-420A-8973-D0C85EF2DC5C}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSC", "WSC\WSC.csproj", "{1CFE6047-9199-481F-BD68-9F15A3DBE04C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{0402AB2D-378A-4C1B-95A6-01C87DB62022} = {0402AB2D-378A-4C1B-95A6-01C87DB62022}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{01F52C1E-DA59-420A-8973-D0C85EF2DC5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01F52C1E-DA59-420A-8973-D0C85EF2DC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01F52C1E-DA59-420A-8973-D0C85EF2DC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01F52C1E-DA59-420A-8973-D0C85EF2DC5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0402AB2D-378A-4C1B-95A6-01C87DB62022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0402AB2D-378A-4C1B-95A6-01C87DB62022}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0402AB2D-378A-4C1B-95A6-01C87DB62022}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0402AB2D-378A-4C1B-95A6-01C87DB62022}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1CFE6047-9199-481F-BD68-9F15A3DBE04C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1CFE6047-9199-481F-BD68-9F15A3DBE04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CFE6047-9199-481F-BD68-9F15A3DBE04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
