@@ -112,6 +112,17 @@
     <Content Include="App_Code\dsLoginInformation.xsc">
       <DependentUpon>dsLoginInformation.xsd</DependentUpon>
     </Content>
+    <Content Include="App_Code\Customer.xsc">
+      <DependentUpon>Customer.xsd</DependentUpon>
+    </Content>
+    <None Include="App_Code\Customer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Customer.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="App_Code\Customer.xss">
+      <DependentUpon>Customer.xsd</DependentUpon>
+    </Content>
     <None Include="App_Code\dsLoginInformation.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -160,6 +171,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsLoginInformation.xsd</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Customer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Customer.xsd</DependentUpon>
     </Content>
     <Compile Include="Catalog.aspx.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
