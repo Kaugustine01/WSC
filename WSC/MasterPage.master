@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="navBar">
-            <asp:TreeView ID="TreeView1" runat="server" NodeStyle-CssClass="treeNode" RootNodeStyle-CssClass="rootNode" LeafNodeStyle-CssClass="leafNode">
+            <asp:TreeView ID="TreeViewNav" runat="server" NodeStyle-CssClass="treeNode" RootNodeStyle-CssClass="rootNode" LeafNodeStyle-CssClass="leafNode">
                 <Nodes>
                     <asp:TreeNode Value="Home" NavigateUrl="~/Default.aspx" Text="Home" Target="Content" Expanded="False"></asp:TreeNode>
                     <asp:TreeNode Value="CatalogMain" NavigateUrl="~/Catalog.aspx" Text="Catalog" Target="Content" Expanded="True"></asp:TreeNode>
