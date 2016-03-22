@@ -1,0 +1,59 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.aspx.cs" Inherits="WSC.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="App_Themes/StyleSheet.css" rel="stylesheet" />
+    <title>Williams Specilaty Company</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form class="page" id="form1" runat="server">
+        <div class="header">
+            <h1>Williams Specialty Company</h1>
+            <div class="loginView">
+                <asp:LoginView ID="LoginView1" runat="server">
+                    <AnonymousTemplate>
+                        <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Registration.aspx">Sign Up</asp:LinkButton>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <asp:LoginName ID="LoginName1" runat="server" />
+                        <asp:LoginStatus ID="LoginStatus2" runat="server" />
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+        </div>
+        <div class="navBar">
+            <asp:TreeView ID="TreeView1" runat="server" NodeStyle-CssClass="treeNode" RootNodeStyle-CssClass="rootNode" LeafNodeStyle-CssClass="leafNode">
+                <Nodes>
+                    <asp:TreeNode Value="Home" NavigateUrl="~/Default.aspx" Text="Home" Target="Content" Expanded="False"></asp:TreeNode>
+                    <asp:TreeNode Value="CatalogMain" NavigateUrl="~/Catalog.aspx" Text="Catalog" Target="Content" Expanded="True">
+                        <asp:TreeNode Value="CatalogPrint" NavigateUrl="Catalogue.aspx?cat=P" Text="Printable" Target="Content" Expanded="False" />
+                        <asp:TreeNode Value="CatalogEngravable" NavigateUrl="Catalogue.aspx?cat=E" Text="Engravable" Target="Content" Expanded="False" />
+                    </asp:TreeNode>
+                    <asp:TreeNode Value="Employee" Text="Employee" Target="Content" Expanded="True">
+                        <asp:TreeNode Value="ViewTransaction" NavigateUrl="Employee/ViewTransaction.aspx" Text="View Transaction" Target="Content" Expanded="False" />
+                    </asp:TreeNode>
+                    <asp:TreeNode Value="Administration" Text="Administration" Target="Content" Expanded="True">
+                        <asp:TreeNode Value="AddEmployees" NavigateUrl="Admin/AddEmployees.aspx" Text="Add Employees" Target="Content" Expanded="False" />
+                        <asp:TreeNode Value="ManageEmployees" NavigateUrl="Admin/ManageEmployees.aspx" Text="Manage Employees" Target="Content" Expanded="False" />
+                        <asp:TreeNode Value="ManageUsers" NavigateUrl="Admin/ManageUsers.aspx" Text="Manage Users" Target="Content" Expanded="False" />
+                    </asp:TreeNode>
+                </Nodes>
+            </asp:TreeView>
+        </div>
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <div class="footer">
+            Copyright &copy; Williams Specialty Company
+        </div>
+    </form>
+</body>
+</html>
