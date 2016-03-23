@@ -5,18 +5,21 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using BAL;
 
 namespace WSC
 {
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
+        {            
+        
         }
 
         private bool SiteSpecificationAuthenticationMethod(string UserName, string Password)
         {
+            BusinessLayer objBAL = new BusinessLayer();
+            int nUserId = objBAL.GetUserId("TEST", "TEST");
             return false;
         }
 
