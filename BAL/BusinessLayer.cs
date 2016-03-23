@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 namespace BAL
 {
     public class BusinessLayer
-    {
+    {      
+        public BusinessLayer()
+        {
+           
+        }                 
+
     }
 }

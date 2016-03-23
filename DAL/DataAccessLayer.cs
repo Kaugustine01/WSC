@@ -8,5 +8,9 @@ namespace DAL
 {
     public class DataAccessLayer
     {
+        public DataAccessLayer()
+        {
+
+        }
     }
 }

@@ -63,3 +63,5 @@ C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.Web.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\BAL.dll
+C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\BAL.pdb
