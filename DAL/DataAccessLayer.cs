@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.OleDb;
+using System.Data;
 
 namespace DAL
 {
     public class DataAccessLayer
-    {
-        //string sConnString = "PROVIDER=Microsoft.ACE.OLEDB.12.0;" + @"Data Source = C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\App_Data\WSCDatabase.accdb";
+    {       
         string sConnString = ConfigurationManager.ConnectionStrings["WSCDatabaseConnectionString"].ConnectionString;
 
         public DataAccessLayer()
@@ -18,31 +18,41 @@ namespace DAL
                       
         }
 
-        public int GetUserId(string sUserName, string sPassword)
+        /// <summary>
+        /// Get User Info returned in a DataTable
+        /// </summary>
+        /// <param name="sUserName">UserName</param>
+        /// <param name="sPassword">Password</param>
+        /// <returns>DataTable</returns>
+        public DataTable GetUserId(string sUserName, string sPassword)
         {
-            int nUserId = 0;
+            DataTable dtUser = null;
 
-            string queryString = string.Format("SELECT CustID, UserName FROM dbo.CustomerLoginT where '{0}'", sUserName);
+            //Query to return User Info
+            string queryString = "SELECT UserID, UserName, Password, Role FROM UserT where UserName = @username and Password = @password";
         
+            //establish connection parameters
             using (OleDbConnection connection = new OleDbConnection(sConnString))
             {
-                // The SQL statement                 
+                // Insert the SQL statement into the command                
                 OleDbCommand command = new OleDbCommand(queryString);
+
+                // Parameters to prevent injection  
+                command.Parameters.Add(new OleDbParameter("@username", sUserName));
+                command.Parameters.Add(new OleDbParameter("@password", sPassword));
 
                 // Set the Connection to the new OleDbConnection.
                 command.Connection = connection;
-
-                // Open the connection and execute the SQL command.
+                
                 try
                 {
+                    // Open the connection and execute the SQL command.
                     connection.Open();
-                    OleDbDataReader reader = command.ExecuteReader();
-                
-                    while (reader.Read())
-                    {
-                        nUserId = int.Parse(reader[0].ToString());
-                    }
-                   
+
+                    //Fill DataTable with the User Info
+                    dtUser = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtUser);
                 }
                 catch (Exception ex)
                 {
@@ -51,9 +61,8 @@ namespace DAL
                 // The connection is automatically closed when the
                 // code exits the using block.
             }
-
-
-            return nUserId;
+            //Return the datatable filled with User Data
+            return dtUser;
         }
 
     }

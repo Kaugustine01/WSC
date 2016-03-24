@@ -21,7 +21,9 @@ namespace BAL
             Sales,
             Customer
         }
-      
+
+        public UserAccount() { }
+
         public UserAccount(int nUserId, string sUserName, string sPassword, UserRole eUserRole)
         {
             UserId = nUserId;

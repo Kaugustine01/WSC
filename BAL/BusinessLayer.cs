@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using System.Data;
 
 namespace BAL
 {
@@ -16,13 +17,39 @@ namespace BAL
            
         }         
         
-        public int GetUserId(string sUserName, string sPassword)
+        public UserAccount GetUserId(string sUserName, string sPassword)
         {
-            int nUserId = 0;
-            nUserId = objDAL.GetUserId(sUserName, sPassword);
+            DataTable dtUser = null;
+            UserAccount objUA = new UserAccount();
+            string sUserType = string.Empty;
 
-            return nUserId;
+            dtUser = objDAL.GetUserId(sUserName, sPassword);
 
+            if (dtUser != null)
+            {
+                if (dtUser.Rows.Count > 0)
+                {
+                    objUA.UserId = int.Parse(dtUser.Rows[0]["UserID"].ToString());
+                    objUA.UserName = dtUser.Rows[0]["UserName"].ToString();
+                    objUA.Password = dtUser.Rows[0]["Password"].ToString();
+                    sUserType = dtUser.Rows[0]["Role"].ToString();
+
+                    switch (sUserType)
+                    {
+                        case "C":
+                            objUA.UserType = UserAccount.UserRole.Customer;
+                            break;
+                        case "M":
+                            objUA.UserType = UserAccount.UserRole.OperationManager;
+                            break;
+                        case "S":
+                            objUA.UserType = UserAccount.UserRole.Sales;
+                            break;
+                    }
+                }
+            }         
+
+            return objUA;
         }        
 
     }

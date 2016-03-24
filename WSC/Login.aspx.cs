@@ -18,8 +18,16 @@ namespace WSC
 
         private bool SiteSpecificationAuthenticationMethod(string UserName, string Password)
         {
+            UserAccount objUA = null;
             BusinessLayer objBAL = new BusinessLayer();
-            int nUserId = objBAL.GetUserId("TEST", "TEST");
+
+            objUA = objBAL.GetUserId(UserName, Password);
+
+            if (objUA != null) {
+                if (objUA.UserId > 0)
+                    return true;
+            }
+
             return false;
         }
 
