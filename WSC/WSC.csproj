@@ -142,6 +142,7 @@
     <Content Include="Registration.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="TestBackend.aspx" />
     <Content Include="ViewCart.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -217,6 +218,13 @@
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TestBackend.aspx.cs">
+      <DependentUpon>TestBackend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestBackend.aspx.designer.cs">
+      <DependentUpon>TestBackend.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewCart.aspx.cs">
       <DependentUpon>ViewCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -230,6 +238,9 @@
       <Project>{380c69b4-1418-44ad-b7d8-38ef6f09764b}</Project>
       <Name>BAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -26,7 +26,9 @@ namespace BAL
         public string ZipCode { get; set; }
 
         public string PhoneNo { get; set; }
-    
+
+        public Customer() { }
+
         public Customer(int nCustomerId, int nUserId, string sFirstName, string sLastName, string sAddress, string sAddress2,
             string sCity, string sState, string sZipCode, string sPhoneNo)
         {            
