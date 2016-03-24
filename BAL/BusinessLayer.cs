@@ -14,16 +14,24 @@ namespace BAL
 
         public BusinessLayer()
         {
-           
-        }         
-        
-        public UserAccount GetUserId(string sUserName, string sPassword)
+
+        }
+
+        #region User Account
+
+        /// <summary>
+        /// Return UserAccount Object by Username and Password
+        /// </summary>
+        /// <param name="sUserName">Username</param>
+        /// <param name="sPassword">Password</param>
+        /// <returns>UserSAccount Object</returns>
+        public UserAccount GetUserAccount(string sUserName, string sPassword)
         {
             DataTable dtUser = null;
             UserAccount objUA = new UserAccount();
             string sUserType = string.Empty;
 
-            dtUser = objDAL.GetUserId(sUserName, sPassword);
+            dtUser = objDAL.GetUserAccount(sUserName, sPassword);
 
             if (dtUser != null)
             {
@@ -47,10 +55,11 @@ namespace BAL
                             break;
                     }
                 }
-            }         
+            }
 
             return objUA;
-        }        
+        }
 
+        #endregion
     }
 }

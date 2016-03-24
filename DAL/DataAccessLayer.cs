@@ -24,7 +24,7 @@ namespace DAL
         /// <param name="sUserName">UserName</param>
         /// <param name="sPassword">Password</param>
         /// <returns>DataTable</returns>
-        public DataTable GetUserId(string sUserName, string sPassword)
+        public DataTable GetUserAccount(string sUserName, string sPassword)
         {
             DataTable dtUser = null;
 

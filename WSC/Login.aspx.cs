@@ -21,7 +21,7 @@ namespace WSC
             UserAccount objUA = null;
             BusinessLayer objBAL = new BusinessLayer();
 
-            objUA = objBAL.GetUserId(UserName, Password);
+            objUA = objBAL.GetUserAccount(UserName, Password);
 
             if (objUA != null) {
                 if (objUA.UserId > 0)
