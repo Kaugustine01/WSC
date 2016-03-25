@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.OleDb;
 using System.Data;
@@ -27,24 +23,25 @@ namespace DAL
         {
             DataTable dtUser = null;
 
-            //Query to return User Info
-            string queryString = "SELECT UserID, UserName, Password, Role FROM UserT WHERE UserName = @username and Password = @password";
-        
-            //establish connection parameters
-            using (dbConnection = new OleDbConnection(sConnString))
+            try
             {
-                // Insert the SQL statement into the command                
-                OleDbCommand command = new OleDbCommand(queryString);
+                //Query to return User Info
+                string queryString = "SELECT UserID, UserName, Password, Role FROM UserT WHERE UserName = @username and Password = @password";
 
-                // Parameters to prevent injection  
-                command.Parameters.Add(new OleDbParameter("@username", sUserName));
-                command.Parameters.Add(new OleDbParameter("@password", sPassword));
-
-                // Set the Connection to the new OleDbConnection.
-                command.Connection = dbConnection;
-                
-                try
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
                 {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Parameters to prevent injection  
+                    command.Parameters.Add(new OleDbParameter("@username", sUserName));
+                    command.Parameters.Add(new OleDbParameter("@password", sPassword));
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+
                     // Open the connection and execute the SQL command.
                     dbConnection.Open();
 
@@ -52,14 +49,16 @@ namespace DAL
                     dtUser = new DataTable();
                     OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
                     DataAdapter.Fill(dtUser);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                // The connection is automatically closed when the
-                // code exits the using block.
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             //Return the datatable filled with User Data
             return dtUser;
         }
@@ -74,11 +73,12 @@ namespace DAL
             OleDbCommand dbCommand;
             int nUserId = 0;
 
-            //New Database connection
-            using (dbConnection = new OleDbConnection(sConnString))
+            try
             {
-                try
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
                 {
+
                     // Open database connection
                     dbConnection.Open();
 
@@ -92,17 +92,18 @@ namespace DAL
                     dbCommand.Parameters.Add(new OleDbParameter("@username", sUserName));
 
                     //Get query Results
-                    object result = dbCommand.ExecuteScalar(); 
+                    object result = dbCommand.ExecuteScalar();
 
                     if (result != null)
                     {
                         nUserId = (int)result;
                     }
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
             return nUserId;
         }
@@ -119,22 +120,23 @@ namespace DAL
             OleDbCommand dbCommand;
             int nUserId = 0;
 
-            //Check to make sure User doesnt already Exist
-            nUserId = GetUserIdByUserName(sUserName);
-            if (nUserId > 0)
-                throw new Exception("User already exists");
-
-            //New Database connection
-            using (dbConnection = new OleDbConnection(sConnString))
+            try
             {
-                try
+                //Check to make sure User doesnt already Exist
+                nUserId = GetUserIdByUserName(sUserName);
+                if (nUserId > 0)
+                    throw new Exception("User already exists");
+
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
                 {
+
                     // Open database connection
                     dbConnection.Open();
 
                     // SQL statement insert the customer
                     string sqlStmt = "INSERT INTO UserT([UserName],[Password],[Role]) " +
-                                     "VALUES (@username,@password,@role)";             
+                                     "VALUES (@username,@password,@role)";
 
                     // New command passing sql statement and the connection to the database
                     dbCommand = new OleDbCommand(sqlStmt, dbConnection);
@@ -148,17 +150,17 @@ namespace DAL
                     if (dbCommand.ExecuteNonQuery() > 0)
                         return true;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             return false;
         }
         #endregion
 
         #region Customer
-
         /// <summary>
         /// Inserts Customer into the database
         /// </summary>
@@ -178,19 +180,20 @@ namespace DAL
             OleDbCommand dbCommand;
             DataTable dtCustomer = null;
 
-            //Check to make sure Customer doesnt already Exist
-            dtCustomer = GetCustomerByUserId(nUserId);
-            if (dtCustomer != null)
+            try
             {
-                if (dtCustomer.Rows.Count > 0)
-                    throw new Exception("Customer already exists");
-            }
-
-            //New Database connection
-            using (dbConnection = new OleDbConnection(sConnString))
-            {
-                try
+                //Check to make sure Customer doesnt already Exist
+                dtCustomer = GetCustomerByUserId(nUserId);
+                if (dtCustomer != null)
                 {
+                    if (dtCustomer.Rows.Count > 0)
+                        throw new Exception("Customer already exists");
+                }
+
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+
                     // Open database connection
                     dbConnection.Open();
 
@@ -216,11 +219,12 @@ namespace DAL
                     if (dbCommand.ExecuteNonQuery() > 0)
                         return true;
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             return false;
         }
 
@@ -233,23 +237,24 @@ namespace DAL
         {
             DataTable dtCustomer = null;
 
-            //Query to return Customer Info
-            string queryString = "SELECT CustomerId, UserId,CustomerFirstName,CustomerLastName,CustomerAddress,CustomerAddress2,CustomerCity,CustomerState,CustomerZip,CustomerPhoneNo FROM CustomerT WHERE UserID = @userid";
-
-            //establish connection parameters
-            using (dbConnection = new OleDbConnection(sConnString))
+            try
             {
-                // Insert the SQL statement into the command                
-                OleDbCommand command = new OleDbCommand(queryString);
+                //Query to return Customer Info
+                string queryString = "SELECT CustomerId, UserId,CustomerFirstName,CustomerLastName,CustomerAddress,CustomerAddress2,CustomerCity,CustomerState,CustomerZip,CustomerPhoneNo FROM CustomerT WHERE UserID = @userid";
 
-                // Parameters to prevent injection  
-                command.Parameters.Add(new OleDbParameter("@userid", nUserId));
-
-                // Set the Connection to the new OleDbConnection.
-                command.Connection = dbConnection;
-
-                try
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
                 {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Parameters to prevent injection  
+                    command.Parameters.Add(new OleDbParameter("@userid", nUserId));
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+
                     // Open the connection and execute the SQL command.
                     dbConnection.Open();
 
@@ -257,14 +262,16 @@ namespace DAL
                     dtCustomer = new DataTable();
                     OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
                     DataAdapter.Fill(dtCustomer);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                // The connection is automatically closed when the
-                // code exits the using block.
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             //Return the datatable filled with Customer Data
             return dtCustomer;
         }
@@ -336,11 +343,9 @@ namespace DAL
             }
             return false;
         }
-
         #endregion
 
         #region Catalog
-
         /// <summary>
         /// Get Catalog Items returned in a Data Table
         /// </summary>
@@ -349,20 +354,21 @@ namespace DAL
         {
             DataTable dtCatItems = null;
 
-            //Query to return Catalog Items
-            string queryString = "SELECT CatalogID, ItemPrice, CatalogImagePath, ItemDescription, CatalogItemName FROM CatalogT";
-
-            //establish connection parameters
-            using (dbConnection = new OleDbConnection(sConnString))
+            try
             {
-                // Insert the SQL statement into the command                
-                OleDbCommand command = new OleDbCommand(queryString);         
+                //Query to return Catalog Items
+                string queryString = "SELECT CatalogID, ItemPrice, CatalogImagePath, ItemDescription, CatalogItemName FROM CatalogT";
 
-                // Set the Connection to the new OleDbConnection.
-                command.Connection = dbConnection;
-
-                try
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
                 {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+
                     // Open the connection and execute the SQL command.
                     dbConnection.Open();
 
@@ -370,18 +376,138 @@ namespace DAL
                     dtCatItems = new DataTable();
                     OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
                     DataAdapter.Fill(dtCatItems);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                // The connection is automatically closed when the
-                // code exits the using block.
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             //Return the datatable filled with CatalogItems
             return dtCatItems;
         }
+        #endregion
 
+        #region Order
+        /// <summary>
+        /// Get Orders by CustomerId
+        /// </summary>
+        /// <param name="nCustomerId"></param>
+        /// <returns>Data Table</returns>
+        public DataTable GetOrdersByCustomerId(int nCustomerId)
+        {
+            DataTable dtOrders = null;
+
+            try
+            {
+
+                //Query to return Orders 
+                string queryString = @"
+                    SELECT 
+                        OrderID,
+                        CustomerId,
+                        IsPaymentOnDelivery,
+                        DepositAmt,
+                        StatusID,
+                        OrderDate,
+                        PaymentID
+                    FROM OrderT
+                    WHERE CustomerId = @customerid";
+
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Parameters to prevent injection  
+                    command.Parameters.Add(new OleDbParameter("@customerid", nCustomerId));
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+
+                    // Open the connection and execute the SQL command.
+                    dbConnection.Open();
+
+                    //Fill DataTable with the Orders
+                    dtOrders = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtOrders);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return the datatable filled with Orders 
+            return dtOrders;
+        }
+
+        /// <summary>
+        /// Get Order Items by OrderId
+        /// </summary>
+        /// <param name="nOrderId"></param>
+        /// <returns>datatable</returns>
+        public DataTable GetOrderItemsByOrderId(int nOrderId)
+        {
+            DataTable dtOrderItems = null;
+
+            try
+            {
+                //Query to return OrderItems
+                string queryString = @"
+                    SELECT 
+                        o.OrderID,        
+                        i.OrderItemID,
+                        i.CatalogID,
+                        i.Qty,
+                        i.ContentType,
+                        i.Content,
+                        i.Price
+                    FROM OrderT o
+                    INNER JOIN OrderItemsT i on i.OrderID = o.OrderID 
+                    WHERE o.OrderID = @orderid";
+
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Parameters to prevent injection  
+                    command.Parameters.Add(new OleDbParameter("@orderid", nOrderId));
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+                    // Open the connection and execute the SQL command.
+                    dbConnection.Open();
+
+                    //Fill DataTable with the Orders and OrderItems
+                    dtOrderItems = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtOrderItems);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            //Return the datatable filled with OrderItems
+            return dtOrderItems;
+        }
         #endregion
     }
 }

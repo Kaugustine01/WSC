@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BAL
 {
     public class Order
     {
-        public int OrderId { get; set; }
+        public int OrderId { get; set; }        
 
         public bool IsPaymentOnDelivery { get; set; }
 
@@ -15,22 +13,31 @@ namespace BAL
 
         public int StatusId { get; set; }
 
-        public List<OrderItems> OrderItems { get; set; }
+        public int PaymentId { get; set; }
 
-        public Order(int nOrderId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId)
-        {
-            OrderId = nOrderId;
-            IsPaymentOnDelivery = bIsPaymentOnDelivery;
-            DepositAmt = dDepositAmt;
-            StatusId = nStatusId;
-            OrderItems = new List<OrderItems>();
+        public DateTime OrderDate { get; set; }
+
+        public List<OrderItem> OrderItems { get; set; }
+
+        public Order() {
+            OrderItems = new List<OrderItem>();
         }
 
+        public Order(int nOrderId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nPaymentId, int nStatusId, DateTime dtOrderDate)
+        {
+            OrderId = nOrderId;            
+            IsPaymentOnDelivery = bIsPaymentOnDelivery;
+            DepositAmt = dDepositAmt;
+            PaymentId = nPaymentId;
+            StatusId = nStatusId;
+            OrderDate = dtOrderDate;
+            OrderItems = new List<OrderItem>();
+        }
     }
 
-    public class OrderItems
+    public class OrderItem
     {
-        public int OrderItemId { get; set; }     
+        public int OrderItemId { get; set; }
 
         public int CatalogItemId { get; set; }
 
@@ -48,7 +55,9 @@ namespace BAL
 
         public string Content { get; set; }
 
-        public OrderItems(int nOrderItemId, int nCatalogItemId, int nQty, decimal dPrice, ContentType eItemContentType, string sContent)
+        public OrderItem() { }
+
+        public OrderItem(int nOrderItemId, int nCatalogItemId, int nQty, decimal dPrice, ContentType eItemContentType, string sContent)
         {
             OrderItemId = nOrderItemId;
             CatalogItemId = nCatalogItemId;

@@ -19,6 +19,8 @@ namespace WSC
                 //UserAccountTest();
                 //CustomerTest();
                 //CatalogTest();
+                OrderTest();
+                
             }
             catch (Exception ex)
             {
@@ -32,7 +34,7 @@ namespace WSC
             try
             {
                 //Check existing
-                objBAL.GetUserAccount("TestM", "testp");
+                objBAL.GetUserAccount("KAugustine", "test");
 
                 //Insert User, will check if already exists.
                 //If already exists will throw exception
@@ -53,12 +55,12 @@ namespace WSC
             {
 
                 //Update Customer Record  **Update Not Working** Hate Access!
-                objCustomer = new Customer(3, 2, "Jane", "Doe", "123 Test St", "Suite 111", "TestVille", "FL", "12345", "5555515554");
+                objCustomer = new Customer(3, 1, "Ken", "Augustine", "123 Test St", "Suite 111", "TestVille", "FL", "12345", "5555515554");
                 objCustomer = objBAL.UpdateCustomer(objCustomer);
 
                 //Insert New Customer, will check if already exists
                 //If already exists will throw exception
-                objCustomer = new Customer(0, 2, "Jane", "Doe", "123 Test St", "", "TestVille", "FL", "12345", "5555515554");
+                objCustomer = new Customer(0, 3, "Ken", "Augustine", "123 Test St", "", "TestVille", "FL", "12345", "5555515554");
                 objCustomer = objBAL.InsertCustomer(objCustomer);
 
             }
@@ -78,16 +80,27 @@ namespace WSC
 
         public void OrderTest()
         {
+            //Get Orders
+            List<Order> objOrders = null;
+            objOrders = objBAL.GetOrdersByCustomerId(1);
+
             //Initiate new order with items,must have items or will throw exception
 
             //Update order, must have items or will throw exception
 
-
         }
 
-        //TODO
-        //Fix Customer Update
+        public void GetLookupsTest()
+        {
+            //Get Statuses, PaymentTypes
+        }
+
+        //TODO       
         //Create Order Methods
         //Update Order Methods
+        //LookUp Tables
+        //Fix Customer Update
+
+        //Double check Error Handling. Ensure bubbles up to UI.
     }
 }
