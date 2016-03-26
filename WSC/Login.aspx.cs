@@ -27,7 +27,19 @@ namespace WSC
 
                 Session["UserID"] = objUA.UserId;
                 Session["UserName"] = objUA.UserName;
-                Session["SecurityLevel"] = objUA.UserType;
+                if (objUA.UserType == UserAccount.UserRole.Customer)
+                {
+                    Session["SecurityLevel"] = "C";
+                }
+                else if (objUA.UserType == UserAccount.UserRole.Sales)
+                {
+                    Session["SecurityLevel"] = "S";
+                }
+                else if (objUA.UserType == UserAccount.UserRole.OperationManager)
+                {
+                    Session["SecurityLevel"] = "M";
+                }
+
 
                 if (objUA.UserId > 0)
                     return true;

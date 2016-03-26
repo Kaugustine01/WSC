@@ -11,7 +11,14 @@ namespace WSC.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["SecurityLevel"] == "M")
+            {
 
+            }
+            else
+            {
+                Response.Redirect("NoAccess.aspx");
+            }
         }
     }
 }
