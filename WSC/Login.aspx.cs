@@ -24,6 +24,11 @@ namespace WSC
             objUA = objBAL.GetUserAccount(UserName, Password);
 
             if (objUA != null) {
+
+                Session["UserID"] = objUA.UserId;
+                Session["UserName"] = objUA.UserName;
+                Session["SecurityLevel"] = objUA.UserType;
+
                 if (objUA.UserId > 0)
                     return true;
             }
