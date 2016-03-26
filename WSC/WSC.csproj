@@ -140,6 +140,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Registration.aspx" />
+    <Content Include="RegistrationComplete.aspx" />
+    <Content Include="RegistrationFailed.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="TestBackend.aspx" />
@@ -217,6 +219,20 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationComplete.aspx.cs">
+      <DependentUpon>RegistrationComplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrationComplete.aspx.designer.cs">
+      <DependentUpon>RegistrationComplete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationFailed.aspx.cs">
+      <DependentUpon>RegistrationFailed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrationFailed.aspx.designer.cs">
+      <DependentUpon>RegistrationFailed.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestBackend.aspx.cs">
       <DependentUpon>TestBackend.aspx</DependentUpon>
