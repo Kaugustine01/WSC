@@ -22,6 +22,13 @@
 
         public string PhoneNo { get; set; }
 
+        public enum SearchFilter
+        {
+            LastName,
+            CustomerID,
+            UserId
+        }
+
         public Customer() { }
 
         public Customer(int nCustomerId, int nUserId, string sFirstName, string sLastName, string sAddress, string sAddress2,

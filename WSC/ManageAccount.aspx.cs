@@ -17,7 +17,7 @@ namespace WSC
             if (Session["SecurityLevel"] == "C")
             {
                 Customer objCus = new Customer();
-                objCus = objBAL.GetCustomerByUserId(Convert.ToInt32(Session["UserID"]));
+                objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, Convert.ToInt32(Session["UserID"]).ToString());
 
                 txtUserName.Text = Convert.ToString(Session["UserName"]);
                 txtFirstName.Text = objCus.FirstName;

@@ -97,7 +97,6 @@
     <Content Include="Admin\AddEmployees.aspx" />
     <Content Include="Admin\ManageEmployees.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
-    <Content Include="Admin\NoAccess.aspx" />
     <Content Include="App_Data\WSCDatabase.accdb" />
     <Content Include="App_Themes\StyleSheet.css" />
     <Content Include="Catalog.aspx" />
@@ -181,13 +180,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer.xsd</DependentUpon>
     </Content>
-    <Compile Include="Admin\NoAccess.aspx.cs">
-      <DependentUpon>NoAccess.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\NoAccess.aspx.designer.cs">
-      <DependentUpon>NoAccess.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Catalog.aspx.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

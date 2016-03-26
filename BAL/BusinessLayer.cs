@@ -128,21 +128,35 @@ namespace BAL
 
         #region Customer
         /// <summary>
-        /// Return Customer Object By UserId
+        /// /Return Customer Object By SearchFilter
         /// </summary>
-        /// <param name="nUserId">userid</param>
-        /// <returns>Customer Object</returns>
-        public Customer GetCustomerByUserId(int nUserId)
+        /// <param name="objSearchFilter">Customer.SearchFilter Enum</param>
+        /// <param name="sValue">Value</param>
+        /// <returns></returns>
+        public Customer GetCustomerByFilter(Customer.SearchFilter objSearchFilter, string sValue)
         {
             DataTable dtCus = null;
             Customer objCus = new Customer();
-            string sUserType = string.Empty;
+            string sUserType = string.Empty, sClause = string.Empty;
 
             try
             {
+                //Options to Filter By
+                switch (objSearchFilter)
+                {
+                    case Customer.SearchFilter.CustomerID:
+                        sClause = "CustomerID";
+                        break;
+                    case Customer.SearchFilter.LastName:
+                        sClause = "CustomerLastName";
+                        break;
+                    case Customer.SearchFilter.UserId:
+                        sClause = "UserID";
+                        break;
+                }
 
-                //Fill DataTable with Customer Info By UserId
-                dtCus = objDAL.GetCustomerByUserId(nUserId);
+                //Fill DataTable with Customer Info By Search Filter
+                dtCus = objDAL.GetCustomerBySearchFilter(sClause, sValue);
 
                 //Ensure DataTable has Rows
                 if (dtCus != null)
@@ -188,7 +202,7 @@ namespace BAL
                     objCustomer.City, objCustomer.State, objCustomer.ZipCode, objCustomer.PhoneNo))
                 {
                     //Rehydrate Customer to ensure inserted correctly       
-                    return GetCustomerByUserId(objCustomer.UserId);
+                    return GetCustomerByFilter(Customer.SearchFilter.UserId, objCustomer.UserId.ToString());
                 }
                 else
                 {
@@ -209,11 +223,11 @@ namespace BAL
             try
             {
                 //Update New Customer
-                if (objDAL.UpdateCustomer(objCustomer.UserId, objCustomer.FirstName, objCustomer.LastName, objCustomer.Address, objCustomer.Address2,
+                if (objDAL.UpdateCustomer(objCustomer.CustomerId, objCustomer.FirstName, objCustomer.LastName, objCustomer.Address, objCustomer.Address2,
                     objCustomer.City, objCustomer.State, objCustomer.ZipCode, objCustomer.PhoneNo))
                 {
                     //Rehydrate Customer to ensure inserted correctly       
-                    return GetCustomerByUserId(objCustomer.UserId);
+                    return GetCustomerByFilter(Customer.SearchFilter.UserId, objCustomer.UserId.ToString());
                 }
                 else
                 {

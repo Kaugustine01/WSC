@@ -17,9 +17,9 @@ namespace WSC
             try
             {
                 //UserAccountTest();
-                //CustomerTest();
+                CustomerTest();
                 //CatalogTest();
-                OrderTest();
+                //OrderTest();
                 
             }
             catch (Exception ex)
@@ -54,8 +54,13 @@ namespace WSC
             try
             {
 
-                //Update Customer Record  **Update Not Working** Hate Access!
-                objCustomer = new Customer(3, 1, "Ken", "Augustine", "123 Test St", "Suite 111", "TestVille", "FL", "12345", "5555515554");
+                //Get Customer by Search Filters
+                objCustomer = objBAL.GetCustomerByFilter(Customer.SearchFilter.LastName, "Augustine");
+
+                objCustomer = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, "3");
+
+                //Update Customer Record 
+                objCustomer = new Customer(1, 3, "Ken", "Augustine", "1234 Test St", "Suite 111", "TestVille", "FL", "12345", "5555515554");
                 objCustomer = objBAL.UpdateCustomer(objCustomer);
 
                 //Insert New Customer, will check if already exists
@@ -98,8 +103,7 @@ namespace WSC
         //TODO       
         //Create Order Methods
         //Update Order Methods
-        //LookUp Tables
-        //Fix Customer Update
+        //LookUp Tables       
 
         //Double check Error Handling. Ensure bubbles up to UI.
     }

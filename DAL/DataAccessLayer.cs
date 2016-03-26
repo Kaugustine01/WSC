@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.OleDb;
 using System.Data;
+using System.Collections.Generic;
 
 namespace DAL
 {
@@ -183,7 +184,7 @@ namespace DAL
             try
             {
                 //Check to make sure Customer doesnt already Exist
-                dtCustomer = GetCustomerByUserId(nUserId);
+                dtCustomer = GetCustomerBySearchFilter("UserID", nUserId.ToString());
                 if (dtCustomer != null)
                 {
                     if (dtCustomer.Rows.Count > 0)
@@ -226,21 +227,21 @@ namespace DAL
             }
 
             return false;
-        }
+        }                
 
         /// <summary>
         /// Get Customer Info returned in a DataTable
         /// </summary>
         /// <param name="nUserId">userid</param>
         /// <returns>datatable</returns>
-        public DataTable GetCustomerByUserId(int nUserId)
+        public DataTable GetCustomerBySearchFilter(string sClause, string sValue)
         {
             DataTable dtCustomer = null;
 
             try
             {
                 //Query to return Customer Info
-                string queryString = "SELECT CustomerId, UserId,CustomerFirstName,CustomerLastName,CustomerAddress,CustomerAddress2,CustomerCity,CustomerState,CustomerZip,CustomerPhoneNo FROM CustomerT WHERE UserID = @userid";
+                string queryString = "SELECT CustomerId, UserId,CustomerFirstName,CustomerLastName,CustomerAddress,CustomerAddress2,CustomerCity,CustomerState,CustomerZip,CustomerPhoneNo FROM CustomerT WHERE " + sClause + " = @value";
 
                 //establish connection parameters
                 using (dbConnection = new OleDbConnection(sConnString))
@@ -249,7 +250,7 @@ namespace DAL
                     OleDbCommand command = new OleDbCommand(queryString);
 
                     // Parameters to prevent injection  
-                    command.Parameters.Add(new OleDbParameter("@userid", nUserId));
+                    command.Parameters.Add(new OleDbParameter("@value", sValue));
 
                     // Set the Connection to the new OleDbConnection.
                     command.Connection = dbConnection;
@@ -403,7 +404,6 @@ namespace DAL
 
             try
             {
-
                 //Query to return Orders 
                 string queryString = @"
                     SELECT 
