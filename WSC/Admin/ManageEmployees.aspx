@@ -12,24 +12,8 @@
 
         <!--    Grid View of Employees First Name, Last Name, PayRate, Start Date, End Date -->
         <center>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-                DataKeyNames="ID"> 
-                <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False"
-                        ReadOnly="True" SortExpression="ID" />
-                    <asp:BoundField DataField="FirstName" HeaderText="First Name"
-                        SortExpression="FirstName" />
-                    <asp:BoundField DataField="LastName" HeaderText="Last Name"
-                        SortExpression="LastName" />
-                    <asp:BoundField DataField="PayRate" HeaderText="Pay Rate"
-                        SortExpression="PayRate" />
-                    <asp:BoundField DataField="StartDate" HeaderText="Start Date"
-                        SortExpression="StartDate" />
-                    <asp:BoundField DataField="EndDate" HeaderText="End Date"
-                        SortExpression="EndDate" />
-                    <asp:CommandField ShowEditButton="True" />
-                    <asp:CommandField ShowDeleteButton="True" />
-                </Columns>
+            <asp:GridView ID="ManageEmployeesGridView" AutoGenerateColumns="true" runat="server"> 
+                
             </asp:GridView>
         </center>
     </div>

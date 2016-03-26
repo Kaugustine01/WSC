@@ -32,12 +32,12 @@ namespace WSC
                 objCustomer = new Customer(0, objUA.UserId, txtFirstName.Text, txtLastName.Text, txtAddress.Text, "", txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
                 objCustomer = objBAL.InsertCustomer(objCustomer);
 
-                Response.Redirect("RegistrationComplete.asxp");
+                lblComplete.Visible = true;
 
             }
             catch (Exception)
             {
-                Response.Redirect("RegistrationFailed.asxp");
+                lblError.Visible = true;
             }
 
         }

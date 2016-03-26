@@ -98,8 +98,11 @@
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" />
             <br />
 
+             <!-- Properly submitted. -->
+            <asp:Label ID="lblComplete" runat="server" Visible="false" ForeColor="Red"><b>Registration Complete, please use your User Name and Password to Login.</b></asp:Label>
+
             <!-- Error for the form not being properly submitted. -->
-            <asp:Label ID="lblError" runat="server"></asp:Label>
+            <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>User Already Exists</b></asp:Label>
         </asp:Panel>
     </div>
 
