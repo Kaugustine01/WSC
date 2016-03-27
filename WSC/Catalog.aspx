@@ -9,12 +9,12 @@
             </h1>
             <asp:GridView ID="CatalogGridView" AutoGenerateColumns="false" runat="server">
                 <Columns>
-                    <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" sortExpression="CatalogID" ReadOnly="true" />
-                    <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" sortExpression="CatalogItemName" ReadOnly="true" />
-                    <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="ItemDescription" ReadOnly="true" />
-                    <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true" />
-                    <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />
-                </Columns>
+                <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true" />
+                <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
+                <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="ItemDescription" ReadOnly="true" />
+                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true" />
+                <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />
+            </Columns>
             </asp:GridView>
         </center>
     </div>
