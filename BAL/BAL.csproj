@@ -44,6 +44,8 @@
     <Compile Include="classes\CatalogItem.cs" />
     <Compile Include="classes\Customer.cs" />
     <Compile Include="classes\Order.cs" />
+    <Compile Include="classes\PaymentTypes.cs" />
+    <Compile Include="classes\Statuses.cs" />
     <Compile Include="classes\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

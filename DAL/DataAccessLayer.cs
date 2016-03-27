@@ -508,6 +508,120 @@ namespace DAL
             //Return the datatable filled with OrderItems
             return dtOrderItems;
         }
+
+        public bool InsertOrder(int nCustomerId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId, int nPaymentId, DataTable dtOrderItems)
+        {
+            try
+            {
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return false;
+        }
+
+        public bool UpdateOrder(int nCustomerId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId, int nPaymentId, DataTable dtOrderItems)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return false;
+        }
+        #endregion
+
+        #region LookUps
+        /// <summary>
+        /// Get Payment types
+        /// </summary>
+        /// <returns>datatable</returns>
+        public DataTable GetPaymentTypes()
+        {
+            DataTable dtPaymentTypes = null;
+
+            try
+            {
+                //Query to return Payment Types
+                string queryString = "SELECT PaymentID, PaymentType FROM PaymentT";
+
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+                    // Open the connection and execute the SQL command.
+                    dbConnection.Open();
+
+                    //Fill DataTable with the User Info
+                    dtPaymentTypes = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtPaymentTypes);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return DataTable filled with PaymentTypes
+            return dtPaymentTypes;
+        }
+
+        /// <summary>
+        /// Get statuses
+        /// </summary>
+        /// <returns>datatable</returns>
+        public DataTable GetStatuses()
+        {
+            DataTable dtStatuses = null;
+
+            try
+            {
+                //Query to return Statuses
+                string queryString = "SELECT StatusID, Status FROM StatusT";
+
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+                    // Open the connection and execute the SQL command.
+                    dbConnection.Open();
+
+                    //Fill DataTable with the User Info
+                    dtStatuses = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtStatuses);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return datatable with Statuses
+            return dtStatuses;
+        }
         #endregion
     }
 }

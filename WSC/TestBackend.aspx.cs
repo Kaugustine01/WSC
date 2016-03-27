@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using BAL;
 
 namespace WSC
@@ -17,10 +13,12 @@ namespace WSC
             try
             {
                 //UserAccountTest();
-                CustomerTest();
+                //CustomerTest();
                 //CatalogTest();
                 //OrderTest();
-                
+                GetLookupsTest();
+
+
             }
             catch (Exception ex)
             {
@@ -97,13 +95,16 @@ namespace WSC
 
         public void GetLookupsTest()
         {
-            //Get Statuses, PaymentTypes
+            //Get Statuses.
+            Statuses objStatuses = new Statuses();
+
+            //Get PaymentTypes
+            PaymentTypes objPaymentTypes = new PaymentTypes();
         }
 
         //TODO       
         //Create Order Methods
-        //Update Order Methods
-        //LookUp Tables       
+        //Update Order Methods        
 
         //Double check Error Handling. Ensure bubbles up to UI.
     }
