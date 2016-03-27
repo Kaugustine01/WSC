@@ -104,3 +104,8 @@ C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\DAL.pdb
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.dll
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.pdb
+C:\Users\Daniel\Source\Repos\WSC\WSC\bin\BAL.dll
+C:\Users\Daniel\Source\Repos\WSC\WSC\bin\DAL.dll
+C:\Users\Daniel\Source\Repos\WSC\WSC\bin\BAL.pdb
+C:\Users\Daniel\Source\Repos\WSC\WSC\bin\DAL.pdb
+C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache

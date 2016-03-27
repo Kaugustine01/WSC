@@ -201,6 +201,9 @@ namespace BAL
 
             try
             {
+                // New List
+                lCustomer = new List<Customer>();
+
                 //Options to Filter By
                 switch (objSearchFilter)
                 {

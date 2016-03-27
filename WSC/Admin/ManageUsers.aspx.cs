@@ -28,11 +28,11 @@ namespace WSC.Admin
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            Customer objCus = null;
+            List < Customer > lstCust= null;
 
-            objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
+            lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
 
-            ManageUsersGridView.DataSource = objCus;
+            ManageUsersGridView.DataSource = lstCust;
             ManageUsersGridView.DataBind();
             
         }
