@@ -186,6 +186,69 @@ namespace BAL
         }
 
         /// <summary>
+        /// Return Customer List by SearchFilter
+        /// </summary>
+        /// <param name="objSearchFilter">Customer.SearchFilter Enum</param>
+        /// <param name="sValue">Value</param>
+        /// <returns>List</returns>
+        public List<Customer> GetCustomerListByFilter(Customer.SearchFilter objSearchFilter, string sValue)
+        {
+            DataTable dtCus = null;
+            Customer objCus = null;
+            List<Customer> lCustomer = null;
+
+            string sUserType = string.Empty, sClause = string.Empty;
+
+            try
+            {
+                //Options to Filter By
+                switch (objSearchFilter)
+                {
+                    case Customer.SearchFilter.CustomerID:
+                        sClause = "CustomerID";
+                        break;
+                    case Customer.SearchFilter.LastName:
+                        sClause = "CustomerLastName";
+                        break;
+                    case Customer.SearchFilter.UserId:
+                        sClause = "UserID";
+                        break;
+                }
+
+                //Fill DataTable with Customer Info By Search Filter
+                dtCus = objDAL.GetCustomerBySearchFilter(sClause, sValue);
+
+                //Ensure DataTable has Rows
+                if (dtCus != null)
+                {
+                    if (dtCus.Rows.Count > 0)
+                    {
+                        objCus = new Customer();
+                        objCus.CustomerId = int.Parse(dtCus.Rows[0]["CustomerID"].ToString());
+                        objCus.UserId = int.Parse(dtCus.Rows[0]["UserID"].ToString());
+                        objCus.FirstName = dtCus.Rows[0]["CustomerFirstName"].ToString();
+                        objCus.LastName = dtCus.Rows[0]["CustomerLastName"].ToString();
+                        objCus.Address = dtCus.Rows[0]["CustomerAddress"].ToString();
+                        objCus.Address2 = dtCus.Rows[0]["CustomerAddress2"].ToString();
+                        objCus.City = dtCus.Rows[0]["CustomerCity"].ToString();
+                        objCus.State = dtCus.Rows[0]["CustomerState"].ToString();
+                        objCus.ZipCode = dtCus.Rows[0]["CustomerZip"].ToString();
+                        objCus.PhoneNo = dtCus.Rows[0]["CustomerPhoneNo"].ToString();
+
+                        lCustomer.Add(objCus);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return Customer List
+            return lCustomer;
+        }
+
+        /// <summary>
         /// Inserts new Customer into the database if its no already present
         /// </summary>
         /// <param name="objCustomer"></param>
