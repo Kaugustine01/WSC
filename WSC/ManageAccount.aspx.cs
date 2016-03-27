@@ -14,8 +14,10 @@ namespace WSC
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["SecurityLevel"] == "C")
             {
+
                 Customer objCus = new Customer();
                 objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, Convert.ToInt32(Session["UserID"]).ToString());
 

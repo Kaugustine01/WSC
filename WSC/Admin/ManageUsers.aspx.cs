@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
+using System.Data;
 
 namespace WSC.Admin
 {
@@ -22,6 +23,18 @@ namespace WSC.Admin
             {
                 Response.Redirect("NoAccess.aspx");
             }
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+            Customer objCus = null;
+
+            objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
+
+            ManageUsersGridView.DataSource = objCus;
+            ManageUsersGridView.DataBind();
+            
         }
     }
 }
