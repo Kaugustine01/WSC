@@ -31,6 +31,7 @@
                 <Nodes>
                     <asp:TreeNode Value="Home" NavigateUrl="~/Default.aspx" Text="Home" Target="Content" Expanded="False"></asp:TreeNode>
                     <asp:TreeNode Value="CatalogMain" NavigateUrl="~/Catalog.aspx" Text="Catalog" Target="Content" Expanded="True"></asp:TreeNode>
+                    <asp:TreeNode Value="ViewCart" NavigateUrl="~/ViewCart.aspx" Text="View Cart" Target="Content" Expanded="True"></asp:TreeNode>
                     <asp:TreeNode Value="Customer" Text="Customer" Target="Content" Expanded="True">
                         <asp:TreeNode Value="ManageAccount" NavigateUrl="~/ManageAccount.aspx" Text="Manage Account" Target="Content" Expanded="False" />
                     </asp:TreeNode>

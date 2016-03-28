@@ -17,7 +17,10 @@ namespace WSC.Admin
         {
             if (Session["SecurityLevel"] == "M")
             {
-                
+                if(!IsPostBack)
+                {
+                    ManageUsersGridView.DataBind();
+                }
             }
             else
             {
@@ -35,6 +38,50 @@ namespace WSC.Admin
             ManageUsersGridView.DataSource = lstCust;
             ManageUsersGridView.DataBind();
             
+        }
+
+        protected void ManageUsersGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            Customer updateCust = new Customer();
+
+            GridViewRow row = ManageUsersGridView.Rows[e.RowIndex];
+
+            string txtID = ((TextBox)(row.Cells[1].Controls[0])).Text;
+            string txtUsID = ((TextBox)row.FindControl("UserID")).Text;
+            string txtFirstName = ((TextBox)row.FindControl("FirstName")).Text;
+            string txtLastName = ((TextBox)row.FindControl("LastName")).Text;
+            string txtAddress = ((TextBox)row.FindControl("Address")).Text;
+            string txtAddress2 = ((TextBox)row.FindControl("Address2")).Text;
+            string txtCity = ((TextBox)row.FindControl("City")).Text;
+            string txtState = ((TextBox)row.FindControl("State")).Text;
+            string txtZipCode = ((TextBox)row.FindControl("ZipCode")).Text;
+            string txtPhoneNo = ((TextBox)row.FindControl("PhoneNo")).Text;
+
+
+            updateCust.CustomerId = int.Parse(txtID);
+            updateCust.UserId = int.Parse(txtID);
+            updateCust.FirstName = txtFirstName;
+            updateCust.LastName = txtLastName;
+            updateCust.Address = txtAddress;
+            updateCust.Address2 = txtAddress2;
+            updateCust.City = txtCity;
+            updateCust.State = txtState;
+            updateCust.ZipCode = txtZipCode;
+            updateCust.PhoneNo = txtPhoneNo;
+
+            objBAL.UpdateCustomer(updateCust);
+
+            ManageUsersGridView.EditIndex = -1;
+
+            ManageUsersGridView.DataSource = updateCust;
+            ManageUsersGridView.DataBind();
+
+        }
+
+        protected void ManageUsersGridView_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            ManageUsersGridView.EditIndex = e.NewEditIndex;
+            DataBind();
         }
     }
 }

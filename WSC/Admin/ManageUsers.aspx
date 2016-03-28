@@ -10,8 +10,19 @@
                 <asp:Label ID="Label1" runat="server" Text="Manage Users"></asp:Label></center>
         <br />
         <!--    Grid View of Users -->
-        <asp:GridView ID="ManageUsersGridView" AutoGenerateColumns="true" runat="server">
-            
+        <asp:GridView ID="ManageUsersGridView" AutoGenerateColumns="false" AutoGenerateEditButton="true" runat="server" OnRowUpdating="ManageUsersGridView_RowUpdating" OnRowEditing="ManageUsersGridView_RowEditing" AllowPaging="true">
+            <Columns>
+                <asp:BoundField DataField="CustomerID" HeaderText="Customer ID" SortExpression="CustomerID" ReadOnly="true"/>
+                <asp:BoundField DataField="UserID" HeaderText="User ID" SortExpression="UserID" ReadOnly="true" />
+                <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" ReadOnly="false" />
+                <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" ReadOnly="false" />
+                <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" ReadOnly="false" />
+                <asp:BoundField DataField="Address2" HeaderText="Address 2" SortExpression="Address2" ReadOnly="false" />
+                <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" ReadOnly="false" />
+                <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" ReadOnly="false" />
+                <asp:BoundField DataField="ZipCode" HeaderText="Zip" SortExpression="Zip" ReadOnly="false" />
+                <asp:BoundField DataField="PhoneNo" HeaderText="Phone Number" SortExpression="PhoneNo" ReadOnly="false" />
+            </Columns>
         </asp:GridView>
         <br />
         <br />
