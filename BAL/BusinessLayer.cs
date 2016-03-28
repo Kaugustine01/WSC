@@ -9,10 +9,7 @@ namespace BAL
     {
         DataAccessLayer objDAL = new DataAccessLayer();
 
-        public BusinessLayer()
-        {
-
-        }
+        public BusinessLayer() { }
 
         #region User Account
         /// <summary>
@@ -122,7 +119,7 @@ namespace BAL
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }            
+            }
         }
         #endregion
 
@@ -259,7 +256,7 @@ namespace BAL
         public Customer InsertCustomer(Customer objCustomer)
         {
             //Check to ensure all fields are present
-            CheckRequiredFields(objCustomer);
+            CheckRequiredCustomerFields(objCustomer);
 
             try
             {
@@ -279,12 +276,12 @@ namespace BAL
             {
                 throw new Exception(ex.Message);
             }
-        }    
+        }
 
         public Customer UpdateCustomer(Customer objCustomer)
         {
             //Check to ensure all fields are present
-            CheckRequiredFields(objCustomer);
+            CheckRequiredCustomerFields(objCustomer);
 
             try
             {
@@ -310,9 +307,10 @@ namespace BAL
         /// Check required fields, if error an exception is thrown
         /// </summary>
         /// <param name="objCustomer"></param>
-        private void CheckRequiredFields(Customer objCustomer)
+        private void CheckRequiredCustomerFields(Customer objCustomer)
         {
-            try {
+            try
+            {
                 //Check to ensure all fields are present
                 if (objCustomer != null)
                 {
@@ -406,17 +404,18 @@ namespace BAL
 
         #region Orders
         /// <summary>
-        /// Get a List of Orders by CustomerId. Orders also contain the OrderItems
+        /// Return list of Orders by Customerid
         /// </summary>
-        /// <param name="nCustomerId">CustomerID</param>
+        /// <param name="nCustomerId">customerid</param>
         /// <returns>List of Orders</returns>
-        public List<Order> GetOrdersByCustomerId (int nCustomerId)
+        public List<Order> GetOrdersByCustomerId(int nCustomerId)
         {
-            DataTable dtOrders = null;            
+            DataTable dtOrders = null;
 
             List<Order> lOrders = new List<Order>();
 
-            try {
+            try
+            {
 
                 //Fill DataTable with Customer Info By UserId
                 dtOrders = objDAL.GetOrdersByCustomerId(nCustomerId);
@@ -454,6 +453,66 @@ namespace BAL
 
             //Return Orders List
             return lOrders;
+        }
+
+        /// <summary>
+        /// Insert a new order
+        /// </summary>
+        /// <param name="objOrder">Order Object</param>
+        /// <param name="nCustomerID">Customer Id</param>
+        /// <returns>bool</returns>
+        public bool InsertOrder(Order objOrder, int nCustomerID)
+        {
+            DataTable dtOrderItems = null;           
+
+            try
+            {
+                //Check required fields
+                CheckRequiredOrderFields(objOrder, nCustomerID);
+
+                //Convert OrderItems Object to DataTable for insersion
+                dtOrderItems = ConvertOrderItemstoDataTable(objOrder.OrderItems);
+
+                if (objDAL.InsertOrder(nCustomerID,objOrder.IsPaymentOnDelivery, objOrder.DepositAmt, objOrder.StatusId, objOrder.PaymentId, dtOrderItems))                
+                    return true;                
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Update an existing order
+        /// </summary>
+        /// <param name="objOrder">Order Object</param>
+        /// <param name="nCustomerID">CustomerId</param>
+        /// <returns>bool</returns>
+        public bool UpdateOrder(Order objOrder, int nCustomerID)
+        {
+            DataTable dtOrderItems = null;
+
+            try
+            {
+                CheckRequiredOrderFields(objOrder, nCustomerID);
+
+                if (objOrder.OrderId == 0)
+                    throw new Exception("Order must contain an ID to update");
+
+                //Convert OrderItems Object to DataTable for insersion
+                dtOrderItems = ConvertOrderItemstoDataTable(objOrder.OrderItems);
+
+                if (objDAL.UpdateOrder(nCustomerID, objOrder.OrderId, objOrder.IsPaymentOnDelivery, objOrder.DepositAmt, objOrder.StatusId, objOrder.PaymentId, dtOrderItems))
+                    return true;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return false;
         }
 
         /// <summary>
@@ -509,7 +568,116 @@ namespace BAL
                 throw new Exception(ex.Message);
             }
         }
-        #endregion
 
+        /// <summary>
+        /// Check required fields, if error an exception is thrown
+        /// </summary>
+        /// <param name="objOrder">Order Object</param>
+        private void CheckRequiredOrderFields(Order objOrder, int nCustomerID)
+        {
+            try
+            {
+                if (nCustomerID == 0)
+                    throw new Exception("CustomerId is required.");
+
+                //Check to ensure all fields are present
+                if (objOrder != null)
+                {
+                    //Check to Ensure Order has Items
+                    if (objOrder.OrderItems == null)
+                        throw new Exception("There are no items in the order object.");
+
+                    if (objOrder.OrderItems.Count == 0)
+                        throw new Exception("There are no items in the order object.");
+
+                    if (objOrder.PaymentId == 0)
+                        throw new Exception("PaymentId is required.");
+
+                    //If COD is required, check for dep amt
+                    if (objOrder.IsPaymentOnDelivery)
+                    {
+                        if (objOrder.DepositAmt == 0)
+                            throw new Exception("If payment on delivery is chosen, a deposit amount is required.");
+                    }
+
+                    //Check All items in the Order Item List
+                    foreach (OrderItem objOrderItem in objOrder.OrderItems)
+                    {
+                        if (objOrderItem.CatalogItemId == 0)
+                            throw new Exception("All order items require a catalogID.");
+
+                        if (objOrderItem.Price == 0)
+                            throw new Exception("All order items require a price.");
+
+                        if (objOrderItem.Qty == 0)
+                            throw new Exception("All order items require a qty.");
+
+                        if (objOrderItem.Content == null)
+                            throw new Exception("All order items require content.");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Customer is NULL");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Converts OrderItems List to Datatable
+        /// </summary>
+        /// <param name="objOrderItems"></param>
+        /// <returns></returns>
+        private DataTable ConvertOrderItemstoDataTable(List<OrderItem> lOrderItems)
+        {
+            string sItemContentType = string.Empty;
+            DataTable dtOrderItems = null;
+
+            try
+            {
+                // Create a DataTable.
+                dtOrderItems = new DataTable();
+                dtOrderItems.Columns.Add("OrderItemID", typeof(int));
+                dtOrderItems.Columns.Add("CatalogItemID", typeof(int));
+                dtOrderItems.Columns.Add("Qty", typeof(int));
+                dtOrderItems.Columns.Add("Price", typeof(decimal));
+                dtOrderItems.Columns.Add("ItemContentType", typeof(string));
+                dtOrderItems.Columns.Add("ItemContent", typeof(string));           
+
+                //Loop through each List Item
+                foreach (OrderItem objOrderItems in lOrderItems) 
+                {
+                    //Decode Enum
+                    switch (objOrderItems.ItemContentType)
+                    {
+                        case OrderItem.ContentType.Engraved:
+                            sItemContentType = "E";
+                            break;
+                        case OrderItem.ContentType.Printed:
+                            sItemContentType = "P";
+                            break;
+
+                    }
+
+                    //Load Rows
+                    dtOrderItems.Rows.Add(objOrderItems.OrderItemId, objOrderItems.CatalogItemId, objOrderItems.Qty, objOrderItems.Price,
+                    sItemContentType, objOrderItems.Content);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return new datatable with order items
+            return dtOrderItems;
+
+        }
+        #endregion
     }
 }

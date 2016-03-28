@@ -64,6 +64,7 @@ namespace BAL
             Qty = nQty;
             Price = dPrice;
             ItemContentType = eItemContentType;
+            Content = sContent;
         }
     }
 }

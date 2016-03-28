@@ -15,8 +15,8 @@ namespace WSC
                 //UserAccountTest();
                 //CustomerTest();
                 //CatalogTest();
-                //OrderTest();
-                GetLookupsTest();
+                OrderTest();
+                //GetLookupsTest();
 
 
             }
@@ -83,14 +83,29 @@ namespace WSC
 
         public void OrderTest()
         {
+
+            //Initiate new order with items,must have items or will throw exception
+            //New Order
+            bool bOrderSuccessful = false;
+            OrderItem objOrderItem = null;
+            Order objOrder = new Order(0,false,0,2,1,DateTime.Now);
+
+            //Add items to the collection
+            objOrderItem = new OrderItem(0,1,1,2.00m,OrderItem.ContentType.Engraved,"Test");
+            objOrder.OrderItems.Add(objOrderItem);
+
+            objOrderItem = new OrderItem(0, 1, 1, 2.00m, OrderItem.ContentType.Engraved, "Test 2");
+            objOrder.OrderItems.Add(objOrderItem);
+
+            bOrderSuccessful = objBAL.InsertOrder(objOrder, 1);
+
             //Get Orders
             List<Order> objOrders = null;
             objOrders = objBAL.GetOrdersByCustomerId(1);
 
-            //Initiate new order with items,must have items or will throw exception
-
             //Update order, must have items or will throw exception
-
+            objOrders[0].StatusId = 4; //Cancel Order
+            bOrderSuccessful = objBAL.UpdateOrder(objOrders[0], 1);
         }
 
         public void GetLookupsTest()
@@ -103,9 +118,8 @@ namespace WSC
         }
 
         //TODO       
-        //Create Order Methods
-        //Update Order Methods        
+        //If Orderitems fail to insert, Roll all items back (Delete) and delete Order        
 
-        //Double check Error Handling. Ensure bubbles up to UI.
+        //Daniel, For insert order I am just returning a bool.  Do you need anything else?  
     }
 }
