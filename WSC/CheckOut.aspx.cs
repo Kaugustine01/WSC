@@ -11,7 +11,11 @@ namespace WSC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!this.IsPostBack)
+            {
+                CartGridView.DataSource = Session["Cart"];
+                CartGridView.DataBind();
+            }
         }
     }
 }

@@ -66,7 +66,7 @@ namespace WSC
         {
             if (Session["Cart"] != null)
             {
-                Response.Redirect("CheckOut.aspx");
+                Response.Redirect("~/CheckOut.aspx");
             }
             else
             {

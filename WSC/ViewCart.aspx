@@ -10,7 +10,7 @@
             </h1>
     <asp:GridView ID="CartGridView" AutoGenerateColumns="true" runat="server" Width="388px">
         <Columns>
-            <asp:TemplateField HeaderText="Add to Cart">
+            <asp:TemplateField HeaderText="Remove from Cart">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkRow" runat="server" />
                 </ItemTemplate>
@@ -18,12 +18,15 @@
 
         </Columns>
         </asp:GridView>
-        <asp:Button ID="RemoveFromCart" runat="server" Text="Remove from Cart" OnClick="RemoveFromCart_Click"/>
+        <asp:Button ID="btnRemoveFromCart" runat="server" Text="Remove from Cart" OnClick="RemoveFromCart_Click"/>
         &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="ConfirmPurchase" runat="server" Text="Check Out" OnClick="ConfirmPurchase_Click" />
+            <asp:Button ID="btnConfirmPurchase" runat="server" Text="Check Out" OnClick="ConfirmPurchase_Click" />
         <br />
         <br />
         <!-- Error for the form not being properly submitted. -->
         <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>Your Cart is Empty</b></asp:Label>
-    
+
+            </center>
+    </div>
+
 </asp:Content>

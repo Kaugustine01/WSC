@@ -22,22 +22,22 @@ namespace WSC {
         protected global::System.Web.UI.WebControls.GridView CartGridView;
         
         /// <summary>
-        /// RemoveFromCart control.
+        /// btnRemoveFromCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RemoveFromCart;
+        protected global::System.Web.UI.WebControls.Button btnRemoveFromCart;
         
         /// <summary>
-        /// ConfirmPurchase control.
+        /// btnConfirmPurchase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ConfirmPurchase;
+        protected global::System.Web.UI.WebControls.Button btnConfirmPurchase;
         
         /// <summary>
         /// lblError control.
