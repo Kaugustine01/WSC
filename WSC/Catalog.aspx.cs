@@ -14,43 +14,52 @@ namespace WSC
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.IsPostBack)
+            {
+                List<CatalogItem> lCatItems = null;
 
-            List<CatalogItem> lCatItems = null;
+                //Retrieve Catalog Items
+                lCatItems = objBAL.GetCatalogItems();
 
-            //Retrieve Catalog Items
-            lCatItems = objBAL.GetCatalogItems();
-
-            CatalogGridView.DataSource = lCatItems;
-            CatalogGridView.DataBind();
+                CatalogGridView.DataSource = lCatItems;
+                CatalogGridView.DataBind();
+            }
         }
 
         protected void AddToCart_Click(object sender, EventArgs e)
         {
-            var selectedProducts = CatalogGridView.Rows.Cast<GridViewRow>()
-                .Where(row => ((CheckBox)row.FindControl("SelectedProducts")).Checked)
-                .Select(row => CatalogGridView.DataKeys[row.RowIndex].Value.ToString()).ToList();
+            try
+            {
+                List<CatalogItem> lCatItems = new List<CatalogItem>();
 
-            if (Session["Cart"] == null)
-            {
-                Session["Cart"] = selectedProducts;
-            }
-            else
-            {
-                var cart = (List<string>)Session["Cart"];
-                foreach (var product in selectedProducts)
+                foreach (GridViewRow row in CatalogGridView.Rows)
                 {
-                    cart.Add(product);
-                    Session["Cart"] = cart;
+                    CatalogItem objCatItem = new CatalogItem();
+
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                        if (chkRow.Checked)
+                        {
+                            objCatItem.CatalogItemId = int.Parse(row.Cells[1].Text);
+                            objCatItem.CatalogItemName = row.Cells[2].Text;
+                            objCatItem.CatalogItemDescr = row.Cells[3].Text;
+                            objCatItem.Price = decimal.Parse(row.Cells[4].Text);
+                            objCatItem.CatalogImagePath = row.Cells[5].Text;
+
+                            lCatItems.Add(objCatItem);
+                        }
+                    }
                 }
+
+                Session["Cart"] = lCatItems;
             }
-            foreach (GridViewRow row in CatalogGridView.Rows)
+            catch (Exception)
             {
-                CheckBox cb = (CheckBox)row.FindControl("SelectedProducts");
-                if (cb.Checked)
-                {
-                    cb.Checked = false;
-                }
+
+                lblError.Visible = true;
             }
+            
         }
 
         protected void Checkout_Click(object sender, EventArgs e)

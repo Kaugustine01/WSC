@@ -12,7 +12,7 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Add to Cart">
                         <ItemTemplate>
-                            <asp:CheckBox ID="SelectedProducts" runat="server"/>
+                            <asp:CheckBox ID="chkRow" runat="server"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                 <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true"/>
