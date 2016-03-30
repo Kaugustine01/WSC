@@ -12,13 +12,13 @@
         <Columns>
             <asp:TemplateField HeaderText="Add to Cart">
                 <ItemTemplate>
-                    <asp:CheckBox ID="RemoveProducts" runat="server" />
+                    <asp:CheckBox ID="chkRow" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
 
         </Columns>
         </asp:GridView>
-        <asp:Button ID="RemoveFromCart" runat="server" Text="Add to Cart" OnClick="RemoveFromCart_Click"/>
+        <asp:Button ID="RemoveFromCart" runat="server" Text="Remove from Cart" OnClick="RemoveFromCart_Click"/>
         &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="ConfirmPurchase" runat="server" Text="Check Out" OnClick="ConfirmPurchase_Click" />
         <br />
