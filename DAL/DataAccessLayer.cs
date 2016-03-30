@@ -509,30 +509,374 @@ namespace DAL
             return dtOrderItems;
         }
 
+        /// <summary>
+        /// Insert Order and Order Items
+        /// </summary>
+        /// <param name="nCustomerId">customer id</param>
+        /// <param name="bIsPaymentOnDelivery">is payment on delivery</param>
+        /// <param name="dDepositAmt">deposit amount</param>
+        /// <param name="nStatusId">status id</param>
+        /// <param name="nPaymentId">payment id</param>
+        /// <param name="dtOrderItems">Data table of order items</param>
+        /// <returns></returns>
         public bool InsertOrder(int nCustomerId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId, int nPaymentId, DataTable dtOrderItems)
         {
+            OleDbCommand dbCommand;            
+            int nOrderId = 0;
+            bool bSuccess = false;
+
             try
             {
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
 
-            }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return false;
-        }
+                    // Open database connection
+                    dbConnection.Open();
 
-        public bool UpdateOrder(int nCustomerId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId, int nPaymentId, DataTable dtOrderItems)
-        {
-            try
-            {
+                    // SQL statement insert the customer
+                    string sqlStmt = "INSERT INTO OrderT([CustomerID],[IsPaymentOnDelivery],[DepositAmt],[StatusID],[OrderDate],[PaymentID]) " +
+                                     "VALUES (@customerid,@ispaymentondelivery,@depositamt,@statusid,@orderdate,@paymentid)";
 
+                    // New command passing sql statement and the connection to the database
+                    dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+
+                    // Parameters   
+                    dbCommand.Parameters.Add(new OleDbParameter("@customerid", nCustomerId));
+                    dbCommand.Parameters.Add(new OleDbParameter("@ispaymentondelivery", bIsPaymentOnDelivery));
+                    dbCommand.Parameters.Add(new OleDbParameter("@depositamt", dDepositAmt));
+                    dbCommand.Parameters.Add(new OleDbParameter("@statusid", nStatusId));
+
+                    //Order Date
+                    OleDbParameter parm = new OleDbParameter("@orderdate", OleDbType.Date);
+                    parm.Value = DateTime.Now;
+                    dbCommand.Parameters.Add(parm);
+                                        
+                    dbCommand.Parameters.Add(new OleDbParameter("@paymentid", nPaymentId));
+
+                    //Execute query
+                    if (dbCommand.ExecuteNonQuery() > 0)
+                    {
+                        //Get OrderId (Autonumber from database)
+                        dbCommand.CommandText = "SELECT @@IDENTITY";
+                        nOrderId = (int)dbCommand.ExecuteScalar();
+
+                        if (nOrderId > 0)
+                            bSuccess = true;
+                    }
+                }
+                
+                if (bSuccess)
+                {
+                    //Insert Items
+                    if (InsertOrderItems(nOrderId, dtOrderItems))
+                        return true;
+                }
+            
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+
+            return bSuccess;
+        }
+
+        /// <summary>
+        /// Insert order items
+        /// </summary>
+        /// <param name="nOrderId">order id</param>
+        /// <param name="dtOrderItems">datatable of order items</param>
+        /// <returns>bool</returns>
+        public bool InsertOrderItems(int nOrderId, DataTable dtOrderItems)
+        {
+            OleDbCommand dbCommand;
+            bool bSuccess = false;
+
+            try
+            {
+                //Check to make sure Order Exists.
+                if (CheckIfOrderExists(nOrderId))
+                {
+                    //New Database connection
+                    using (dbConnection = new OleDbConnection(sConnString))
+                    {
+
+                        // Open database connection
+                        dbConnection.Open();
+
+
+                        //Loop to insert all items
+                        foreach (DataRow row in dtOrderItems.Rows)
+                        {
+                            //Reset to False
+                            bSuccess = false;
+
+                            // SQL statement insert the customer
+                            string sqlStmt = "INSERT INTO OrderItemsT([OrderID],[CatalogID],[Qty],[ContentType],[Content],[price]) " +
+                                         "VALUES (@orderid,@catalogid, @qty, @contenttype, @content, @price)";
+
+                            // New command passing sql statement and the connection to the database
+                            dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+
+                            // Parameters   
+                            dbCommand.Parameters.Add(new OleDbParameter("@orderid", nOrderId));
+                            dbCommand.Parameters.Add(new OleDbParameter("@catalogid", int.Parse(row["CatalogItemID"].ToString())));
+                            dbCommand.Parameters.Add(new OleDbParameter("@qty", int.Parse(row["Qty"].ToString())));
+                            dbCommand.Parameters.Add(new OleDbParameter("@contenttype", row["ItemContentType"].ToString()));
+                            dbCommand.Parameters.Add(new OleDbParameter("@content", row["ItemContent"].ToString()));
+                            dbCommand.Parameters.Add(new OleDbParameter("@price", decimal.Parse(row["Price"].ToString())));
+
+                            //Execute query
+                            if (dbCommand.ExecuteNonQuery() > 0)
+                                bSuccess = true;
+
+                            //If failed to insert, abort and delete orderitems and order
+                            if (!bSuccess)
+                                break;
+
+                        }
+
+                        //Items successfully inserted return true
+                        if (bSuccess)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            //Delete OrderItems
+                            DeleteOrderItems(nOrderId);
+
+                            //Delete Order
+                            DeleteOrder(nOrderId);
+
+                            throw new Exception("Failed to insert order.");
+                        }
+                    }
+                }
+                else
+                {
+                    //Order Does not exist
+                    throw new Exception("Order does not exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             return false;
+        }
+
+        /// <summary>
+        /// Update Order
+        /// </summary>
+        /// <param name="nCustomerId">customerid</param>
+        /// <param name="nOrderId">orderid</param>
+        /// <param name="bIsPaymentOnDelivery">is payment on delivery</param>
+        /// <param name="dDepositAmt">deposit amt</param>
+        /// <param name="nStatusId">status id</param>
+        /// <param name="nPaymentId">paymentid</param>
+        /// <param name="dtOrderItems">datatable of order items</param>
+        /// <returns>bool</returns>
+        public bool UpdateOrder(int nCustomerId, int nOrderId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId, int nPaymentId, DataTable dtOrderItems)
+        {
+            OleDbCommand dbCommand;             
+
+            try
+            {
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+
+                    // Open database connection
+                    dbConnection.Open();
+
+                    // SQL statement insert the customer
+                    string sqlStmt = @"UPDATE OrderT SET
+                                        [IsPaymentOnDelivery] = @ispaymentondelivery,
+                                        [DepositAmt] = @depositamt,
+                                        [StatusID] = @statusid,
+                                        [PaymentID] = @paymentid
+                                       WHERE OrderID = @orderid";
+
+                    // New command passing sql statement and the connection to the database
+                    dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+
+                    // Parameters                       
+                    dbCommand.Parameters.Add(new OleDbParameter("@ispaymentondelivery", bIsPaymentOnDelivery));
+                    dbCommand.Parameters.Add(new OleDbParameter("@depositamt", dDepositAmt));
+                    dbCommand.Parameters.Add(new OleDbParameter("@statusid", nStatusId));
+                    dbCommand.Parameters.Add(new OleDbParameter("@paymentid", nPaymentId));                    
+                    dbCommand.Parameters.Add(new OleDbParameter("@orderid", nOrderId));
+
+                    //Execute query
+                    if (dbCommand.ExecuteNonQuery() > 0)
+                    {
+                        if (UpdateOrderItems(nOrderId, dtOrderItems))
+                            return true;                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Update order items
+        /// </summary>
+        /// <param name="nOrderId">order id</param>
+        /// <param name="dtOrderItems">datatable of order items</param>
+        /// <returns>bool</returns>
+        public bool UpdateOrderItems(int nOrderId, DataTable dtOrderItems)
+        {
+            OleDbCommand dbCommand;
+            bool bSuccess = false;
+
+            try
+            {
+
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+
+                    // Open database connection
+                    dbConnection.Open();
+
+
+                    //Loop to insert all items
+                    foreach (DataRow row in dtOrderItems.Rows)
+                    {
+                        //Reset to False
+                        bSuccess = false;
+
+                        // SQL statement insert the customer
+                        string sqlStmt = @"UPDATE OrderItemsT SET
+                                                [CatalogID] = @catalogid,
+                                                [Qty] = @qty,
+                                                [ContentType] = @contenttype,
+                                                [Content] = @content,
+                                                [price] =  @price
+                                         WHERE OrderItemID = @orderitemid";
+
+                        // New command passing sql statement and the connection to the database
+                        dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+
+                        // Parameters                           
+                        dbCommand.Parameters.Add(new OleDbParameter("@catalogid", int.Parse(row["CatalogItemID"].ToString())));
+                        dbCommand.Parameters.Add(new OleDbParameter("@qty", int.Parse(row["Qty"].ToString())));
+                        dbCommand.Parameters.Add(new OleDbParameter("@contenttype", row["ItemContentType"].ToString()));
+                        dbCommand.Parameters.Add(new OleDbParameter("@content", row["ItemContent"].ToString()));
+                        dbCommand.Parameters.Add(new OleDbParameter("@price", decimal.Parse(row["Price"].ToString())));
+                        dbCommand.Parameters.Add(new OleDbParameter("@orderitemid", int.Parse(row["OrderItemID"].ToString())));
+
+                        //Execute query
+                        if (dbCommand.ExecuteNonQuery() > 0)
+                            bSuccess = true;
+
+                        //If failed to insert, abort and delete orderitems and order
+                        if (!bSuccess)
+                            break;
+
+                    }
+
+                    //Items successfully inserted return true
+                    if (bSuccess)
+                    {
+                        return true;
+                    }
+                    else
+                    {                        
+                        throw new Exception("Failed to Update order.");
+                    }
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }            
+        }
+
+        /// <summary>
+        /// Check if order exists
+        /// </summary>
+        /// <param name="nOrderId">Order Id</param>
+        /// <returns>bool</returns>
+        private bool CheckIfOrderExists(int nOrderId)
+        {
+            DataTable dtOrder = null;
+
+            try
+            {
+                //Query 
+                string queryString = "SELECT OrderId FROM OrderT WHERE OrderId = @orderid";
+
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Parameters to prevent injection  
+                    command.Parameters.Add(new OleDbParameter("@orderid", nOrderId));                    
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+
+                    // Open the connection and execute the SQL command.
+                    dbConnection.Open();
+
+                    //Fill DataTable with Order Info
+                    dtOrder = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtOrder);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
+
+
+                    //Return true if order exists.
+                    if(dtOrder != null)
+                    {
+                        if (dtOrder.Rows.Count > 0)
+                            return true;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return false
+            return false;
+        }
+
+        /// <summary>
+        /// Delete order items
+        /// </summary>
+        /// <param name="nOrderId">order id</param>
+        /// <returns>bool</returns>
+        private bool DeleteOrderItems(int nOrderId)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// delete order
+        /// </summary>
+        /// <param name="nOrderId">order id</param>
+        /// <returns>bool</returns>
+        private bool DeleteOrder(int nOrderId)
+        {
+            return true;
         }
         #endregion
 
