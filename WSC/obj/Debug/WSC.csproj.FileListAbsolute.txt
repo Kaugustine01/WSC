@@ -72,6 +72,7 @@ C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\DAL.pdb
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.dll
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.pdb
+C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\ApplicationInsights.config
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\roslyn\csc.exe
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -89,7 +90,6 @@ C:\Users\Daniel\Source\Repos\WSC\WSC\bin\WSC.dll.config
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\WSC.dll
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\WSC.pdb
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\BAL.dll
-C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.PerfCounterCollector.dll
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.ServerTelemetryChannel.dll
