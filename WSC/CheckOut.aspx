@@ -7,8 +7,10 @@
             <h1>
                Check Out
             </h1>
-    <asp:GridView ID="CartGridView" AutoGenerateColumns="true" runat="server" Width="388px">
-
+    <asp:GridView ID="CartGridView" AutoGenerateColumns="true" runat="server" Width="500">
+                        <HeaderStyle BackColor="Black" ForeColor="White"/>
+                <RowStyle BackColor="#c5d5cb" />
+                <AlternatingRowStyle BackColor="#e3e0cf" />
         </asp:GridView>
         <br />
         <br />

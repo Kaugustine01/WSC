@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
+
+/*
+    Programmer: Daniel Bays
+    Date:       03/30/2016
+    Purpose:    View Cart
+    Details:    This program is used to Populate and Edit the Sessions Cart Information.
+ */
 
 namespace WSC
 {
     public partial class ViewCart : System.Web.UI.Page
     {
-
-        BusinessLayer objBAL = new BusinessLayer();
+        // Creates decimal variable for the grand total
+        decimal grdTotal = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Populates the GridView with Session Cart information or displays the error that the cart is empty
             if(!this.IsPostBack)
             {
                 if (Session["Cart"] != null)
@@ -29,7 +34,20 @@ namespace WSC
                     btnConfirmPurchase.Visible = false;
                 }
             }
-            
+
+            // Populates the Label (lblTotal) with the Total Amount of the Order
+            foreach (GridViewRow row in CartGridView.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    decimal rowTotal = decimal.Parse(row.Cells[4].Text);
+
+                    grdTotal = grdTotal + rowTotal;
+                }
+            }
+
+            lblTotal.Text = "Total: " + grdTotal.ToString("c");
+
         }
 
         protected void RemoveFromCart_Click(object sender, EventArgs e)
@@ -38,8 +56,10 @@ namespace WSC
             {
                 Session.Contents.Remove("Cart");
 
+                // Creates the list to store the Cart information
                 List<CatalogItem> lCatItems = new List<CatalogItem>();
 
+                // Inputs rows that are NOT checked into lCatItems list
                 foreach (GridViewRow row in CartGridView.Rows)
                 {
                     CatalogItem objCatItem = new CatalogItem();
@@ -64,25 +84,29 @@ namespace WSC
                     }
                 }
 
+                // Inserts the Cart information into Session[Cart], then Reloads the page
                 Session["Cart"] = lCatItems;
 
                 Response.Redirect("ViewCart.aspx");
             }
             catch (Exception)
             {
-
+                // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
             }
         }
 
         protected void ConfirmPurchase_Click(object sender, EventArgs e)
         {
+
+            // Sends the user to the Check Out page or if the cart is empty displays the error. 
             if (Session["Cart"] != null)
             {
                 Response.Redirect("~/CheckOut.aspx");
             }
             else
             {
+                // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
             }
         }

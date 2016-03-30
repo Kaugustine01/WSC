@@ -1,7 +1,7 @@
-﻿html{
+﻿html {
     background: linear-gradient(to right, #e3e0cf, #e3e0cf, white, white);
     background: -webkit-linear-gradient(left, #e3e0cf, #e3e0cf, white, white);
-    background: -moz-linear-gradient(right, #e3e0cf, #e3e0cf, white, white)
+    background: -moz-linear-gradient(right, #e3e0cf, #e3e0cf, white, white);
 }
 
 body {
@@ -51,6 +51,7 @@ body {
     margin-left: 16em;
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow: auto;
 }
 
 .footer {

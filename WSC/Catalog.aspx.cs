@@ -6,14 +6,23 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
 
+/*
+    Programmer: Daniel Bays
+    Date:       03/30/2016
+    Purpose:    View Cart
+    Details:    This program is used to Populate and Edit the Sessions Cart Information.
+ */
+
 namespace WSC
 {
     public partial class Catalog : System.Web.UI.Page
     {
+        // Creates a Business Layer Obeject to Call Functions
         BusinessLayer objBAL = new BusinessLayer();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Populates the GridView with Catalog Information from the Database
             if (!this.IsPostBack)
             {
                 List<CatalogItem> lCatItems = null;
@@ -30,8 +39,10 @@ namespace WSC
         {
             try
             {
+                // Creates the list to store the Cart information
                 List<CatalogItem> lCatItems = new List<CatalogItem>();
 
+                // Inputs rows that ARE checked into lCatItems list
                 foreach (GridViewRow row in CatalogGridView.Rows)
                 {
                     CatalogItem objCatItem = new CatalogItem();
@@ -52,11 +63,14 @@ namespace WSC
                     }
                 }
 
+                // Inserts the Cart information into Session[Cart], then Reloads the page
                 Session["Cart"] = lCatItems;
+
+                Response.Redirect("Catalog.aspx");
             }
             catch (Exception)
             {
-
+                // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
             }
             
@@ -64,12 +78,14 @@ namespace WSC
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
+            // Sends the user to the Check Out page or if the cart is empty displays the error.
             if (Session["Cart"] != null)
             {
                 Response.Redirect("~/CheckOut.aspx");
             }
             else
             {
+                // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
             }
         }
