@@ -15,9 +15,10 @@ namespace WSC
                 //UserAccountTest();
                 //CustomerTest();
                 //CatalogTest();
-                OrderTest();
+                //OrderTest();
                 //GetLookupsTest();
 
+                SampleCartSession();
 
             }
             catch (Exception ex)
@@ -70,7 +71,7 @@ namespace WSC
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }           
+            }
         }
 
         public void CatalogTest()
@@ -88,10 +89,10 @@ namespace WSC
             //New Order
             bool bOrderSuccessful = false;
             OrderItem objOrderItem = null;
-            Order objOrder = new Order(0,false,0,2,1,DateTime.Now);
+            Order objOrder = new Order(0, false, 0, 2, 1, DateTime.Now);
 
             //Add items to the collection
-            objOrderItem = new OrderItem(0,1,1,2.00m,OrderItem.ContentType.Engraved,"Test");
+            objOrderItem = new OrderItem(0, 1, 1, 2.00m, OrderItem.ContentType.Engraved, "Test");
             objOrder.OrderItems.Add(objOrderItem);
 
             objOrderItem = new OrderItem(0, 1, 1, 2.00m, OrderItem.ContentType.Engraved, "Test 2");
@@ -117,9 +118,41 @@ namespace WSC
             PaymentTypes objPaymentTypes = new PaymentTypes();
         }
 
-        //TODO       
-        //If Orderitems fail to insert, Roll all items back (Delete) and delete Order        
+        public void SampleCartSession()
+        {
+            //Get a list of the catalog items
+            List<CatalogItem> lCatalogItems = null;
+            lCatalogItems = objBAL.GetCatalogItems();
 
-        //Daniel, For insert order I am just returning a bool.  Do you need anything else?  
+            //Customer likes catalog item 1
+            int nCatalogItemCstLoves = lCatalogItems[0].CatalogItemId;
+
+            //Check to see if the order has already bee started
+            //By checking the session, if not in session initite new order
+            if (Session["Cart"] == null)
+                Session["Cart"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
+
+            //Get Order out of session          
+            var objOrder = Session["Cart"] as Order;
+
+            //Customer decides to purchase Item 1 from the catalog.
+            OrderItem objOrderItem = new OrderItem(0, nCatalogItemCstLoves, 1, 25.00m, OrderItem.ContentType.Engraved, "Test");
+
+            //Add OrderItem to the order item List collection
+            objOrder.OrderItems.Add(objOrderItem);
+
+            //Customer is done, Load the order back into session until he click the Buy Button later
+            Session["Cart"] = objOrder;
+
+            //If Customer clicks buy later and you need to save to database. Grab
+            //out of session, see above "Get Order out of session", then call the Insert from the 
+            //Business layer.
+            int nCustomerId = 3; 
+            objBAL.InsertOrder(Session["Cart"] as Order, nCustomerId);
+        }
+
+        //TODO       
+        //If Orderitems fail to insert, Roll all items back (Delete) and delete Order    
     }
 }
+    

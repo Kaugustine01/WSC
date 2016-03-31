@@ -664,8 +664,6 @@ namespace DAL
             {
                 throw new Exception(ex.Message);
             }
-
-            return false;
         }
 
         /// <summary>
