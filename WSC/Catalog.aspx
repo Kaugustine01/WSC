@@ -23,7 +23,7 @@
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
                 <Columns>
-                    <asp:TemplateField HeaderText="Add" ItemStyle-Width="50">
+                    <asp:TemplateField HeaderText="Add">
                         <ItemTemplate>
                             <asp:CheckBox ID="chkRow" runat="server"/>
                         </ItemTemplate>
@@ -32,7 +32,12 @@
                     <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="ItemDescription" ReadOnly="true" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true"/>
-                    <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />   
+                    <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />
+                    <asp:TemplateField HeaderText="Quantity">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtQty" runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>  
                 </Columns>
             </asp:GridView>
 
