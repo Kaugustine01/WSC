@@ -37,12 +37,12 @@ namespace WSC
             try
             {
                 // Creates the list to store the Cart information
-                List<CatalogItem> lCatItems = new List<CatalogItem>();
+                List<OrderItem> lOrderItems = new List<OrderItem>();
 
                 // Inputs rows that ARE checked into lCatItems list
                 foreach (GridViewRow row in CatalogGridView.Rows)
                 {
-                    CatalogItem objCatItem = new CatalogItem();
+                    OrderItem objCatItem = new OrderItem();
 
                     if (row.RowType == DataControlRowType.DataRow)
                     {
@@ -50,18 +50,22 @@ namespace WSC
                         if (chkRow.Checked)
                         {
                             objCatItem.CatalogItemId = int.Parse(row.Cells[1].Text);
-                            objCatItem.CatalogItemName = row.Cells[2].Text;
-                            objCatItem.CatalogItemDescr = row.Cells[3].Text;
-                            objCatItem.Price = decimal.Parse(row.Cells[4].Text);
-                            objCatItem.CatalogImagePath = row.Cells[5].Text;
 
-                            lCatItems.Add(objCatItem);
+                            objCatItem.Qty = int.Parse(row.Cells[7].Text);
+
+                            objCatItem.Price = (decimal.Parse(row.Cells[4].Text) * objCatItem.Qty);
+
+                            objCatItem.ItemContentType = BAL.OrderItem.ContentType.Engraved;
+
+                            objCatItem.Content = row.Cells[8].Text;
+
+                            lOrderItems.Add(objCatItem);
                         }
                     }
                 }
 
                 // Inserts the Cart information into Session[Cart], then Reloads the page
-                Session["Cart"] = lCatItems;
+                Session["Cart"] = lOrderItems;
 
                 Response.Redirect("Catalog.aspx");
             }

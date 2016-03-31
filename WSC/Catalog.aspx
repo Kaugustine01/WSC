@@ -38,6 +38,11 @@
                             <asp:TextBox ID="txtQty" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>  
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtContent" runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
 
