@@ -34,49 +34,58 @@ namespace WSC
 
         protected void AddToCart_Click(object sender, EventArgs e)
         {
-            //Check to see if the order has already bee started
-            //By checking the session, if not in session initite new order
-            if (Session["Cart"] == null)
+            try
             {
-                Session["Cart"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
-            }
-
-
-            //Get Order out of session          
-            var objOrder = Session["Cart"] as Order;
-
-
-
-
-            // Inputs rows that ARE checked into lCatItems list
-            foreach (GridViewRow row in CatalogGridView.Rows)
-            {
-                OrderItem objOrderItem = new OrderItem();
-
-                if (row.RowType == DataControlRowType.DataRow)
+                //Check to see if the order has already bee started
+                //By checking the session, if not in session initite new order
+                if (Session["Cart"] == null)
                 {
-                    CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
-                    if (chkRow.Checked)
+                    Session["Cart"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
+                }
+
+
+                //Get Order out of session          
+                var objOrder = Session["Cart"] as Order;
+
+                foreach (GridViewRow row in CatalogGridView.Rows)
+                {
+                    OrderItem objOrderItem = new OrderItem();
+
+                    if (row.RowType == DataControlRowType.DataRow)
                     {
-                        objOrderItem.CatalogItemId = int.Parse(row.Cells[1].Text);
+                        CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                        if (chkRow.Checked)
+                        {
+                            objOrderItem.CatalogItemId = int.Parse(row.Cells[1].Text);
 
-                        objOrderItem.Qty = int.Parse((row.FindControl("txtQty") as TextBox).Text);
+                            objOrderItem.Qty = int.Parse((row.FindControl("txtQty") as TextBox).Text);
 
-                        objOrderItem.Price = (decimal.Parse(row.Cells[4].Text) * objOrderItem.Qty);
+                            objOrderItem.Price = (decimal.Parse(row.Cells[4].Text) * objOrderItem.Qty);
 
-                        objOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
+                            objOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
 
-                        objOrderItem.Content = (row.FindControl("txtContent") as TextBox).Text;
+                            objOrderItem.Content = (row.FindControl("txtContent") as TextBox).Text;
 
-                        objOrder.OrderItems.Add(objOrderItem);
+                            objOrder.OrderItems.Add(objOrderItem);
+                        }
                     }
                 }
+
+                // Inputs rows that ARE checked into lCatItems list
+
+
+                // Inserts the Cart information into Session[Cart], then Reloads the page
+                Session["Cart"] = objOrder;
+
+                Response.Redirect("Catalog.aspx");
             }
+            catch (Exception)
+            {
 
-            // Inserts the Cart information into Session[Cart], then Reloads the page
-            Session["Cart"] = objOrder;
-
-            Response.Redirect("Catalog.aspx");
+                // Displays lblError if there is a problem with the transaction
+                lblError.Visible = true;
+            }
+            
 
         }
 

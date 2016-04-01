@@ -75,6 +75,10 @@ namespace WSC
                         CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
                         if (chkRow.Checked)
                         {
+                            
+                        }
+                        else
+                        {
                             objOrderItem.CatalogItemId = int.Parse(row.Cells[2].Text);
 
                             objOrderItem.Qty = int.Parse((row.FindControl("txtQty") as TextBox).Text);
