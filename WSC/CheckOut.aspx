@@ -17,10 +17,19 @@
             </h1>
 
             <!-- This displays a grid view of the Order. -->
-            <asp:GridView ID="CartGridView" AutoGenerateColumns="true" runat="server" CellPadding="5" Width="500">
+            <asp:GridView ID="CartGridView" AutoGenerateColumns="false" runat="server" CellPadding="5" Width="500">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
+                <Columns>
+                    <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true" />
+                    <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
+                    <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="CatalogItemDescr" ReadOnly="true" />
+                    <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />
+                    <asp:BoundField DataField="Qty" HeaderText="Quantity" SortExpression="Qty" ReadOnly="true" />
+                    <asp:BoundField DataField="ItemPrice" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true"/>
+                    <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" ReadOnly="true" />
+                </Columns>
             </asp:GridView>
             <br />
             <br />
@@ -31,6 +40,11 @@
             <br />
 
             <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Left">
+
+                <!-- Label to display the Total Amount of the Order -->
+                <asp:Label ID="lblTotal" runat="server" />
+                <br />
+                <br />
 
                 <!-- Payment on Delivery -->
                 <asp:Label ID="lblPaymentOnDelivery" runat="server" Text="Payment on Delivery: " Width="130px"></asp:Label>

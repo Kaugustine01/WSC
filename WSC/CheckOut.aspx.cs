@@ -10,18 +10,39 @@ namespace WSC
 {
     public partial class CheckOut : System.Web.UI.Page
     {
-        BusinessLayer objBAL = new BusinessLayer();
+        // Creates decimal variable for the grand total
+        decimal grdTotal = 0;
+        BusinessLayer objBAL = null;
+        List<CatalogItem> lCatalogItem = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             decimal deposit = 0;
 
+            // Populates the GridView with Session Cart information or displays the error that the cart is empty
             if (!this.IsPostBack)
             {
+                objBAL = new BusinessLayer();
+
+                //Get CatalogItems
+                lCatalogItem = objBAL.GetCatalogItems();
+
+
+
                 if (Session["Cart"] != null)
                 {
-                    CartGridView.DataSource = Session["Cart"];
+                    Order oCart = new Order();
+                    oCart = Session["Cart"] as Order;
+
+                    //Bind Catalog Info to the OrderItems
+                    AddCatalogInfoToOrderItems(ref lCatalogItem, ref oCart);
+
+                    CartGridView.DataSource = oCart.OrderItems;
                     CartGridView.DataBind();
+                }
+                else
+                {
+                    lblError.Visible = true;
                 }
 
                 // Inputs rows that ARE checked into lCatItems list
@@ -29,17 +50,24 @@ namespace WSC
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        decimal rowTotal = decimal.Parse(row.Cells[3].Text);
 
-                        deposit = deposit + rowTotal;
                     }
                 }
 
                 deposit = deposit * 10 / 100;
                 txtDeposit.Text = "Deposit Amount: " + deposit.ToString("c");
-            }
 
-            
+                // Populates the Label (lblTotal) with the Total Amount of the Order
+                foreach (GridViewRow row in CartGridView.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+
+                    }
+                }
+
+                lblTotal.Text = "Total: " + grdTotal.ToString("c");
+            }   
         }
 
 
@@ -68,14 +96,31 @@ namespace WSC
                     OrderItem objOrderItem = new OrderItem();
 
                     //Add items to the collection
-                    objOrderItem = new OrderItem(0, 1, 1, 2.00m, OrderItem.ContentType.Engraved, "Test");
-                    objOrder.OrderItems.Add(objOrderItem);
+                    objOrderItem = new OrderItem( 0, 
+                        int.Parse((row.FindControl("CatalogItemID") as TextBox).Text),
+                        int.Parse((row.FindControl("Qty") as TextBox).Text),
+                        decimal.Parse((row.FindControl("ItemPrice") as TextBox).Text), 
+                        OrderItem.ContentType.Engraved,
+                        (row.FindControl("Content") as TextBox).Text
+                        );
 
+                    objOrder.OrderItems.Add(objOrderItem);
                 }
             }
 
             bOrderSuccessful = objBAL.InsertOrder(objOrder, 1);
         }
-        
+
+        private static void AddCatalogInfoToOrderItems(ref List<CatalogItem> lCatalogItem, ref Order objOrder)
+        {
+            foreach (OrderItem objOrderItem in objOrder.OrderItems)
+            {
+                var ObjCatalogItem = lCatalogItem.FirstOrDefault(i => i.CatalogItemId == objOrderItem.CatalogItemId);
+                objOrderItem.CatalogItemName = ObjCatalogItem.CatalogItemName;
+                objOrderItem.CatalogItemDescr = ObjCatalogItem.CatalogItemDescr;
+                objOrderItem.CatalogImagePath = ObjCatalogItem.CatalogImagePath;
+            }
+        }
+
     }
 }

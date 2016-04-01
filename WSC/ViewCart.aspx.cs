@@ -56,9 +56,7 @@ namespace WSC
             {
                 if (row.RowType == DataControlRowType.DataRow)
                 {
-                    decimal rowTotal = decimal.Parse(row.Cells[4].Text);
-
-                    grdTotal = grdTotal + rowTotal;
+                    
                 }
             }
 

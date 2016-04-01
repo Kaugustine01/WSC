@@ -18,12 +18,13 @@
             </h1>
 
             <!-- This displays a grid view of the Catalog. -->
-            <asp:GridView ID="CatalogGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="500">
+            <asp:GridView ID="CatalogGridView" AutoGenerateColumns="False" runat="server" CellPadding="5">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
+                
                 <Columns>
-                    <asp:TemplateField HeaderText="Add">
+                    <asp:TemplateField HeaderText="Add" ItemStyle-Width="10px">
                         <ItemTemplate>
                             <asp:CheckBox ID="chkRow" runat="server"/>
                         </ItemTemplate>
@@ -31,7 +32,7 @@
                     <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="ItemDescription" ReadOnly="true" />
-                    <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true"/>
+                    <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />
                     <asp:TemplateField HeaderText="Quantity">
                         <ItemTemplate>
