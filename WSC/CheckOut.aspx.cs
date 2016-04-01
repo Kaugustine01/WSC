@@ -97,7 +97,7 @@ namespace WSC
                     newOrderItem.OrderItemId = 1;
                     newOrderItem.CatalogItemId = int.Parse(row.Cells[0].Text);
                     newOrderItem.Qty = int.Parse(row.Cells[5].Text);
-                    newOrderItem.ItemPrice = decimal.Parse(row.Cells[6].Text);
+                    newOrderItem.ItemPrice = int.Parse(row.Cells[6].Text);
                     newOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
                     newOrderItem.Content = row.Cells[7].Text;
 
