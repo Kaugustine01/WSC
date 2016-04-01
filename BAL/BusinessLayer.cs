@@ -543,7 +543,7 @@ namespace BAL
                             OrderItem.CatalogItemId = int.Parse(row["CatalogID"].ToString());
                             OrderItem.Qty = int.Parse(row["Qty"].ToString());
                             OrderItem.Content = row["Content"].ToString();
-                            OrderItem.Price = decimal.Parse(row["Price"].ToString());
+                            OrderItem.ItemPrice = decimal.Parse(row["Price"].ToString());
                             sContentType = row["ContentType"].ToString();
 
                             //Enum Content Type
@@ -606,7 +606,7 @@ namespace BAL
                         if (objOrderItem.CatalogItemId == 0)
                             throw new Exception("All order items require a catalogID.");
 
-                        if (objOrderItem.Price == 0)
+                        if (objOrderItem.ItemPrice == 0)
                             throw new Exception("All order items require a price.");
 
                         if (objOrderItem.Qty == 0)
@@ -665,7 +665,7 @@ namespace BAL
                     }
 
                     //Load Rows
-                    dtOrderItems.Rows.Add(objOrderItems.OrderItemId, objOrderItems.CatalogItemId, objOrderItems.Qty, objOrderItems.Price,
+                    dtOrderItems.Rows.Add(objOrderItems.OrderItemId, objOrderItems.CatalogItemId, objOrderItems.Qty, objOrderItems.ItemPrice,
                     sItemContentType, objOrderItems.Content);
                 }
             }

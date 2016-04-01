@@ -60,7 +60,7 @@ namespace WSC
 
                             objOrderItem.Qty = int.Parse((row.FindControl("txtQty") as TextBox).Text);
 
-                            objOrderItem.Price = (decimal.Parse(row.Cells[4].Text) * objOrderItem.Qty);
+                            objOrderItem.ItemPrice = (decimal.Parse(row.Cells[4].Text) * objOrderItem.Qty);
 
                             objOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
 
