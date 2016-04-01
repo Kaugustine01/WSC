@@ -35,15 +35,13 @@ namespace BAL
         }
     }
 
-    public class OrderItem
+    public class OrderItem : CatalogItem
     {
-        public int OrderItemId { get; set; }
-
-        public int CatalogItemId { get; set; }
+        public int OrderItemId { get; set; }      
 
         public int Qty { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal ItemPrice { get; set; }
 
         public ContentType ItemContentType { get; set; }
 
@@ -62,7 +60,7 @@ namespace BAL
             OrderItemId = nOrderItemId;
             CatalogItemId = nCatalogItemId;
             Qty = nQty;
-            Price = dPrice;
+            ItemPrice = dPrice;
             ItemContentType = eItemContentType;
             Content = sContent;
         }

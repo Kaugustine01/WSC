@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using BAL;
@@ -16,16 +17,28 @@ namespace WSC
     {
         // Creates decimal variable for the grand total
         decimal grdTotal = 0;
+        BusinessLayer objBAL = null;
+        List<CatalogItem> lCatalogItem = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             // Populates the GridView with Session Cart information or displays the error that the cart is empty
             if(!this.IsPostBack)
             {
+                objBAL = new BusinessLayer();
+                
+                //Get CatalogItems
+                lCatalogItem = objBAL.GetCatalogItems();
+
+
+
                 if (Session["Cart"] != null)
                 {
                     Order oCart = new Order();
                     oCart = Session["Cart"] as Order;
+
+                    //Bind Catalog Info to the OrderItems
+                    AddCatalogInfoToOrderItems(ref lCatalogItem, ref oCart);
 
                     CartGridView.DataSource = oCart.OrderItems;
                     CartGridView.DataBind();
@@ -118,6 +131,17 @@ namespace WSC
             {
                 // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
+            }
+        }
+
+        private static void AddCatalogInfoToOrderItems(ref List<CatalogItem> lCatalogItem, ref Order objOrder)
+        {
+           foreach(OrderItem objOrderItem in objOrder.OrderItems)
+            {
+                var ObjCatalogItem = lCatalogItem.FirstOrDefault(i => i.CatalogItemId == objOrderItem.CatalogItemId);
+                objOrderItem.CatalogItemName = ObjCatalogItem.CatalogItemName;
+                objOrderItem.CatalogItemDescr = ObjCatalogItem.CatalogItemDescr;
+                objOrderItem.CatalogImagePath = ObjCatalogItem.CatalogImagePath;
             }
         }
     }
