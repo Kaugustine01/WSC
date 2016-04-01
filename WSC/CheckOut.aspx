@@ -22,7 +22,7 @@
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
                 <Columns>
-                    <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true" />
+                    <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogItemID" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="CatalogItemDescr" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />

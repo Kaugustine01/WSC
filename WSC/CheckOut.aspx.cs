@@ -85,7 +85,7 @@ namespace WSC
             bool bOrderSuccessful = false;
 
             // Create New Order
-            Order objOrder = new Order(0, depositBool, decimal.Parse(txtDeposit.Text), 2, 1, DateTime.Now);
+            Order objOrder = new Order(0, depositBool, 0, 2, 1, DateTime.Now);
 
             
 
@@ -93,18 +93,15 @@ namespace WSC
             {
                 if (row.RowType == DataControlRowType.DataRow)
                 {
-                    OrderItem objOrderItem = new OrderItem();
+                    OrderItem newOrderItem = new OrderItem();
+                    newOrderItem.OrderItemId = 1;
+                    newOrderItem.CatalogItemId = int.Parse(row.Cells[0].Text);
+                    newOrderItem.Qty = int.Parse(row.Cells[5].Text);
+                    newOrderItem.ItemPrice = decimal.Parse(row.Cells[6].Text);
+                    newOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
+                    newOrderItem.Content = row.Cells[7].Text;
 
-                    //Add items to the collection
-                    objOrderItem = new OrderItem( 0, 
-                        int.Parse((row.FindControl("CatalogItemID") as TextBox).Text),
-                        int.Parse((row.FindControl("Qty") as TextBox).Text),
-                        decimal.Parse((row.FindControl("ItemPrice") as TextBox).Text), 
-                        OrderItem.ContentType.Engraved,
-                        (row.FindControl("Content") as TextBox).Text
-                        );
-
-                    objOrder.OrderItems.Add(objOrderItem);
+                    objOrder.OrderItems.Add(newOrderItem);
                 }
             }
 

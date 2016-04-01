@@ -29,6 +29,7 @@
                             <asp:CheckBox ID="chkRow" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" ItemStyle-Width="50px" />
                     <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="CatalogItemDescr" ReadOnly="true" ItemStyle-Width="50px" />
                     <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" ItemStyle-Width="50px" />
