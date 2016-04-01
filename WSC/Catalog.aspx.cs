@@ -34,47 +34,50 @@ namespace WSC
 
         protected void AddToCart_Click(object sender, EventArgs e)
         {
-            try
+            //Check to see if the order has already bee started
+            //By checking the session, if not in session initite new order
+            if (Session["Cart"] == null)
             {
-                // Creates the list to store the Cart information
-                List<OrderItem> lOrderItems = new List<OrderItem>();
+                Session["Cart"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
+            }
 
-                // Inputs rows that ARE checked into lCatItems list
-                foreach (GridViewRow row in CatalogGridView.Rows)
+
+            //Get Order out of session          
+            var objOrder = Session["Cart"] as Order;
+
+
+
+
+            // Inputs rows that ARE checked into lCatItems list
+            foreach (GridViewRow row in CatalogGridView.Rows)
+            {
+                OrderItem objOrderItem = new OrderItem();
+
+                if (row.RowType == DataControlRowType.DataRow)
                 {
-                    OrderItem objCatItem = new OrderItem();
-
-                    if (row.RowType == DataControlRowType.DataRow)
+                    CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                    if (chkRow.Checked)
                     {
-                        CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
-                        if (chkRow.Checked)
-                        {
-                            objCatItem.CatalogItemId = int.Parse(row.Cells[1].Text);
+                        objOrderItem.CatalogItemId = int.Parse(row.Cells[1].Text);
 
-                            objCatItem.Qty = int.Parse(row.Cells[7].Text);
+                        objOrderItem.Qty = int.Parse((row.FindControl("txtQty") as TextBox).Text);
 
-                            objCatItem.Price = (decimal.Parse(row.Cells[4].Text) * objCatItem.Qty);
+                        objOrderItem.Price = (decimal.Parse(row.Cells[4].Text) * objOrderItem.Qty);
 
-                            objCatItem.ItemContentType = BAL.OrderItem.ContentType.Engraved;
+                        objOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
 
-                            objCatItem.Content = row.Cells[8].Text;
+                        objOrderItem.Content = (row.FindControl("txtContent") as TextBox).Text;
 
-                            lOrderItems.Add(objCatItem);
-                        }
+                        objOrder.OrderItems.Add(objOrderItem);
                     }
                 }
-
-                // Inserts the Cart information into Session[Cart], then Reloads the page
-                Session["Cart"] = lOrderItems;
-
-                Response.Redirect("Catalog.aspx");
             }
-            catch (Exception)
-            {
-                // Displays lblError if there is a problem with the transaction
-                lblError.Visible = true;
-            }
-            
+
+            // Inserts the Cart information into Session[Cart], then Reloads the page
+            Session["Cart"] = objOrder;
+
+            Response.Redirect("Catalog.aspx");
+
         }
 
         protected void Checkout_Click(object sender, EventArgs e)

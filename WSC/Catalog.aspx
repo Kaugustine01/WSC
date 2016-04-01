@@ -38,7 +38,7 @@
                             <asp:TextBox ID="txtQty" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>  
-                    <asp:TemplateField>
+                    <asp:TemplateField HeaderText="Content">
                         <ItemTemplate>
                             <asp:TextBox ID="txtContent" runat="server" />
                         </ItemTemplate>

@@ -24,7 +24,10 @@ namespace WSC
             {
                 if (Session["Cart"] != null)
                 {
-                    CartGridView.DataSource = Session["Cart"];
+                    Order oCart = new Order();
+                    oCart = Session["Cart"] as Order;
+
+                    CartGridView.DataSource = oCart.OrderItems;
                     CartGridView.DataBind();
                 }
                 else
@@ -56,36 +59,39 @@ namespace WSC
             {
                 Session.Contents.Remove("Cart");
 
-                // Creates the list to store the Cart information
-                List<CatalogItem> lCatItems = new List<CatalogItem>();
+                //Check to see if the order has already bee started
+                //By checking the session, if not in session initite new order
+                Session["Cart"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
+
+                var objOrder = Session["Cart"] as Order;
 
                 // Inputs rows that are NOT checked into lCatItems list
                 foreach (GridViewRow row in CartGridView.Rows)
                 {
-                    CatalogItem objCatItem = new CatalogItem();
+                    OrderItem objOrderItem = new OrderItem();
 
                     if (row.RowType == DataControlRowType.DataRow)
                     {
                         CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
                         if (chkRow.Checked)
                         {
-                            
-                        }
-                        else
-                        {
-                            objCatItem.CatalogItemId = int.Parse(row.Cells[1].Text);
-                            objCatItem.CatalogItemName = row.Cells[2].Text;
-                            objCatItem.CatalogItemDescr = row.Cells[3].Text;
-                            objCatItem.Price = decimal.Parse(row.Cells[4].Text);
-                            objCatItem.CatalogImagePath = row.Cells[5].Text;
+                            objOrderItem.CatalogItemId = int.Parse(row.Cells[2].Text);
 
-                            lCatItems.Add(objCatItem);
+                            objOrderItem.Qty = int.Parse((row.FindControl("txtQty") as TextBox).Text);
+
+                            objOrderItem.Price = (decimal.Parse(row.Cells[4].Text) * objOrderItem.Qty);
+
+                            objOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
+
+                            objOrderItem.Content = (row.FindControl("txtContent") as TextBox).Text;
+
+                            objOrder.OrderItems.Add(objOrderItem);
                         }
                     }
                 }
 
                 // Inserts the Cart information into Session[Cart], then Reloads the page
-                Session["Cart"] = lCatItems;
+                Session["Cart"] = objOrder;
 
                 Response.Redirect("ViewCart.aspx");
             }
