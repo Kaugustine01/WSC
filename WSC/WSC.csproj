@@ -103,7 +103,6 @@
     <Content Include="CheckOut.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ViewTransaction.aspx" />
-    <Content Include="Images\Catalog\WSC.png" />
     <Content Include="Images\WSC.png" />
     <Content Include="Login.aspx" />
     <Content Include="ManageAccount.aspx" />
