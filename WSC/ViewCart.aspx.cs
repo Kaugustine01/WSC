@@ -31,7 +31,7 @@ namespace WSC
                 lCatalogItem = objBAL.GetCatalogItems();
 
 
-
+                // Populate Grid View if Cart is not Empty, if cart is empty display error.
                 if (Session["Cart"] != null)
                 {
                     Order oCart = new Order();
@@ -42,26 +42,26 @@ namespace WSC
 
                     CartGridView.DataSource = oCart.OrderItems;
                     CartGridView.DataBind();
+
+                    // Populates the Label (lblTotal) with the Total Amount of the Order
+                    foreach (GridViewRow row in CartGridView.Rows)
+                    {
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            grdTotal = grdTotal + decimal.Parse(row.Cells[6].Text);
+                        }
+                    }
+
+                    lblTotal.Text = "Total: " + grdTotal.ToString("c");
                 }
                 else
                 {
                     lblError.Visible = true;
                     btnRemoveFromCart.Visible = false;
                     btnConfirmPurchase.Visible = false;
+                    lblTotal.Visible = false;
                 }
             }
-
-            // Populates the Label (lblTotal) with the Total Amount of the Order
-            foreach (GridViewRow row in CartGridView.Rows)
-            {
-                if (row.RowType == DataControlRowType.DataRow)
-                {
-                    
-                }
-            }
-
-            lblTotal.Text = "Total: " + grdTotal.ToString("c");
-
         }
 
         protected void RemoveFromCart_Click(object sender, EventArgs e)
@@ -90,15 +90,15 @@ namespace WSC
                         }
                         else
                         {
-                            objOrderItem.CatalogItemId = int.Parse(row.Cells[2].Text);
+                            objOrderItem.CatalogItemId = int.Parse(row.Cells[1].Text);
 
-                            objOrderItem.Qty = int.Parse((row.FindControl("txtQty") as TextBox).Text);
+                            objOrderItem.Qty = int.Parse(row.Cells[5].Text);
 
-                            objOrderItem.ItemPrice = (decimal.Parse(row.Cells[4].Text) * objOrderItem.Qty);
+                            objOrderItem.ItemPrice = decimal.Parse(row.Cells[6].Text);
 
                             objOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
 
-                            objOrderItem.Content = (row.FindControl("txtContent") as TextBox).Text;
+                            objOrderItem.Content = row.Cells[7].Text;
 
                             objOrder.OrderItems.Add(objOrderItem);
                         }
@@ -134,6 +134,7 @@ namespace WSC
 
         private static void AddCatalogInfoToOrderItems(ref List<CatalogItem> lCatalogItem, ref Order objOrder)
         {
+            // link Catalog to OrderItem
            foreach(OrderItem objOrderItem in objOrder.OrderItems)
             {
                 var ObjCatalogItem = lCatalogItem.FirstOrDefault(i => i.CatalogItemId == objOrderItem.CatalogItemId);

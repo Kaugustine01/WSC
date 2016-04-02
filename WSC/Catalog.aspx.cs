@@ -146,6 +146,7 @@ namespace WSC
 
         protected void Login_Click(object sender, EventArgs e)
         {
+            // Redirects to login screen
             Response.Redirect("~/Login.aspx");
         }
     }
