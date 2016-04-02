@@ -27,6 +27,7 @@ namespace WSC
 
                 Session["UserID"] = objUA.UserId;
                 Session["UserName"] = objUA.UserName;
+                
                 if (objUA.UserType == UserAccount.UserRole.Customer)
                 {
                     Session["SecurityLevel"] = "C";

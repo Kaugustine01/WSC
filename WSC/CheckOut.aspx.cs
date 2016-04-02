@@ -13,7 +13,6 @@ namespace WSC
         // Creates decimal variable for the grand total
         decimal grdTotal = 0;
         BusinessLayer objBAL = null;
-        List<CatalogItem> lCatalogItem = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,18 +23,10 @@ namespace WSC
             {
                 objBAL = new BusinessLayer();
 
-                //Get CatalogItems
-                lCatalogItem = objBAL.GetCatalogItems();
-
-
-
                 if (Session["Cart"] != null)
                 {
                     Order oCart = new Order();
                     oCart = Session["Cart"] as Order;
-
-                    //Bind Catalog Info to the OrderItems
-                    AddCatalogInfoToOrderItems(ref lCatalogItem, ref oCart);
 
                     CartGridView.DataSource = oCart.OrderItems;
                     CartGridView.DataBind();
@@ -50,19 +41,19 @@ namespace WSC
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-
+                        deposit = deposit + decimal.Parse(row.Cells[5].Text);
                     }
                 }
 
                 deposit = deposit * 10 / 100;
-                txtDeposit.Text = "Deposit Amount: " + deposit.ToString("c");
+                txtDeposit.Text = deposit.ToString();
 
                 // Populates the Label (lblTotal) with the Total Amount of the Order
                 foreach (GridViewRow row in CartGridView.Rows)
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-
+                        grdTotal = grdTotal + decimal.Parse(row.Cells[5].Text);
                     }
                 }
 
@@ -85,7 +76,7 @@ namespace WSC
             bool bOrderSuccessful = false;
 
             // Create New Order
-            Order objOrder = new Order(0, depositBool, 0, 2, 1, DateTime.Now);
+            Order objOrder = new Order(0, depositBool, decimal.Parse(txtDeposit.Text), 2, 1, DateTime.Now);
 
             
 
@@ -94,30 +85,20 @@ namespace WSC
                 if (row.RowType == DataControlRowType.DataRow)
                 {
                     OrderItem newOrderItem = new OrderItem();
-                    newOrderItem.OrderItemId = 1;
+                    newOrderItem.CatalogItemName = row.Cells[1].Text;
+                    newOrderItem.CatalogItemDescr = row.Cells[2].Text;
+                    newOrderItem.CatalogImagePath = row.Cells[3].Text;
                     newOrderItem.CatalogItemId = int.Parse(row.Cells[0].Text);
-                    newOrderItem.Qty = int.Parse(row.Cells[5].Text);
-                    newOrderItem.ItemPrice = int.Parse(row.Cells[6].Text);
+                    newOrderItem.Qty = int.Parse(row.Cells[4].Text);
+                    newOrderItem.ItemPrice = decimal.Parse(row.Cells[5].Text);
                     newOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
-                    newOrderItem.Content = row.Cells[7].Text;
-
+                    newOrderItem.Content = row.Cells[6].Text;
+                    newOrderItem.Price = 100;
                     objOrder.OrderItems.Add(newOrderItem);
                 }
             }
 
             bOrderSuccessful = objBAL.InsertOrder(objOrder, 1);
         }
-
-        private static void AddCatalogInfoToOrderItems(ref List<CatalogItem> lCatalogItem, ref Order objOrder)
-        {
-            foreach (OrderItem objOrderItem in objOrder.OrderItems)
-            {
-                var ObjCatalogItem = lCatalogItem.FirstOrDefault(i => i.CatalogItemId == objOrderItem.CatalogItemId);
-                objOrderItem.CatalogItemName = ObjCatalogItem.CatalogItemName;
-                objOrderItem.CatalogItemDescr = ObjCatalogItem.CatalogItemDescr;
-                objOrderItem.CatalogImagePath = ObjCatalogItem.CatalogImagePath;
-            }
-        }
-
     }
 }
