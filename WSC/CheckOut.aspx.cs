@@ -6,12 +6,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
 
+/*
+    Programmer: Daniel Bays
+    Date:       3/30/2016
+    Purpose:    Check Out Process
+    Details:    This form is used to populate the customers order into the Business Layer.
+*/
+
 namespace WSC
 {
     public partial class CheckOut : System.Web.UI.Page
     {
         // Creates decimal variable for the grand total
         decimal grdTotal = 0;
+
+        // Creates business layer object
         BusinessLayer objBAL = null;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,7 +44,7 @@ namespace WSC
                     lblError.Visible = true;
                 }
 
-                // Inputs rows that ARE checked into lCatItems list
+                // Calculates the Deposit Amount and Populates txtDeposit
                 foreach (GridViewRow row in CartGridView.Rows)
                 {
                     if (row.RowType == DataControlRowType.DataRow)
@@ -57,12 +66,16 @@ namespace WSC
                 }
 
                 lblTotal.Text = "Total: " + grdTotal.ToString("c");
-            }   
+            }
         }
 
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
+            // Creates Bool to see if order was succesful
+            bool bOrderSuccessful = false;
+
+            // Creates Bool input value for Payment at Pickup
             bool depositBool = false;
 
             if (ddlPaymentOnDelivery.Text == "Yes")
@@ -70,15 +83,11 @@ namespace WSC
                 depositBool = true;
             }
 
-            //Initiate new order with items,must have items or will throw exception
-            //New Order
-            bool bOrderSuccessful = false;
-
             // Create New Order
             Order objOrder = new Order(0, depositBool, decimal.Parse(txtDeposit.Text), 2, 1, DateTime.Now);
 
             
-
+            // Populate Items and Add to Order
             foreach (GridViewRow row in CartGridView.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
@@ -97,7 +106,14 @@ namespace WSC
                 }
             }
 
+            // Send Order to Business Layer for insert into Database
             bOrderSuccessful = objBAL.InsertOrder(objOrder, Convert.ToInt32(Session["CustomerId"]));
+
+            // Removes Contents of the Cart
+            Session.Contents.Remove("Cart");
+
+            // Redirects Customer to Confirmed purchase page
+            
         }
     }
 }

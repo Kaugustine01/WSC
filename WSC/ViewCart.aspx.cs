@@ -7,7 +7,7 @@ using BAL;
 /*
     Programmer: Daniel Bays
     Date:       03/30/2016
-    Purpose:    View Cart
+    Purpose:    View Cart Process
     Details:    This program is used to Populate and Edit the Sessions Cart Information.
  */
 

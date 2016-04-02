@@ -6,8 +6,8 @@
     <!--
     Programmer: Daniel Bays
     Date:       3/30/2016
-    Purpose:    View Cart Form
-    Details:    This form is for the customer to view the cart information regarding their current sessions order.
+    Purpose:    Check Out Form
+    Details:    This form is for the customer to purchase the items that are currently in their cart.
     -->
 
     <div class="content">
@@ -15,7 +15,11 @@
             <h1>
                Check Out
             </h1>
-
+            <asp:Label ID="lblSuccess" runat="server" Visible="false" ForeColor="Red"><b>Your order has been placed. 
+                Thank you for your Purchase</b></asp:Label>
+            <br />
+            <br />
+            
             <!-- This displays a grid view of the Order. -->
             <asp:GridView ID="CartGridView" AutoGenerateColumns="false" runat="server" CellPadding="5" Width="500">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
@@ -47,7 +51,7 @@
                 <br />
 
                 <!-- Payment on Delivery -->
-                <asp:Label ID="lblPaymentOnDelivery" runat="server" Text="Payment on Delivery: " Width="130px"></asp:Label>
+                <asp:Label ID="lblPaymentOnDelivery" runat="server" Text="Payment on Delivery: " Width="200px"></asp:Label>
                 <asp:DropDownList ID="ddlPaymentOnDelivery" runat="server">
                     <asp:ListItem>Yes</asp:ListItem>
                     <asp:ListItem>No</asp:ListItem>
@@ -56,12 +60,12 @@
                 <br />
 
                 <!-- Deposit Amount -->
-                <asp:Label ID="lblDeposit" runat="server" Text="Deposit Amount: " Width="130px"></asp:Label>
+                <asp:Label ID="lblDeposit" runat="server" Text="Deposit Amount: " Width="200px"></asp:Label>
                 <asp:TextBox ID="txtDeposit" runat="server" ReadOnly="true"/>
                 <br />
 
                 <!-- Payment Type -->
-                <asp:Label ID="lblPaymentType" runat="server" Text="Payment Type: " Width="130px"></asp:Label>
+                <asp:Label ID="lblPaymentType" runat="server" Text="Payment Type: " Width="200px"></asp:Label>
                 <asp:DropDownList ID="ddlPaymentType" runat="server">
                     <asp:ListItem>Card</asp:ListItem>
                     <asp:ListItem>Check</asp:ListItem>
