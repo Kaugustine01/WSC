@@ -17,12 +17,11 @@ namespace WSC
         protected void Page_Load(object sender, EventArgs e)
         {
             decimal deposit = 0;
+            objBAL = new BusinessLayer();
 
             // Populates the GridView with Session Cart information or displays the error that the cart is empty
             if (!this.IsPostBack)
             {
-                objBAL = new BusinessLayer();
-
                 if (Session["Cart"] != null)
                 {
                     Order oCart = new Order();
@@ -98,7 +97,7 @@ namespace WSC
                 }
             }
 
-            bOrderSuccessful = objBAL.InsertOrder(objOrder, 1);
+            bOrderSuccessful = objBAL.InsertOrder(objOrder, Convert.ToInt32(Session["CustomerId"]));
         }
     }
 }

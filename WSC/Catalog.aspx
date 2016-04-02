@@ -17,6 +17,14 @@
                WSC Catalog
             </h1>
 
+            <!-- Display Login Message if the user is not Logged in -->
+            <asp:Label ID="lblLogin" runat="server" Visible="false" ForeColor="Red"><b>You must login to place an Order</b></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="Login_Click" Visible="false"/>
+            <br />
+            <br />
+
             <!-- This displays a grid view of the Catalog. -->
             <asp:GridView ID="CatalogGridView" AutoGenerateColumns="False" runat="server" CellPadding="5">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
@@ -46,16 +54,21 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+            <br />
+            <br />
 
             <!-- Button to Add items from the Cart -->
-            <asp:Button ID="AddToCart" runat="server" Text="Add to Cart" OnClick="AddToCart_Click" />
+            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" OnClick="AddToCart_Click" Visible="true"/>
 
             &nbsp;&nbsp;&nbsp;&nbsp;
 
             <!-- Button to Move to the Check Out Page -->
-            <asp:Button ID="Checkout" runat="server" Text="Check Out" OnClick="Checkout_Click" />
+            <asp:Button ID="btnViewCart" runat="server" Text="View Cart" OnClick="ViewCart_Click" Visible="true" />
             <br />
             <br />
+
+            <!-- Displays if items were added to the cart -->
+            <asp:Label ID="lblItemsAdded" runat="server" Visible="false" ForeColor="Red"><b>Items were added to your Shopping Cart</b></asp:Label>
 
             <!-- Error to say cart is empty when user clicks on Check Out Page while the cart is empty. -->
             <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>Your Cart is Empty</b></asp:Label>

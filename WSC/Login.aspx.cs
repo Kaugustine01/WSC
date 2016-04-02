@@ -27,7 +27,12 @@ namespace WSC
 
                 Session["UserID"] = objUA.UserId;
                 Session["UserName"] = objUA.UserName;
-                
+
+                Customer objCus = new Customer();
+                objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, Convert.ToInt32(Session["UserID"]).ToString());
+
+                Session["CustomerID"] = objCus.CustomerId;
+
                 if (objUA.UserType == UserAccount.UserRole.Customer)
                 {
                     Session["SecurityLevel"] = "C";

@@ -22,6 +22,20 @@ namespace WSC
             // Populates the GridView with Catalog Information from the Database
             if (!this.IsPostBack)
             {
+                // Removes display of column to add items to cart and asks the user to login
+                if (Session["UserID"] == null)
+                {
+                    CatalogGridView.Columns.RemoveAt(7);
+                    CatalogGridView.Columns.RemoveAt(6);
+                    CatalogGridView.Columns.RemoveAt(0);
+
+                    lblLogin.Visible = true;
+                    btnLogin.Visible = true;
+                    btnAddToCart.Visible = false;
+                    btnViewCart.Visible = false;
+                    
+                }
+
                 List<CatalogItem> lCatItems = null;
 
                 //Retrieve Catalog Items
@@ -71,17 +85,44 @@ namespace WSC
                     }
                 }
 
-                // Inputs rows that ARE checked into lCatItems list
-
-
                 // Inserts the Cart information into Session[Cart], then Reloads the page
                 Session["Cart"] = objOrder;
 
-                Response.Redirect("Catalog.aspx");
+
+                // Zero out textboxs and checkboxs after order submission
+                foreach (GridViewRow row in CatalogGridView.Rows)
+                {
+                    CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                    if (chkRow.Checked == true)
+                    {
+                        chkRow.Checked = false; 
+                    }
+
+                    TextBox qtyRow = (row.Cells[6].FindControl("txtQty") as TextBox);
+                    if (qtyRow.Text == "")
+                    {
+                        
+                    }
+                    else
+                    {
+                        qtyRow.Text = "";
+                    }
+
+                    TextBox contentRow = (row.Cells[7].FindControl("txtContent") as TextBox);
+                    if (contentRow.Text == "")
+                    {
+
+                    }
+                    else
+                    {
+                        contentRow.Text = "";
+                    }
+                }
+
+                lblItemsAdded.Visible = true;
             }
             catch (Exception)
             {
-
                 // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
             }
@@ -89,18 +130,23 @@ namespace WSC
 
         }
 
-        protected void Checkout_Click(object sender, EventArgs e)
+        protected void ViewCart_Click(object sender, EventArgs e)
         {
             // Sends the user to the Check Out page or if the cart is empty displays the error.
             if (Session["Cart"] != null)
             {
-                Response.Redirect("~/CheckOut.aspx");
+                Response.Redirect("~/ViewCart.aspx");
             }
             else
             {
                 // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
             }
+        }
+
+        protected void Login_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Login.aspx");
         }
     }
 }
