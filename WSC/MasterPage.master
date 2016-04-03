@@ -20,13 +20,13 @@
             </div>
         </div>
         <div class="navBar">
-            <asp:Button ID="btnHome" CssClass="button" Text="Home" OnClick="btnHome_Click" runat="server" /><br />
+            <asp:Button ID="btnHome" class="button" Text="Home" OnClick="btnHome_Click" runat="server" /><br />
             <asp:Button ID="btnCatalog" class="button" Text="Catalog" OnClick="btnCatalog_Click" runat="server"/><br />
             <asp:Button ID="btnViewCart" class="button" Text="View Cart" OnClick="btnViewCart_Click" runat="server"/><br />
             <asp:Button ID="btnManageAccount" class="button" Text="Manage Account" OnClick="btnManageAccount_Click" runat="server"/><br />
             <asp:Button ID="btnCustViewOrders" class="button" Text="View Orders" OnClick="btnViewOrders_Click" runat="server"/><br />
-
-            <asp:Label ID="lblAdmin" class="button" Text="Admin Controls" runat="server" />
+            <br />
+            <asp:Label ID="lblAdmin" Text="Admin Controls" runat="server" />
             <asp:Button ID="btnAdmViewOrders" class="button" Text="View Orders" OnClick="btnAdmViewOrders_Click" runat="server"/><br />
             <asp:Button ID="btnAddEmployees" class="button" Text="Add Employees" OnClick="btnAddEmployees_Click" runat="server"/><br />
             <asp:Button ID="btnManageEmployees" class="button" Text="Manage Employees" OnClick="btnManageEmployees_Click" runat="server"/><br />
