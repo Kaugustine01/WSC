@@ -3,6 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <!--
+    Programmer: Daniel Bays
+    Date:       4/02/2016
+    Purpose:    Customer Registration Form
+    Details:    This form is for the customer register on the website.
+    -->
+
     <!-- Registration Form -->
     <div class="content">
         <center><h1>Registration Form</h1></center>
@@ -88,6 +95,8 @@
             <!-- Phone Number -->
             <asp:Label ID="lblPhone" runat="server" Text="Phone Number:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server"
+                ControlToValidate="txtPhone" ErrorMessage="Phone Number Required." ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                 ErrorMessage="Enter valid Phone number" ControlToValidate="txtPhone" 
                 ValidationExpression="^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$" ForeColor="Red"></asp:RegularExpressionValidator>

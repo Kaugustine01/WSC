@@ -98,6 +98,7 @@
     <Content Include="Admin\ManageEmployees.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="Admin\NoAccess.aspx" />
+    <Content Include="Admin\ViewOrders.aspx" />
     <Content Include="App_Data\WSCDatabase.accdb" />
     <Content Include="App_Themes\StyleSheet.css" />
     <Content Include="Catalog.aspx" />
@@ -189,6 +190,13 @@
     </Compile>
     <Compile Include="Admin\NoAccess.aspx.designer.cs">
       <DependentUpon>NoAccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewOrders.aspx.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewOrders.aspx.designer.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Catalog.aspx.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
