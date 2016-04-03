@@ -14,38 +14,22 @@
         <div class="header">
             <h1>Williams Specialty Company</h1>
             <div class="loginView">
-                <asp:LoginView ID="LoginView1" runat="server">
-                    <AnonymousTemplate>
-                        <asp:LoginStatus ID="LoginStatus1" runat="server" />
-                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Registration.aspx">Sign Up</asp:LinkButton>
-                    </AnonymousTemplate>
-                    <LoggedInTemplate>
-                        <asp:LoginName ID="LoginName1" runat="server" />
-                        <asp:LoginStatus ID="LoginStatus2" runat="server" />
-                    </LoggedInTemplate>
-                </asp:LoginView>
+                <asp:HyperLink ID="hplLogin" NavigateUrl="~/Login.aspx" Text="Login" runat="server"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:HyperLink ID="hplRegister" NavigateUrl="~/Registration.aspx" Text="Sign Up" runat="server"/>
             </div>
         </div>
         <div class="navBar">
-            <asp:TreeView ID="TreeViewNav" runat="server" NodeStyle-CssClass="treeNode" RootNodeStyle-CssClass="rootNode" LeafNodeStyle-CssClass="leafNode">
-                <Nodes>
-                    <asp:TreeNode Value="Home" NavigateUrl="~/Default.aspx" Text="Home" Target="Content" Expanded="False"></asp:TreeNode>
-                    <asp:TreeNode Value="CatalogMain" NavigateUrl="~/Catalog.aspx" Text="Catalog" Target="Content" Expanded="True"></asp:TreeNode>
-                    <asp:TreeNode Value="ViewCart" NavigateUrl="~/ViewCart.aspx" Text="View Cart" Target="Content" Expanded="True"></asp:TreeNode>
-                    <asp:TreeNode Value="Customer" Text="Customer" Target="Content" Expanded="True">
-                        <asp:TreeNode Value="ManageAccount" NavigateUrl="~/ManageAccount.aspx" Text="Manage Account" Target="Content" Expanded="False" />
-                        <asp:TreeNode Value="ManageOrders" NavigateUrl="~/CustViewOrders.aspx" Text="View Orders" Target="Content" Expanded="False" />
-                    </asp:TreeNode>
-                    <asp:TreeNode Value="Employee" Text="Employee" Target="Content" Expanded="True">
-                        <asp:TreeNode Value="ViewTransaction" NavigateUrl="Employee/ViewTransaction.aspx" Text="View Transaction" Target="Content" Expanded="False"/>
-                    </asp:TreeNode>
-                    <asp:TreeNode Value="Administration" Text="Administration" Target="Content" Expanded="True">
-                        <asp:TreeNode Value="AddEmployees" NavigateUrl="Admin/AddEmployees.aspx" Text="Add Employees" Target="Content" Expanded="False" />
-                        <asp:TreeNode Value="ManageEmployees" NavigateUrl="Admin/ManageEmployees.aspx" Text="Manage Employees" Target="Content" Expanded="False" />
-                        <asp:TreeNode Value="ManageUsers" NavigateUrl="Admin/ManageUsers.aspx" Text="Manage Users" Target="Content" Expanded="False" />
-                    </asp:TreeNode>
-                </Nodes>
-            </asp:TreeView>
+            <asp:Button ID="btnHome" CssClass="button" Text="Home" OnClick="btnHome_Click" runat="server" /><br />
+            <asp:Button ID="btnCatalog" class="button" Text="Catalog" OnClick="btnCatalog_Click" runat="server"/><br />
+            <asp:Button ID="btnViewCart" class="button" Text="View Cart" OnClick="btnViewCart_Click" runat="server"/><br />
+            <asp:Button ID="btnManageAccount" class="button" Text="Manage Account" OnClick="btnManageAccount_Click" runat="server"/><br />
+            <asp:Button ID="btnCustViewOrders" class="button" Text="View Orders" OnClick="btnViewOrders_Click" runat="server"/><br />
+
+            <asp:Label ID="lblAdmin" class="button" Text="Admin Controls" runat="server" />
+            <asp:Button ID="btnAdmViewOrders" class="button" Text="View Orders" OnClick="btnAdmViewOrders_Click" runat="server"/><br />
+            <asp:Button ID="btnAddEmployees" class="button" Text="Add Employees" OnClick="btnAddEmployees_Click" runat="server"/><br />
+            <asp:Button ID="btnManageEmployees" class="button" Text="Manage Employees" OnClick="btnManageEmployees_Click" runat="server"/><br />
         </div>
 
         <div>
