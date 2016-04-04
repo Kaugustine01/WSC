@@ -110,6 +110,7 @@
     <Content Include="Employee\ViewTransaction.aspx" />
     <Content Include="Images\WSC.png" />
     <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="ManageAccount.aspx" />
     <Content Include="NoAccess.aspx" />
     <Content Include="packages.config" />
@@ -255,6 +256,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageAccount.aspx.cs">
       <DependentUpon>ManageAccount.aspx</DependentUpon>

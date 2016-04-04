@@ -30,6 +30,15 @@ public partial class MasterPage {
     protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     
     /// <summary>
+    /// hplWelcome control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.HyperLink hplWelcome;
+    
+    /// <summary>
     /// hplLogin control.
     /// </summary>
     /// <remarks>
@@ -46,6 +55,15 @@ public partial class MasterPage {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.HyperLink hplRegister;
+    
+    /// <summary>
+    /// hplLogout control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.HyperLink hplLogout;
     
     /// <summary>
     /// btnHome control.
@@ -75,15 +93,6 @@ public partial class MasterPage {
     protected global::System.Web.UI.WebControls.Button btnViewCart;
     
     /// <summary>
-    /// btnManageAccount control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Button btnManageAccount;
-    
-    /// <summary>
     /// btnCustViewOrders control.
     /// </summary>
     /// <remarks>
@@ -91,6 +100,15 @@ public partial class MasterPage {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button btnCustViewOrders;
+    
+    /// <summary>
+    /// btnManageAccount control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btnManageAccount;
     
     /// <summary>
     /// lblAdmin control.

@@ -52,12 +52,14 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
     overflow: auto;
+    min-height: 400px;
 }
 
 .footer {
     padding: 10px;
     font-size: smaller;
     color: black;
+    text-align: left;
 }
 
 h1 {

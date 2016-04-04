@@ -14,29 +14,31 @@
         <div class="header">
             <h1>Williams Specialty Company</h1>
             <div class="loginView">
-                <asp:HyperLink ID="hplLogin" NavigateUrl="~/Login.aspx" Text="Login" runat="server"/>
+                <asp:HyperLink ID="hplWelcome" NavigateUrl="~/ManageAccount.aspx" Text="Welcome" runat="server" Visible="false" />
+                <asp:HyperLink ID="hplLogin" NavigateUrl="~/Login.aspx" Text="Login" runat="server" Visible="true" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:HyperLink ID="hplRegister" NavigateUrl="~/Registration.aspx" Text="Sign Up" runat="server"/>
+                <asp:HyperLink ID="hplRegister" NavigateUrl="~/Registration.aspx" Text="Sign Up" runat="server" Visible="true" />
+                <asp:HyperLink ID="hplLogout" NavigateUrl="~/Logout.aspx" Text="Logout" runat="server" Visible="false" />
             </div>
         </div>
         <div class="navBar">
             <asp:Button ID="btnHome" class="button" Text="Home" OnClick="Home_Click" runat="server" />
             <br />
-            <asp:Button ID="btnCatalog" class="button" Text="Catalog" OnClick="Catalog_Click" runat="server"/>
+            <asp:Button ID="btnCatalog" class="button" Text="Catalog" OnClick="Catalog_Click" runat="server" />
             <br />
-            <asp:Button ID="btnViewCart" class="button" Text="View Cart" OnClick="ViewCart_Click" runat="server"/>
+            <asp:Button ID="btnViewCart" class="button" Text="View Cart" OnClick="ViewCart_Click" runat="server" Visible="false" />
             <br />
-            <asp:Button ID="btnManageAccount" class="button" Text="Manage Account" OnClick="ManageAccount_Click" runat="server"/>
+            <asp:Button ID="btnCustViewOrders" class="button" Text="View Orders" OnClick="ViewOrders_Click" runat="server" Visible="false" />
             <br />
-            <asp:Button ID="btnCustViewOrders" class="button" Text="View Orders" OnClick="ViewOrders_Click" runat="server"/>
+            <asp:Button ID="btnManageAccount" class="button" Text="Manage Account" OnClick="ManageAccount_Click" runat="server" Visible="false" />
             <br />
-            <asp:Label ID="lblAdmin" Text="Admin Controls" runat="server" />
+            <asp:Label ID="lblAdmin" Text="Admin Controls" runat="server" Visible="false" />
             <br />
-            <asp:Button ID="btnAdmViewOrders" class="button" Text="View Orders" OnClick="AdmViewOrders_Click" runat="server"/>
+            <asp:Button ID="btnAdmViewOrders" class="button" Text="View Orders" OnClick="AdmViewOrders_Click" runat="server" Visible="false" />
             <br />
-            <asp:Button ID="btnAddEmployees" class="button" Text="Add Employees" OnClick="AddEmployees_Click" runat="server"/>
+            <asp:Button ID="btnAddEmployees" class="button" Text="Add Employees" OnClick="AddEmployees_Click" runat="server" Visible="false" />
             <br />
-            <asp:Button ID="btnManageEmployees" class="button" Text="Manage Employees" OnClick="ManageEmployees_Click" runat="server"/>
+            <asp:Button ID="btnManageEmployees" class="button" Text="Manage Employees" OnClick="ManageEmployees_Click" runat="server" Visible="false" />
             <br />
         </div>
 
