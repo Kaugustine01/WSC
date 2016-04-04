@@ -15,10 +15,10 @@ namespace WSC
                 //UserAccountTest();
                 //CustomerTest();
                 //CatalogTest();
-                //OrderTest();
+                OrderTest();
                 //GetLookupsTest();
 
-                SampleCartSession();
+                //SampleCartSession();
 
             }
             catch (Exception ex)
@@ -84,6 +84,11 @@ namespace WSC
 
         public void OrderTest()
         {
+            List<Order> objOrders = null;
+
+
+            //Get All Open Orders         
+            objOrders = objBAL.GetAllOpenOrders();
 
             //Initiate new order with items,must have items or will throw exception
             //New Order
@@ -100,8 +105,7 @@ namespace WSC
 
             bOrderSuccessful = objBAL.InsertOrder(objOrder, 1);
 
-            //Get Orders
-            List<Order> objOrders = null;
+            //Get Orders            
             objOrders = objBAL.GetOrdersByCustomerId(1);
 
             //Update order, must have items or will throw exception
