@@ -394,6 +394,58 @@ namespace DAL
 
         #region Order
         /// <summary>
+        /// Get All Open Orders
+        /// </summary>
+        /// <returns>Data Table</returns>
+        public DataTable GetAllOpenOrders()
+        {
+            DataTable dtOrders = null;
+
+            try
+            {
+                //Query to return Orders 
+                string queryString = @"
+                    SELECT 
+                        OrderID,
+                        CustomerId,
+                        IsPaymentOnDelivery,
+                        DepositAmt,
+                        StatusID,
+                        OrderDate,
+                        PaymentID
+                    FROM OrderT
+                    WHERE StatusID in (1,2)";
+
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);                  
+
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+                    // Open the connection and execute the SQL command.
+                    dbConnection.Open();
+
+                    //Fill DataTable with the Orders
+                    dtOrders = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtOrders);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return the datatable filled with Orders 
+            return dtOrders;
+        }
+        /// <summary>
         /// Get Orders by CustomerId
         /// </summary>
         /// <param name="nCustomerId"></param>

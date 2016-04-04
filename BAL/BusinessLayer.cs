@@ -404,6 +404,55 @@ namespace BAL
 
         #region Orders
         /// <summary>
+        /// Return list of Orders All Open Orders
+        /// </summary>        
+        /// <returns>List of Orders</returns>
+        public List<Order> GetAllOpenOrders()
+        {
+            DataTable dtOrders = null;
+
+            List<Order> lOrders = new List<Order>();
+
+            try
+            {
+                //Fill DataTable with Customer Info By UserId
+                dtOrders = objDAL.GetAllOpenOrders();
+
+                //Ensure DataTable has Rows
+                if (dtOrders != null)
+                {
+                    if (dtOrders.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in dtOrders.Rows)
+                        {
+                            //Order Object
+                            Order objOrder = new Order();
+
+                            objOrder.OrderId = int.Parse(row["OrderID"].ToString());
+                            objOrder.IsPaymentOnDelivery = (bool)row["IsPaymentOnDelivery"];
+                            objOrder.DepositAmt = decimal.Parse(row["DepositAmt"].ToString());
+                            objOrder.StatusId = int.Parse(row["StatusID"].ToString());
+                            objOrder.OrderDate = DateTime.Parse(row["OrderDate"].ToString());
+                            objOrder.PaymentId = int.Parse(row["PaymentID"].ToString());
+
+                            //Append the order items to the ItemsList in the order Object
+                            AppendOrderItemsToOrder(ref objOrder);
+
+                            //Append Order to order List
+                            lOrders.Add(objOrder);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return Orders List
+            return lOrders;
+        }
+        /// <summary>
         /// Return list of Orders by Customerid
         /// </summary>
         /// <param name="nCustomerId">customerid</param>
