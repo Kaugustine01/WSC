@@ -66,20 +66,19 @@ h1 {
 
 .button{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    background-color: white;
-    color: grey;
-    border: 2px solid #4CAF50;
+    border: 2px solid #9fa8a3;
     border-radius: 12px;
-    padding: 15px 32px;
+    padding: 4px 8px;
     text-align: center;
     text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #e3e0cf;
+    color: black;
     margin-bottom:5px;
+    width:12em;
 }
 
 .button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: #4CAF50;
+    background-color: #9fa8a3;
     color: white;
 }
