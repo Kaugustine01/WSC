@@ -11,11 +11,12 @@
 
             `
             <!-- This displays a grid view of the Order Items. -->
-            <asp:GridView ID="ManageOrdersGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="500px">
+            <asp:GridView ID="ManageOrdersGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="500px" OnSelectedIndexChanged="OnSelectedIndexChange">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
                 <Columns>
+                    <asp:ButtonField Text="View" CommandName="Select" ItemStyle-Width="30" />
                     <asp:BoundField DataField="OrderId" HeaderText="Order Number" SortExpression="OrderId" ReadOnly="true" />
                     <asp:BoundField DataField="OrderDate" HeaderText="Order Date" SortExpression="OrderDate" ReadOnly="true" />
                     <asp:BoundField DataField="IsPaymentOnDelivery" HeaderText="Payment On Delivery" SortExpression="IsPaymentOnDelivery" ReadOnly="true" />

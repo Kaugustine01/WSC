@@ -30,7 +30,6 @@ namespace WSC
                 //Get CatalogItems
                 lCatalogItem = objBAL.GetCatalogItems();
 
-
                 // Populate Grid View if Cart is not Empty, if cart is empty display error.
                 if (Session["Cart"] != null)
                 {
