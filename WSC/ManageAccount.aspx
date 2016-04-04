@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <!-- Registration Form -->
     <div class="content">
-        <center><h1>Registration Form</h1></center>
+        <center><h1>Manage Account</h1></center>
         <p>
             <b>User Name</b> - Only Numbers and Letters, no Special Characters.
             <br />  
@@ -40,6 +40,11 @@
             <asp:TextBox ID="txtAddress" runat="server" Width="300px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
                 ControlToValidate="txtAddress" ErrorMessage="Address Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <br />
+
+            <!-- Address Line 2 -->
+            <asp:Label ID="lblAddressTwo" runat="server" Text="Address Line 2:" Width="130px"></asp:Label>
+            <asp:TextBox ID="txtAddressTwo" runat="server" Width="300px"></asp:TextBox>
             <br />
 
             <!-- City -->
