@@ -62,6 +62,7 @@
             <br />
             <br />
 
+            <!-- GridView for the Order Items -->
             <asp:GridView  ID="ViewOrderGridView" AutoGenerateColumns="false" runat="server" CellPadding="5">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />

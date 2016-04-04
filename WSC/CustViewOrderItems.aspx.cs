@@ -10,12 +10,14 @@ namespace WSC
 {
     public partial class CustViewOrderItems : System.Web.UI.Page
     {
+        // Creates decimal variable for the grand total
+        decimal grdTotal = 0;
+        BusinessLayer objBAL = null;
+        List<CatalogItem> lCatalogItem = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Creates decimal variable for the grand total
-            decimal grdTotal = 0;
-            BusinessLayer objBAL = null;
-            List<CatalogItem> lCatalogItem = null;
+
 
             // Populates the GridView with Session Cart information or displays the error that the cart is empty
             if (!this.IsPostBack)
@@ -31,6 +33,7 @@ namespace WSC
                 {
                     Order oCustOrder = new Order();
                     oCustOrder = Session["OrderItems"] as Order;
+
 
                     //Bind Catalog Info to the OrderItems
                     AddCatalogInfoToOrderItems(ref lCatalogItem, ref oCustOrder);
@@ -48,9 +51,9 @@ namespace WSC
                     }
 
                     lblTotal.Text = "Total: " + grdTotal.ToString("c");
-                    
+
                     // Order Number and Order Date
-                    txtOrderDate.Text = (oCustOrder.OrderDate).ToString("DD-MM-YYYY");
+                    txtOrderDate.Text = (oCustOrder.OrderDate).ToString();
                     txtOrderNumber.Text = (oCustOrder.OrderId).ToString();
 
                     // Payment on Delivery
@@ -90,17 +93,18 @@ namespace WSC
                     {
                         txtStatus.Text = "Processing";
                     }
-                    
+
                     // Deposit
                     if (txtPaymentDelivery.Text == "Yes")
                     {
                         txtDeposit.Visible = true;
                         txtDeposit.Text = (oCustOrder.DepositAmt).ToString();
                     }
-                    
+
                 }
             }
         }
+
         private static void AddCatalogInfoToOrderItems(ref List<CatalogItem> lCatalogItem, ref Order objOrder)
         {
             // link Catalog to OrderItem

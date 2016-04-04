@@ -24,7 +24,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btnViewCart_Click(Object sender, EventArgs e)
     {
-        Response.Redirect("~/Catalog.aspx");
+        Response.Redirect("~/ViewCart.aspx");
     }
 
     protected void btnManageAccount_Click(Object sender, EventArgs e)

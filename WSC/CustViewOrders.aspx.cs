@@ -26,12 +26,22 @@ namespace WSC
 
         protected void OnSelectedIndexChange(object sender, EventArgs e)
         {
+
+            if (Session["OrderItems"] == null)
+            {
+                Session["OrderItems"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
+            }
+
+            //Get Order out of session          
+            var objOrder = Session["OrderItems"] as Order;
+
             string orderId = ManageOrdersGridView.SelectedRow.Cells[1].Text;
 
             BusinessLayer objBAL = new BusinessLayer();
 
             List<Order> objOrders = null;
             objOrders = objBAL.GetOrdersByCustomerId(Convert.ToInt32(Session["CustomerId"]));
+
             int lIndex = 0;
 
             foreach (Order order in objOrders)
@@ -41,7 +51,9 @@ namespace WSC
                     Order selectedOrder = new Order();
 
                     selectedOrder = objOrders.ElementAt(lIndex);
-                    Session["OrderItems"] = selectedOrder.OrderItems;
+                    objOrder = selectedOrder;
+
+                    Session["OrderItems"] = objOrder;
                 }
 
                 lIndex = lIndex + 1;
