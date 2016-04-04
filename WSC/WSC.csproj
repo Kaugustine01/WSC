@@ -267,6 +267,9 @@
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
     <Compile Include="NoAccess.aspx.cs">
       <DependentUpon>NoAccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
