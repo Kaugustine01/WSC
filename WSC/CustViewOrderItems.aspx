@@ -51,8 +51,8 @@
                 <br />
 
                 <!-- Deposite Amount -->
-                <asp:Label ID="lblDeposit" runat="server" Text="Deposit Amount:" Width="130px"></asp:Label>
-                <asp:TextBox ID="txtDeposit" runat="server" ReadOnly="true"></asp:TextBox>
+                <asp:Label ID="lblDeposit" runat="server" Text="Deposit Amount:" Width="130px" Visible="false"></asp:Label>
+                <asp:TextBox ID="txtDeposit" runat="server" ReadOnly="true" Visible="false"></asp:TextBox>
                 <br />
                 <br />
 

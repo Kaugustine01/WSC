@@ -26,7 +26,7 @@
             <br />
 
             <!-- This displays a grid view of the Catalog. -->
-            <asp:GridView ID="CatalogGridView" AutoGenerateColumns="False" runat="server" CellPadding="5">
+            <asp:GridView ID="CatalogGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="500">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
@@ -45,6 +45,7 @@
                     <asp:TemplateField HeaderText="Quantity">
                         <ItemTemplate>
                             <asp:TextBox ID="txtQty" runat="server" />
+                             <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Range: 0 - 100" ControlToValidate="txtQty" MaximumValue="100" MinimumValue="0" Type="Double" ValidationGroup="ValGroup"></asp:RangeValidator>
                         </ItemTemplate>
                     </asp:TemplateField>  
                     <asp:TemplateField HeaderText="Content">
@@ -58,7 +59,7 @@
             <br />
 
             <!-- Button to Add items from the Cart -->
-            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" OnClick="AddToCart_Click" Visible="true"/>
+            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" OnClick="AddToCart_Click" Visible="true" />
 
             &nbsp;&nbsp;&nbsp;&nbsp;
 

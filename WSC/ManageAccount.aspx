@@ -18,49 +18,49 @@
             <asp:Label ID="lblUserName" runat="server" Text="User Name:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtUserName" runat="server" ReadOnly="true"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                ControlToValidate="txtUserName" ErrorMessage="User Name Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtUserName" ErrorMessage="User Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- First Name -->
             <asp:Label ID="lblFirstName" runat="server" Text="First Name" Width="130px"></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                ControlToValidate="txtFirstName" ErrorMessage="First Name Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtFirstName" ErrorMessage="First Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- Last Name -->
             <asp:Label ID="lblLastName" runat="server" Text="Last Name:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
-                ControlToValidate="txtLastName" ErrorMessage="Last Name Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtLastName" ErrorMessage="Last Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- Address -->
             <asp:Label ID="lblAddress" runat="server" Text="Address:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtAddress" runat="server" Width="300px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
-                ControlToValidate="txtAddress" ErrorMessage="Address Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtAddress" ErrorMessage="Address Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- City -->
             <asp:Label ID="lblCity" runat="server" Text="City:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
-                ControlToValidate="txtCity" ErrorMessage="City Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtCity" ErrorMessage="City Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- State -->
             <asp:Label ID="lblState" runat="server" Text="State:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtState" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
-                ControlToValidate="txtState" ErrorMessage="State Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtState" ErrorMessage="State Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- Zip Code -->
             <asp:Label ID="lblZipCode" runat="server" Text="Zip Code:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtZipCode" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
-                ControlToValidate="txtZipCode" ErrorMessage="Zip Code Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtZipCode" ErrorMessage="Zip Code Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- Phone Number -->
@@ -68,7 +68,7 @@
             <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                 ErrorMessage="Enter valid Phone number" ControlToValidate="txtPhone" 
-                ValidationExpression="^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$" ForeColor="Red"></asp:RegularExpressionValidator>
+                ValidationExpression="^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$" ForeColor="Red" ValidationGroup="ValGroup"></asp:RegularExpressionValidator>
             <br />
             <br />
             <p>Password Required for Update</p>
@@ -77,12 +77,12 @@
             <asp:Label ID="lblPassword" runat="server" Text="Password:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
-                ControlToValidate="txtPassword" ErrorMessage="Password Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtPassword" ErrorMessage="Password Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
             <br />
 
             <!-- LinkButton for Submission -->
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" ValidationGroup="ValGroup"/>
             <br />
 
              <!-- Properly submitted. -->

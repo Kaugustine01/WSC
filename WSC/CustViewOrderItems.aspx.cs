@@ -98,6 +98,7 @@ namespace WSC
                     if (txtPaymentDelivery.Text == "Yes")
                     {
                         txtDeposit.Visible = true;
+                        lblDeposit.Visible = true;
                         txtDeposit.Text = (oCustOrder.DepositAmt).ToString();
                     }
 
