@@ -118,4 +118,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Response.Redirect("~/Admin/ManageEmployees.aspx");
     }
+
+    protected void Logout_Click(Object sender, EventArgs e)
+    {
+        //Destroy all session vars
+        Session.Abandon();
+
+        //redirect to default
+        Response.Redirect("~/default.aspx");
+    }
 }
