@@ -3,6 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+     <!--
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    Home Page
+    Details:    This is the Home Page for the Website.
+    -->
+
     <div class="content">
         <h1>Welcome to Williams Specialty Company</h1>
         <center><img src="Images/WSC.png" alt="Logo" /></center>

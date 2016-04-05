@@ -55,6 +55,7 @@ namespace WSC
                 }
                 else
                 {
+                    // displayes error and removed buttons.
                     lblError.Visible = true;
                     btnRemoveFromCart.Visible = false;
                     btnConfirmPurchase.Visible = false;

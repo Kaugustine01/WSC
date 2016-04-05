@@ -2,6 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <!--
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    Login Page
+    Details:    This page is for the user to login.
+    -->
+
     <div class="content">
         <center>
             <asp:Login ID="Login1" runat="server" OnAuthenticate="OnAuthenticate" BackColor="#F7F7DE" BorderColor="#CCCC99"

@@ -2,6 +2,13 @@
 
 <!DOCTYPE html>
 
+    <!--
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    Master Page
+    Details:    This is used as a Master Page for the entire Site.
+    -->
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link href="App_Themes/StyleSheet.css" rel="stylesheet" />
@@ -13,15 +20,18 @@
     <form class="page" id="form1" runat="server">
         <div class="header">
             <h1>Williams Specialty Company</h1>
+
+            <!-- Login Links and Status -->
             <div class="loginView">
                 <asp:HyperLink ID="hplWelcome" NavigateUrl="~/ManageAccount.aspx" Text="Welcome" runat="server" Visible="false" />
                 <asp:HyperLink ID="hplLogin" NavigateUrl="~/Login.aspx" Text="Login" runat="server" Visible="true" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:HyperLink ID="hplRegister" NavigateUrl="~/Registration.aspx" Text="Sign Up" runat="server" Visible="true" />                
                 <asp:LinkButton ID="hplLogout" Visible="false" runat="server" OnClick="Logout_Click">Logout</asp:LinkButton>
-                <%--<asp:HyperLink ID="hplLogout" Text="Logout" runat="server" OnClick="Logout_Click" Visible="false" />--%>
             </div>
         </div>
+
+        <!-- Navigation Bar -->
         <div class="navBar">
             <asp:Button ID="btnHome" class="button" Text="Home" OnClick="Home_Click" runat="server" />
             <br />
@@ -43,11 +53,13 @@
             <br />
         </div>
 
+        <!-- Place holder -->
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
 
+        <!-- Footer -->
         <div class="footer">
             Copyright &copy; Williams Specialty Company
         </div>

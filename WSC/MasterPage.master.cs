@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    Master Page Process
+    Details:    This program is used to Populate and the Customers Detailed view of an order.
+ */
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Navigation View - Security Levels
+        // Navigation View - Security Level for Customer
         if (Session["SecurityLevel"] == "C")
         {
             btnCustViewOrders.Visible = true;
@@ -21,6 +23,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             hplLogin.Visible = false;
             hplLogout.Visible = true;
         }
+
+        // Navigation View - Security Level for Admin
         else if (Session["SecurityLevel"] == "M")
         {
             btnCustViewOrders.Visible = false;
@@ -36,6 +40,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             hplLogin.Visible = false;
             hplLogout.Visible = true;
         }
+
+        // Navigation View - Security Level for Sales
         else if (Session["SecurityLevel"] == "S")
         {
             btnCustViewOrders.Visible = false;
@@ -49,20 +55,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             hplLogin.Visible = false;
             hplLogout.Visible = true;
         }
-        else if(Session["SecurityLevel"] == "")
-        {
-            btnCustViewOrders.Visible = false;
-            btnManageAccount.Visible = false;
-            btnViewCart.Visible = false;
-            lblAdmin.Visible = false;
-            btnAddEmployees.Visible = false;
-            btnAdmViewOrders.Visible = false;
-            btnManageEmployees.Visible = false;
-            hplWelcome.Visible = false;
-            hplRegister.Visible = true;
-            hplLogin.Visible = true;
-            hplLogout.Visible = false;
-        }
+
+        // Navigation View - Security Level for Non Users
         else
         {
             btnCustViewOrders.Visible = false;
@@ -79,41 +73,49 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
     }
 
+    // Home page Redirect
     protected void Home_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/Default.aspx");
     }
 
+    // Catalog page Redirect
     protected void Catalog_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/Catalog.aspx");
     }
 
+    // ViewCart page Redirect
     protected void ViewCart_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/ViewCart.aspx");
     }
 
+    // Manage Account page Redirect
     protected void ManageAccount_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/ManageAccount.aspx");
     }
 
+    // View Orders page Redirect
     protected void ViewOrders_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/ViewOrders.aspx");
     }
 
+    // Admin View Orders page Redirect
     protected void AdmViewOrders_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/Admin/ViewOrders.aspx");
     }
 
+    // Add Employees page Redirect
     protected void AddEmployees_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/Admin/AddEmployees.aspx");
     }
 
+    // Manage Employees page Redirect
     protected void ManageEmployees_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/Admin/ManageEmployees.aspx");

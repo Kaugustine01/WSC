@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    Home Page
+    Details:    No process here at the current time.
+ */
 
 namespace WSC
 {

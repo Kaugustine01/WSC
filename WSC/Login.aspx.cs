@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Security;
 using BAL;
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    User Login Process
+    Details:    This program authenticate a user on login.
+ */
 
 namespace WSC
 {
@@ -18,11 +20,14 @@ namespace WSC
 
         private bool SiteSpecificationAuthenticationMethod(string UserName, string Password)
         {
+            // creates user account and business layer ojects
             UserAccount objUA = null;
             BusinessLayer objBAL = new BusinessLayer();
 
+            // verifies that the user exists
             objUA = objBAL.GetUserAccount(UserName, Password);
 
+            // if user exists, fills in the needed session variables
             if (objUA != null) {
 
                 Session["UserID"] = objUA.UserId;
@@ -46,16 +51,18 @@ namespace WSC
                     Session["SecurityLevel"] = "M";
                 }
 
-
+                // returns true of userid is greater than 0
                 if (objUA.UserId > 0)
                     return true;
             }
 
+            // returns false if authentication failed
             return false;
         }
 
         protected void OnAuthenticate(object sender, AuthenticateEventArgs e)
         {
+            // authenticates the user.
             bool Authenticated = false;
             Authenticated = SiteSpecificationAuthenticationMethod(Login1.UserName, Login1.Password);
 

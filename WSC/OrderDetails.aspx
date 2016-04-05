@@ -6,9 +6,9 @@
 
     <!--
     Programmer: Daniel Bays
-    Date:       3/30/2016
-    Purpose:    View Cart Form
-    Details:    This form is for the customer to view the cart information regarding their current sessions order.
+    Date:       4/05/2016
+    Purpose:    Order Details Form
+    Details:    This form is for the customer to view the Order Details for an Order.
     -->
 
     <div class="content">
@@ -81,7 +81,6 @@
                     <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" ReadOnly="true" />
                 </Columns>
             </asp:GridView>
-
         </center>
     </div>
 </asp:Content>

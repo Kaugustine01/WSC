@@ -10,7 +10,7 @@
     Date:       3/30/2016
     Purpose:    View Cart Form
     Details:    This form is for the customer to view the cart information regarding their current sessions order.
--->
+    -->
 
     <div class="content">
         <center>

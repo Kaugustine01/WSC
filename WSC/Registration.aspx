@@ -104,7 +104,7 @@
             <br />
 
             <!-- LinkButton for Submission -->
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" ValidationGroup="ValGroup"/>
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" ValidationGroup="ValGroup" Visible="true"/>
             <br />
 
              <!-- Properly submitted. -->

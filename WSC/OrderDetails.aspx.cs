@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    Order Details Process
+    Details:    This program is used to Populate and the Customers Detailed view of an order.
+ */
 
 namespace WSC
 {

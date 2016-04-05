@@ -40,6 +40,9 @@ namespace WSC
                 // Displays that the registration was complete
                 lblComplete.Visible = true;
 
+                // Removes Submit Buttion
+                btnSubmit.Visible = false;
+
             }
             catch (Exception)
             {
