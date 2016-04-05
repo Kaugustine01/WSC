@@ -108,6 +108,11 @@
     <Content Include="CustViewOrders.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ViewTransaction.aspx" />
+    <Content Include="Images\CatalogItems\Plaque.jpg" />
+    <Content Include="Images\CatalogItems\Trophy.jpg" />
+    <Content Include="Images\CatalogItems\RedMug.jpg" />
+    <Content Include="Images\CatalogItems\Shirt.jpg" />
+    <Content Include="Images\CatalogItems\WSC.png" />
     <Content Include="Images\WSC.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
