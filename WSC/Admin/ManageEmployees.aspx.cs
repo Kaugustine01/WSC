@@ -20,7 +20,7 @@ namespace WSC.Admin
             }
             else
             {
-                Response.Redirect("NoAccess.aspx");
+                Response.Redirect("~/NoAccess.aspx");
             }
         }
     }

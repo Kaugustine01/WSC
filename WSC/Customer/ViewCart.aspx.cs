@@ -108,7 +108,7 @@ namespace WSC
                 // Inserts the Cart information into Session[Cart], then Reloads the page
                 Session["Cart"] = objOrder;
 
-                Response.Redirect("ViewCart.aspx");
+                Response.Redirect("~/Customer/ViewCart.aspx");
             }
             catch (Exception)
             {
@@ -123,7 +123,7 @@ namespace WSC
             // Sends the user to the Check Out page or if the cart is empty displays the error. 
             if (Session["Cart"] != null)
             {
-                Response.Redirect("~/CheckOut.aspx");
+                Response.Redirect("~/Customer/CheckOut.aspx");
             }
             else
             {

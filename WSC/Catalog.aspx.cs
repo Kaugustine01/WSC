@@ -125,6 +125,7 @@ namespace WSC
                     }
                 }
 
+                // Display that the items have been added.
                 lblItemsAdded.Visible = true;
             }
             catch (Exception)
@@ -132,8 +133,6 @@ namespace WSC
                 // Displays lblError if there is a problem with the transaction
                 lblError.Visible = true;
             }
-            
-
         }
 
         protected void ViewCart_Click(object sender, EventArgs e)
@@ -141,7 +140,7 @@ namespace WSC
             // Sends the user to the Check Out page or if the cart is empty displays the error.
             if (Session["Cart"] != null)
             {
-                Response.Redirect("~/ViewCart.aspx");
+                Response.Redirect("~/Customer/ViewCart.aspx");
             }
             else
             {

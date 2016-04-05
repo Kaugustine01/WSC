@@ -34,7 +34,7 @@
         <br />
 
         <!-- LinkButton for Submission -->
-        <asp:Button ID="btnFind" runat="server" Text="Find" OnClick="btnSubmit_Click" />
+        <asp:Button ID="btnFind" runat="server" Text="Find" OnClick="btnSubmit_Click" ValidationGroup="ValGroup" />
         <br />
 
         <!-- Properly submitted. -->

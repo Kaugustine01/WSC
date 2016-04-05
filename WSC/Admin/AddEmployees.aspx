@@ -26,28 +26,28 @@
             <asp:Label ID="lblUserName" runat="server" Text="User Name:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                ControlToValidate="txtUserName" ErrorMessage="User Name Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtUserName" ErrorMessage="User Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- Password -->
             <asp:Label ID="lblPassword" runat="server" Text="Password:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
-                ControlToValidate="txtPassword" ErrorMessage="Password Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtPassword" ErrorMessage="Password Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
             <asp:RegularExpressionValidator ID="Regex1" runat="server" ControlToValidate="txtPassword"
                 ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
-                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 Special Character" ForeColor="Red" />
+                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 Special Character" ForeColor="Red" ValidationGroup="ValGroup" />
             <br />
 
             <!-- Confirm Password -->
             <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtConfirmPassword" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                ControlToValidate="txtConfirmPassword" ErrorMessage="Confirm Password Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                ControlToValidate="txtConfirmPassword" ErrorMessage="Confirm Password Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
             <asp:CompareValidator ID="comparePassword" runat="server" ControlToValidate="txtConfirmPassword"
-                ControlToCompare="txtPassword" ErrorMessage="Password Does Not Match" ForeColor="Red"></asp:CompareValidator>
+                ControlToCompare="txtPassword" ErrorMessage="Password Does Not Match" ForeColor="Red" ValidationGroup="ValGroup"></asp:CompareValidator>
             <br />
 
             <!-- Employee Type -->
@@ -59,7 +59,7 @@
             <br />
 
             <!-- LinkButton for Submission -->
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" Visible="true" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" Visible="true" ValidationGroup="ValGroup" />
             <br />
             <br />
             <!-- Submission Complete -->

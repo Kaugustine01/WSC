@@ -107,7 +107,7 @@ namespace WSC
                 // Redirects user to Order Details page.
                 if (Session["OrderItems"] != null)
                 {
-                    Response.Redirect("~/OrderDetails.aspx");
+                    Response.Redirect("~/Customer/OrderDetails.aspx");
                 }
             }
             catch (Exception)
