@@ -34,6 +34,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             btnAddEmployees.Visible = true;
             btnAdmViewOrders.Visible = true;
             btnManageEmployees.Visible = true;
+            btnManageCatalog.Visible = true;
             hplWelcome.Text = "Welcome " + Session["UserName"].ToString();
             hplWelcome.Visible = true;
             hplRegister.Visible = false;
@@ -47,6 +48,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             btnCustViewOrders.Visible = false;
             btnManageAccount.Visible = false;
             btnViewCart.Visible = false;
+            btnManageCatalog.Visible = false;
             lblAdmin.Visible = true;
             btnAdmViewOrders.Visible = true;
             hplWelcome.Text = "Welcome " + Session["UserName"].ToString();
@@ -119,6 +121,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void ManageEmployees_Click(Object sender, EventArgs e)
     {
         Response.Redirect("~/Admin/ManageEmployees.aspx");
+    }
+
+    protected void ManageCatalog_Click(Object sender, EventArgs e)
+    {
+        Response.Redirect("~/Admin/ManageCatalog.aspx");
     }
 
     protected void Logout_Click(Object sender, EventArgs e)

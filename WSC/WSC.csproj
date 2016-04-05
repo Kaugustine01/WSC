@@ -94,7 +94,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AddCatalogItem.aspx" />
     <Content Include="Admin\AddEmployees.aspx" />
+    <Content Include="Admin\ManageCatalog.aspx" />
     <Content Include="Admin\ManageEmployees.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="Admin\NoAccess.aspx" />
@@ -137,12 +139,26 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AddCatalogItem.aspx.cs">
+      <DependentUpon>AddCatalogItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddCatalogItem.aspx.designer.cs">
+      <DependentUpon>AddCatalogItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AddEmployees.aspx.cs">
       <DependentUpon>AddEmployees.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AddEmployees.aspx.designer.cs">
       <DependentUpon>AddEmployees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageCatalog.aspx.cs">
+      <DependentUpon>ManageCatalog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageCatalog.aspx.designer.cs">
+      <DependentUpon>ManageCatalog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageEmployees.aspx.cs">
       <DependentUpon>ManageEmployees.aspx</DependentUpon>

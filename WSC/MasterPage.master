@@ -51,6 +51,8 @@
             <br />
             <asp:Button ID="btnManageEmployees" class="button" Text="Manage Employees" OnClick="ManageEmployees_Click" runat="server" Visible="false" />
             <br />
+            <asp:Button ID="btnManageCatalog" class="button" Text="Manage Catalog" OnClick="ManageCatalog_Click" runat="server" Visible="false" />
+            <br />
         </div>
 
         <!-- Place holder -->
