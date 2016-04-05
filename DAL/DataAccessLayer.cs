@@ -829,7 +829,7 @@ namespace DAL
         /// <param name="nPaymentId">paymentid</param>
         /// <param name="dtOrderItems">datatable of order items</param>
         /// <returns>bool</returns>
-        public bool UpdateOrder(int nCustomerId, int nOrderId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId, int nPaymentId, DataTable dtOrderItems)
+        public bool UpdateOrder(int nOrderId, bool bIsPaymentOnDelivery, decimal dDepositAmt, int nStatusId, int nPaymentId, DataTable dtOrderItems)
         {
             OleDbCommand dbCommand;             
 

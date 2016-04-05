@@ -633,13 +633,13 @@ namespace BAL
         /// <param name="objOrder">Order Object</param>
         /// <param name="nCustomerID">CustomerId</param>
         /// <returns>bool</returns>
-        public bool UpdateOrder(Order objOrder, int nCustomerID)
+        public bool UpdateOrder(Order objOrder)
         {
             DataTable dtOrderItems = null;
 
             try
             {
-                CheckRequiredOrderFields(objOrder, nCustomerID);
+                CheckRequiredUpdateOrderFields(objOrder);
 
                 if (objOrder.OrderId == 0)
                     throw new Exception("Order must contain an ID to update");
@@ -647,7 +647,7 @@ namespace BAL
                 //Convert OrderItems Object to DataTable for insersion
                 dtOrderItems = ConvertOrderItemstoDataTable(objOrder.OrderItems);
 
-                if (objDAL.UpdateOrder(nCustomerID, objOrder.OrderId, objOrder.IsPaymentOnDelivery, objOrder.DepositAmt, objOrder.StatusId, objOrder.PaymentId, dtOrderItems))
+                if (objDAL.UpdateOrder(objOrder.OrderId, objOrder.IsPaymentOnDelivery, objOrder.DepositAmt, objOrder.StatusId, objOrder.PaymentId, dtOrderItems))
                     return true;
 
             }
@@ -722,6 +722,63 @@ namespace BAL
             {
                 if (nCustomerID == 0)
                     throw new Exception("CustomerId is required.");
+
+                //Check to ensure all fields are present
+                if (objOrder != null)
+                {
+                    //Check to Ensure Order has Items
+                    if (objOrder.OrderItems == null)
+                        throw new Exception("There are no items in the order object.");
+
+                    if (objOrder.OrderItems.Count == 0)
+                        throw new Exception("There are no items in the order object.");
+
+                    if (objOrder.PaymentId == 0)
+                        throw new Exception("PaymentId is required.");
+
+                    //If COD is required, check for dep amt
+                    if (objOrder.IsPaymentOnDelivery)
+                    {
+                        if (objOrder.DepositAmt == 0)
+                            throw new Exception("If payment on delivery is chosen, a deposit amount is required.");
+                    }
+
+                    //Check All items in the Order Item List
+                    foreach (OrderItem objOrderItem in objOrder.OrderItems)
+                    {
+                        if (objOrderItem.CatalogItemId == 0)
+                            throw new Exception("All order items require a catalogID.");
+
+                        if (objOrderItem.ItemPrice == 0)
+                            throw new Exception("All order items require a price.");
+
+                        if (objOrderItem.Qty == 0)
+                            throw new Exception("All order items require a qty.");
+
+                        if (objOrderItem.Content == null)
+                            throw new Exception("All order items require content.");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Customer is NULL");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Check required fields, if error an exception is thrown
+        /// </summary>
+        /// <param name="objOrder">Order Object</param>
+        private void CheckRequiredUpdateOrderFields(Order objOrder)
+        {
+            try
+            {
 
                 //Check to ensure all fields are present
                 if (objOrder != null)

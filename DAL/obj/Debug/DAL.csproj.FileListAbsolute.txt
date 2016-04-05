@@ -7,3 +7,4 @@ C:\Users\Daniel\Source\Repos\WSC\DAL\bin\Debug\DAL.dll
 C:\Users\Daniel\Source\Repos\WSC\DAL\bin\Debug\DAL.pdb
 C:\Users\Daniel\Source\Repos\WSC\DAL\obj\Debug\DAL.dll
 C:\Users\Daniel\Source\Repos\WSC\DAL\obj\Debug\DAL.pdb
+C:\Users\Daniel\Source\Repos\WSC\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

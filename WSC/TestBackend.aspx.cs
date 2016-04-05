@@ -116,7 +116,7 @@ namespace WSC
 
             //Update order, must have items or will throw exception
             objOrders[0].StatusId = 4; //Cancel Order
-            bOrderSuccessful = objBAL.UpdateOrder(objOrders[0], 1);
+            bOrderSuccessful = objBAL.UpdateOrder(objOrders[0]);
         }
 
         public void GetLookupsTest()

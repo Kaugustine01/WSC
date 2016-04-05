@@ -157,7 +157,7 @@ namespace WSC.Admin
 
 
                 //Update order, must have items or will throw exception
-                bOrderSuccessful = objBAL.UpdateOrder(oCustOrder, 3);
+                bOrderSuccessful = objBAL.UpdateOrder(oCustOrder);
 
                 // display Complete Label
                 lblComplete.Visible = true;
