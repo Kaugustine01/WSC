@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using BAL;
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    Add Employee Process
+    Details:    This program is used for the Admin to add Employees or Operations Managers.
+ */
 
 namespace WSC.Admin
 {
@@ -26,6 +28,7 @@ namespace WSC.Admin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            // Addes Sales Employee
             if (ddlEmpType.Text == "Sales")
             {
                 try
@@ -36,12 +39,15 @@ namespace WSC.Admin
                     objUA = objBAL.InsertUser(objUA);
 
                     lblSubmission.Visible = true;
+                    btnSubmit.Visible = false;
                 }
                 catch (Exception)
                 {
                     lblError.Visible = true;
                 }
             }
+
+            // Addes Operations Manager Employee
             else if (ddlEmpType.Text == "Operations Manager")
             {
                 try
@@ -52,6 +58,7 @@ namespace WSC.Admin
                     objUA = objBAL.InsertUser(objUA);
 
                     lblSubmission.Visible = true;
+                    btnSubmit.Visible = false;
                 }
                 catch (Exception)
                 {

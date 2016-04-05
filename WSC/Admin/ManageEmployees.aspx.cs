@@ -16,7 +16,6 @@ namespace WSC.Admin
         {
             if (Session["SecurityLevel"] == "M")
             {
-                Customer objCust = new Customer();
 
             }
             else

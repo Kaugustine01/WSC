@@ -3,6 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <!--
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    Add Employees Form
+    Details:    This form is for the Admin to Add Employees.
+    -->
+
     <!-- Employee Form -->
     <div class="content">
         <center><h1>Add Employee Form</h1></center>
@@ -52,7 +59,7 @@
             <br />
 
             <!-- LinkButton for Submission -->
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" Visible="true" />
             <br />
             <br />
             <!-- Submission Complete -->
