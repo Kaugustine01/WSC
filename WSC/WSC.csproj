@@ -107,7 +107,6 @@
     <Content Include="Customer\OrderDetails.aspx" />
     <Content Include="Customer\ViewOrders.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="Employee\ViewTransaction.aspx" />
     <Content Include="Images\CatalogItems\Plaque.jpg" />
     <Content Include="Images\CatalogItems\Trophy.jpg" />
     <Content Include="Images\CatalogItems\RedMug.jpg" />
@@ -214,13 +213,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Employee\ViewTransaction.aspx.cs">
-      <DependentUpon>ViewTransaction.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employee\ViewTransaction.aspx.designer.cs">
-      <DependentUpon>ViewTransaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
