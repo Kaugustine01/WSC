@@ -101,7 +101,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void ViewOrders_Click(Object sender, EventArgs e)
     {
-        Response.Redirect("~/CustViewOrders.aspx");
+        Response.Redirect("~/ViewOrders.aspx");
     }
 
     protected void AdmViewOrders_Click(Object sender, EventArgs e)

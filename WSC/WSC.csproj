@@ -104,8 +104,8 @@
     <Content Include="App_Themes\StyleSheet.css" />
     <Content Include="Catalog.aspx" />
     <Content Include="CheckOut.aspx" />
-    <Content Include="CustViewOrderItems.aspx" />
-    <Content Include="CustViewOrders.aspx" />
+    <Content Include="OrderDetails.aspx" />
+    <Content Include="ViewOrders.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ViewTransaction.aspx" />
     <Content Include="Images\CatalogItems\Plaque.jpg" />
@@ -194,19 +194,19 @@
     <Compile Include="CheckOut.aspx.designer.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CustViewOrderItems.aspx.cs">
-      <DependentUpon>CustViewOrderItems.aspx</DependentUpon>
+    <Compile Include="OrderDetails.aspx.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CustViewOrderItems.aspx.designer.cs">
-      <DependentUpon>CustViewOrderItems.aspx</DependentUpon>
+    <Compile Include="OrderDetails.aspx.designer.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CustViewOrders.aspx.cs">
-      <DependentUpon>CustViewOrders.aspx</DependentUpon>
+    <Compile Include="ViewOrders.aspx.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CustViewOrders.aspx.designer.cs">
-      <DependentUpon>CustViewOrders.aspx</DependentUpon>
+    <Compile Include="ViewOrders.aspx.designer.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

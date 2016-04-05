@@ -46,7 +46,6 @@
                             <asp:Image ID="imgCatalogItem" runat="server" ImageUrl='<%# Eval("CatalogImagePath","~/{0}") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
-                   
                     <asp:TemplateField HeaderText="Quantity">
                         <ItemTemplate>
                             <asp:TextBox ID="txtQty" runat="server" />
