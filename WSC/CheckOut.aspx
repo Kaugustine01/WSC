@@ -29,7 +29,11 @@
                     <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogItemID" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="CatalogItemDescr" ReadOnly="true" />
-                    <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />
+                    <asp:TemplateField HeaderText="" >
+                        <ItemTemplate>                          
+                            <asp:Image ID="imgCatalogItem" runat="server" ImageUrl='<%# Eval("CatalogImagePath","~/{0}") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="Qty" HeaderText="Quantity" SortExpression="Qty" ReadOnly="true" />
                     <asp:BoundField DataField="ItemPrice" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true"/>
                     <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" ReadOnly="true" />

@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using BAL;
+
+/*
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    Customer Manage Account Process
+    Details:    This program is used to Populate Customer Manage Account Form and Updated Customer personal information in the Database.
+ */
 
 namespace WSC
 {
@@ -17,12 +19,14 @@ namespace WSC
         {
             if (!this.IsPostBack)
             {
+                // If user is logged in as a customer will fill in the manage account form with customer information
                 if (Session["SecurityLevel"] == "C")
                 {
 
                     Customer objCus = new Customer();
                     objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, Convert.ToInt32(Session["UserID"]).ToString());
 
+                    txtCustomerId.Text = Convert.ToString(objCus.CustomerId);
                     txtUserName.Text = Convert.ToString(Session["UserName"]);
                     txtFirstName.Text = objCus.FirstName;
                     txtLastName.Text = objCus.LastName;
@@ -44,11 +48,23 @@ namespace WSC
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Customer objCus = new Customer();
+            // Submit button process, this will update the customer information in the database.
+            try
+            {
+                Customer objCus = new Customer();
 
-            //Update Customer Record 
-            objCus = new Customer(custid, Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
-            objCus = objBAL.UpdateCustomer(objCus);
+                //Update Customer Record 
+                objCus = new Customer(Convert.ToInt32(txtCustomerId.Text), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
+                objCus = objBAL.UpdateCustomer(objCus);
+
+                lblComplete.Visible = true;
+            }
+            catch (Exception)
+            {
+
+                lblError.Visible = true;
+            }
+            
         }
     }
 }
