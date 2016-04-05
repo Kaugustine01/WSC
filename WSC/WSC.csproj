@@ -103,9 +103,9 @@
     <Content Include="App_Data\WSCDatabase.accdb" />
     <Content Include="App_Themes\StyleSheet.css" />
     <Content Include="Catalog.aspx" />
-    <Content Include="CheckOut.aspx" />
-    <Content Include="OrderDetails.aspx" />
-    <Content Include="ViewOrders.aspx" />
+    <Content Include="Customer\CheckOut.aspx" />
+    <Content Include="Customer\OrderDetails.aspx" />
+    <Content Include="Customer\ViewOrders.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employee\ViewTransaction.aspx" />
     <Content Include="Images\CatalogItems\Plaque.jpg" />
@@ -115,7 +115,7 @@
     <Content Include="Images\CatalogItems\WSC.png" />
     <Content Include="Images\WSC.png" />
     <Content Include="Login.aspx" />
-    <Content Include="ManageAccount.aspx" />
+    <Content Include="Customer\ManageAccount.aspx" />
     <Content Include="NoAccess.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -130,11 +130,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Registration.aspx" />
+    <Content Include="Customer\Registration.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="TestBackend.aspx" />
-    <Content Include="ViewCart.aspx" />
+    <Content Include="Customer\ViewCart.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -187,25 +187,25 @@
     <Compile Include="Catalog.aspx.designer.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CheckOut.aspx.cs">
+    <Compile Include="Customer\CheckOut.aspx.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CheckOut.aspx.designer.cs">
+    <Compile Include="Customer\CheckOut.aspx.designer.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OrderDetails.aspx.cs">
+    <Compile Include="Customer\OrderDetails.aspx.cs">
       <DependentUpon>OrderDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="OrderDetails.aspx.designer.cs">
+    <Compile Include="Customer\OrderDetails.aspx.designer.cs">
       <DependentUpon>OrderDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewOrders.aspx.cs">
+    <Compile Include="Customer\ViewOrders.aspx.cs">
       <DependentUpon>ViewOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewOrders.aspx.designer.cs">
+    <Compile Include="Customer\ViewOrders.aspx.designer.cs">
       <DependentUpon>ViewOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
@@ -229,11 +229,11 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ManageAccount.aspx.cs">
+    <Compile Include="Customer\ManageAccount.aspx.cs">
       <DependentUpon>ManageAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManageAccount.aspx.designer.cs">
+    <Compile Include="Customer\ManageAccount.aspx.designer.cs">
       <DependentUpon>ManageAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.master.cs">
@@ -251,11 +251,11 @@
       <DependentUpon>NoAccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registration.aspx.cs">
+    <Compile Include="Customer\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Registration.aspx.designer.cs">
+    <Compile Include="Customer\Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestBackend.aspx.cs">
@@ -265,11 +265,11 @@
     <Compile Include="TestBackend.aspx.designer.cs">
       <DependentUpon>TestBackend.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewCart.aspx.cs">
+    <Compile Include="Customer\ViewCart.aspx.cs">
       <DependentUpon>ViewCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewCart.aspx.designer.cs">
+    <Compile Include="Customer\ViewCart.aspx.designer.cs">
       <DependentUpon>ViewCart.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -63,7 +63,7 @@
             <br />
 
             <!-- Button to Add items from the Cart -->
-            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" OnClick="AddToCart_Click" Visible="true" />
+            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" OnClick="AddToCart_Click" Visible="true" ValidationGroup="ValGroup" />
 
             &nbsp;&nbsp;&nbsp;&nbsp;
 

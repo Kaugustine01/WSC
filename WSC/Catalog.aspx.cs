@@ -23,17 +23,23 @@ namespace WSC
             if (!this.IsPostBack)
             {
                 // Removes display of column to add items to cart and asks the user to login
-                if (Session["UserID"] == null)
+                if (Session["UserID"] == null || Session["SecurityLevel"] == "M" || Session["SecurityLevel"] == "S")
                 {
                     CatalogGridView.Columns.RemoveAt(7);
                     CatalogGridView.Columns.RemoveAt(6);
                     CatalogGridView.Columns.RemoveAt(0);
-
-                    lblLogin.Visible = true;
-                    btnLogin.Visible = true;
-                    btnAddToCart.Visible = false;
-                    btnViewCart.Visible = false;
-                    
+                    if (Session["SecurityLevel"] != "M" || Session["SecurityLevel"] == "S")
+                    {
+                        lblLogin.Visible = true;
+                        btnLogin.Visible = true;
+                        btnAddToCart.Visible = false;
+                        btnViewCart.Visible = false;
+                    }
+                    else
+                    {
+                        btnAddToCart.Visible = false;
+                        btnViewCart.Visible = false;
+                    }
                 }
 
                 List<CatalogItem> lCatItems = null;

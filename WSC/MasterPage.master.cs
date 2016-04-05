@@ -88,19 +88,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
     // ViewCart page Redirect
     protected void ViewCart_Click(Object sender, EventArgs e)
     {
-        Response.Redirect("~/ViewCart.aspx");
+        Response.Redirect("~/Customer/ViewCart.aspx");
     }
 
     // Manage Account page Redirect
     protected void ManageAccount_Click(Object sender, EventArgs e)
     {
-        Response.Redirect("~/ManageAccount.aspx");
+        Response.Redirect("~/Customer/ManageAccount.aspx");
     }
 
     // View Orders page Redirect
     protected void ViewOrders_Click(Object sender, EventArgs e)
     {
-        Response.Redirect("~/ViewOrders.aspx");
+        Response.Redirect("~/Customer/ViewOrders.aspx");
     }
 
     // Admin View Orders page Redirect
