@@ -14,8 +14,8 @@ namespace WSC
             {
                 //UserAccountTest();
                 //CustomerTest();
-                //CatalogTest();
-                OrderTest();
+                CatalogTest();
+                //OrderTest();
                 //GetLookupsTest();
 
                 //SampleCartSession();
@@ -77,6 +77,12 @@ namespace WSC
         public void CatalogTest()
         {
             List<CatalogItem> lCatItems = null;
+
+            //Insert New Item
+            lCatItems = objBAL.InsertCatalogItem(new CatalogItem(0, "Test New", "Test Description", 12m, @"c:\"));
+
+            //Update Existing Item
+            lCatItems = objBAL.UpdateCatalogItem(new CatalogItem(3, "Test Update", "Test Description Update", 3m, @"c:\Update"));
 
             //Retrieve Catalog Items
             lCatItems = objBAL.GetCatalogItems();

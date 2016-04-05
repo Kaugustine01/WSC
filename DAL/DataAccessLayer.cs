@@ -390,6 +390,106 @@ namespace DAL
             //Return the datatable filled with CatalogItems
             return dtCatItems;
         }
+
+        /// <summary>
+        /// Insert New Catalog Item
+        /// </summary>
+        /// <param name="dItemPrice">Price</param>
+        /// <param name="sCatalogImagePath">Image path on server</param>
+        /// <param name="sItemDescription">Descr of item</param>
+        /// <param name="sCatalogItemName">Item Name</param>
+        /// <returns></returns>
+        public bool InsertCatalogItem(decimal dItemPrice, string sCatalogImagePath, string sItemDescription, string sCatalogItemName)
+        {
+            OleDbCommand dbCommand;
+
+            try
+            {
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+
+                    // Open database connection
+                    dbConnection.Open();
+
+                    // SQL statement insert the customer
+                    string sqlStmt = "INSERT INTO CatalogT([ItemPrice], [CatalogImagePath], [ItemDescription], [CatalogItemName]) " +
+                                     "VALUES (@itemprice,@catalogimagepath,@itemdescription,@catalogitemname)";
+
+                    // New command passing sql statement and the connection to the database
+                    dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+
+                    // Parameters   
+                    dbCommand.Parameters.Add(new OleDbParameter("@itemprice", dItemPrice));
+                    dbCommand.Parameters.Add(new OleDbParameter("@catalogimagepath", sCatalogImagePath));
+                    dbCommand.Parameters.Add(new OleDbParameter("@itemdescription", sItemDescription));
+                    dbCommand.Parameters.Add(new OleDbParameter("@CatalogItemName", sCatalogItemName));
+
+                    //Execute query
+                    if (dbCommand.ExecuteNonQuery() > 0)
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Update Catalog Item
+        /// </summary>
+        /// <param name="nCatalogID">Catalog ID</param>
+        /// <param name="dItemPrice">Price</param>
+        /// <param name="sCatalogImagePath">Image path on server</param>
+        /// <param name="sItemDescription">Descr of item</param>
+        /// <param name="sCatalogItemName">Item Name</param>
+        /// <returns></returns>
+        public bool UpdateCatalogItem(int nCatalogID, decimal dItemPrice, string sCatalogImagePath, string sItemDescription, string sCatalogItemName)
+        {
+            OleDbCommand dbCommand;
+
+            try
+            {
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+
+                    // Open database connection
+                    dbConnection.Open();
+
+                    // SQL statement insert the customer
+                    string sqlStmt = @"Update CatalogT SET
+                                        ItemPrice = @itemprice, 
+                                        CatalogImagePath = @catalogimagepath, 
+                                        ItemDescription = @itemdescription, 
+                                        CatalogItemName =  @catalogitemname
+                                      WHERE CatalogID = @catalogid";
+
+                    // New command passing sql statement and the connection to the database
+                    dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+
+                    // Parameters   
+                    dbCommand.Parameters.Add(new OleDbParameter("@itemprice", dItemPrice));
+                    dbCommand.Parameters.Add(new OleDbParameter("@catalogimagepath", sCatalogImagePath));
+                    dbCommand.Parameters.Add(new OleDbParameter("@itemdescription", sItemDescription));
+                    dbCommand.Parameters.Add(new OleDbParameter("@CatalogItemName", sCatalogItemName));
+                    dbCommand.Parameters.Add(new OleDbParameter("@catalogid", nCatalogID));
+
+                    //Execute query
+                    if (dbCommand.ExecuteNonQuery() > 0)
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return false;
+        }
         #endregion
 
         #region Order

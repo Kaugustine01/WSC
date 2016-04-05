@@ -400,6 +400,100 @@ namespace BAL
             //Return Catalog List of catalog Items objects
             return lCatItems;
         }
+
+        /// <summary>
+        /// Insert new Catalog Item
+        /// </summary>
+        /// <param name="objCatalogItem">Catalog object</param>
+        /// <returns>New Catalog Item List</returns>
+        public List<CatalogItem> InsertCatalogItem(CatalogItem objCatalogItem)
+        {
+            //Check to ensure all fields are present
+            CheckRequiredCatalogFields(objCatalogItem);
+
+            try
+            {
+                //Insert New Customer
+                if (objDAL.InsertCatalogItem(objCatalogItem.Price, objCatalogItem.CatalogImagePath, objCatalogItem.CatalogItemDescr, objCatalogItem.CatalogItemName))
+                {
+                    //Rehydrate CatalogList to ensure inserted correctly       
+                    return GetCatalogItems();
+                }
+                else
+                {
+                    throw new Exception("Customer failed to be inserted");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Update CatalogItem
+        /// </summary>
+        /// <param name="objCatalogItem">Catalog object</param>
+        /// <returns>New Catalog Item List</returns>
+        public List<CatalogItem> UpdateCatalogItem(CatalogItem objCatalogItem)
+        {
+            //Check to ensure all fields are present
+            CheckRequiredCatalogFields(objCatalogItem);
+
+            try
+            {
+                //Check to make sure Catalog Item is Greater than zero
+                if (objCatalogItem.CatalogItemId == 0)
+                    throw new Exception("CatalogID is required.");
+
+                //Update New Customer
+                if (objDAL.UpdateCatalogItem(objCatalogItem.CatalogItemId, objCatalogItem.Price, objCatalogItem.CatalogImagePath, objCatalogItem.CatalogItemDescr, objCatalogItem.CatalogItemName))
+                {
+                    //Rehydrate CatalogList to ensure inserted correctly       
+                    return GetCatalogItems();
+                }
+                else
+                {
+                    throw new Exception("Customer failed to update");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Check if required fields are present
+        /// </summary>
+        /// <param name="objCatalogItem">CatalogItem Object</param>
+        private void CheckRequiredCatalogFields(CatalogItem objCatalogItem)
+        {
+            try
+            {
+                //Check to ensure all fields are present
+                if (objCatalogItem != null)
+                {
+                    if (string.IsNullOrEmpty(objCatalogItem.CatalogImagePath))
+                        throw new Exception("CatalogImagePath is required");
+
+                    if (string.IsNullOrEmpty(objCatalogItem.CatalogItemDescr))
+                        throw new Exception("CatalogItemDescr is required");
+
+                    if (string.IsNullOrEmpty(objCatalogItem.CatalogItemName))
+                        throw new Exception("CatalogItemName is required");
+                }
+                else
+                {
+                    throw new Exception("CatalogItem is NULL");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
         #endregion
 
         #region Orders
