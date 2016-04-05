@@ -63,18 +63,18 @@
             <br />
 
             <!-- GridView for the Order Items -->
-            <asp:GridView  ID="ViewOrderGridView" AutoGenerateColumns="false" runat="server" CellPadding="5">
+            <asp:GridView  ID="ViewOrderGridView" AutoGenerateColumns="false" runat="server" CellPadding="5" Width="100%">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
                 <Columns>
                     <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true" />
-                    <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" ItemStyle-Width="50px" />
-                    <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="CatalogItemDescr" ReadOnly="true" ItemStyle-Width="50px" />
-                    <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" ItemStyle-Width="50px" />
-                    <asp:BoundField DataField="Qty" HeaderText="Quantity" SortExpression="Qty" ReadOnly="true" ItemStyle-Width="50px" />
-                    <asp:BoundField DataField="ItemPrice" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true" ItemStyle-Width="50px" />
-                    <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" ReadOnly="true" ItemStyle-Width="50px" />
+                    <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
+                    <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="CatalogItemDescr" ReadOnly="true" />
+                    <asp:BoundField DataField="CatalogImagePath" HeaderText="Image" SortExpression="CatalogImagePath" ReadOnly="true" />
+                    <asp:BoundField DataField="Qty" HeaderText="Quantity" SortExpression="Qty" ReadOnly="true" />
+                    <asp:BoundField DataField="ItemPrice" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true" />
+                    <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" ReadOnly="true" />
                 </Columns>
             </asp:GridView>
 

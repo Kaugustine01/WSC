@@ -21,6 +21,27 @@ namespace WSC
 
                 ManageOrdersGridView.DataSource = objOrders;
                 ManageOrdersGridView.DataBind();
+
+                foreach (GridViewRow row in ManageOrdersGridView.Rows)
+                {
+                    // Status
+                    if (row.Cells[3].Text == "4")
+                    {
+                        row.Cells[3].Text = "Cancelled";
+                    }
+                    else if (row.Cells[3].Text == "3")
+                    {
+                        row.Cells[3].Text = "Complete";
+                    }
+                    else if (row.Cells[3].Text == "2")
+                    {
+                        row.Cells[3].Text = "Validated";
+                    }
+                    else
+                    {
+                        row.Cells[3].Text = "Processing";
+                    }
+                }
             }
         }
 

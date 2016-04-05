@@ -12,15 +12,31 @@ namespace WSC.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BusinessLayer objBAL = new BusinessLayer();
-
-            if (!this.IsPostBack)
+            if (Session["SecurityLevel"] == "M")
             {
-                List<Order> objOrders = null;
-                objOrders = objBAL.GetAllOpenOrders();
+                try
+                {
+                    BusinessLayer objBAL = new BusinessLayer();
 
-                ManageOrdersGridView.DataSource = objOrders;
-                ManageOrdersGridView.DataBind();
+                    if (!this.IsPostBack)
+                    {
+                        List<Order> objOrders = null;
+                        objOrders = objBAL.GetAllOpenOrders();
+
+                        ManageOrdersGridView.DataSource = objOrders;
+                        ManageOrdersGridView.DataBind();
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
+            }
+            else
+            {
+                Response.Redirect("NoAccess.aspx");
             }
         }
 

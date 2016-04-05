@@ -11,7 +11,7 @@
 
             `
             <!-- This displays a grid view of the Order Items. -->
-            <asp:GridView ID="ManageOrdersGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="500px" OnSelectedIndexChanged="OnSelectedIndexChange">
+            <asp:GridView ID="ManageOrdersGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="100%" OnSelectedIndexChanged="OnSelectedIndexChange">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />

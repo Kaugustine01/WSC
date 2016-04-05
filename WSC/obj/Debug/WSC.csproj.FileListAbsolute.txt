@@ -143,6 +143,6 @@ C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\DAL.pdb
+C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.dll
 C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.pdb
-C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
