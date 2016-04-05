@@ -2,7 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <!-- Registration Form -->
+
+    <!--
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    Customer Manage Account Form
+    Details:    This form is for the customer to manage their account.
+    -->
+
+     <!-- Manage Account Form -->
     <div class="content">
         <center><h1>Manage Account</h1></center>
         <p>
@@ -13,6 +21,9 @@
             <b>Phone Number</b> - Correct Phone Number format is 123-456-7890.
         </p>
         <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Left">
+
+            <!-- Customer Id -->
+            <asp:TextBox ID="txtCustomerId" runat="server" ReadOnly="true" visible="false"></asp:TextBox>
 
             <!-- User Name -->
             <asp:Label ID="lblUserName" runat="server" Text="User Name:" Width="130px"></asp:Label>
