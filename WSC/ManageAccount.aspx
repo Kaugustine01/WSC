@@ -22,9 +22,6 @@
         </p>
         <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Left">
 
-            <!-- Customer Id -->
-            <asp:TextBox ID="txtCustomerId" runat="server" ReadOnly="true" visible="false"></asp:TextBox>
-
             <!-- User Name -->
             <asp:Label ID="lblUserName" runat="server" Text="User Name:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtUserName" runat="server" ReadOnly="true"></asp:TextBox>

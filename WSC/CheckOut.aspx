@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="CheckOut.aspx.cs" Inherits="WSC.CheckOut" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -56,7 +57,7 @@
 
                 <!-- Payment on Delivery -->
                 <asp:Label ID="lblPaymentOnDelivery" runat="server" Text="Payment on Delivery: " Width="200px"></asp:Label>
-                <asp:DropDownList ID="ddlPaymentOnDelivery" runat="server">
+                <asp:DropDownList ID="ddlPaymentOnDelivery" runat="server" >
                     <asp:ListItem>Yes</asp:ListItem>
                     <asp:ListItem>No</asp:ListItem>
                 </asp:DropDownList>
@@ -82,7 +83,13 @@
             <br />
 
             <!-- Check Out Button -->
-            <asp:Button ID="btnCheckOut" runat="server" Text="Confirm Purchase" OnClick="Checkout_Click" />
+            <asp:Button ID="btnCheckOut" runat="server" Text="Confirm Purchase" OnClick="Checkout_Click" Visible="true" />
+
+            <!-- Properly submitted. -->
+            <asp:Label ID="lblComplete" runat="server" Visible="false" ForeColor="Red"><b>Your Purchase has been Completed</b></asp:Label>
+
+            <!-- Error for the form not being properly submitted. -->
+            <asp:Label ID="Label1" runat="server" Visible="false" ForeColor="Red"><b>Sorry something went wrong.</b></asp:Label>
         </center>
     </div>
 </asp:Content>

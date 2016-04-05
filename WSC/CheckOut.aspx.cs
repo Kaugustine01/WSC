@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
 
@@ -72,48 +68,57 @@ namespace WSC
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
-            // Creates Bool to see if order was succesful
-            bool bOrderSuccessful = false;
-
-            // Creates Bool input value for Payment at Pickup
-            bool depositBool = false;
-
-            if (ddlPaymentOnDelivery.Text == "Yes")
+            try
             {
-                depositBool = true;
-            }
+                // Creates Bool to see if order was succesful
+                bool bOrderSuccessful = false;
 
-            // Create New Order
-            Order objOrder = new Order(0, depositBool, decimal.Parse(txtDeposit.Text), 2, 1, DateTime.Now);
+                // Creates Bool input value for Payment at Pickup
+                bool depositBool = false;
 
-            
-            // Populate Items and Add to Order
-            foreach (GridViewRow row in CartGridView.Rows)
-            {
-                if (row.RowType == DataControlRowType.DataRow)
+                if (ddlPaymentOnDelivery.Text == "Yes")
                 {
-                    OrderItem newOrderItem = new OrderItem();
-                    newOrderItem.CatalogItemName = row.Cells[1].Text;
-                    newOrderItem.CatalogItemDescr = row.Cells[2].Text;
-                    newOrderItem.CatalogImagePath = row.Cells[3].Text;
-                    newOrderItem.CatalogItemId = int.Parse(row.Cells[0].Text);
-                    newOrderItem.Qty = int.Parse(row.Cells[4].Text);
-                    newOrderItem.ItemPrice = decimal.Parse(row.Cells[5].Text);
-                    newOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
-                    newOrderItem.Content = row.Cells[6].Text;
-                    newOrderItem.Price = 100;
-                    objOrder.OrderItems.Add(newOrderItem);
+                    depositBool = true;
                 }
+
+                // Create New Order
+                Order objOrder = new Order(0, depositBool, decimal.Parse(txtDeposit.Text), 2, 1, DateTime.Now);
+
+
+                // Populate Items and Add to Order
+                foreach (GridViewRow row in CartGridView.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        OrderItem newOrderItem = new OrderItem();
+                        newOrderItem.CatalogItemName = row.Cells[1].Text;
+                        newOrderItem.CatalogItemDescr = row.Cells[2].Text;
+                        newOrderItem.CatalogImagePath = row.Cells[3].Text;
+                        newOrderItem.CatalogItemId = int.Parse(row.Cells[0].Text);
+                        newOrderItem.Qty = int.Parse(row.Cells[4].Text);
+                        newOrderItem.ItemPrice = decimal.Parse(row.Cells[5].Text);
+                        newOrderItem.ItemContentType = OrderItem.ContentType.Engraved;
+                        newOrderItem.Content = row.Cells[6].Text;
+                        newOrderItem.Price = 100;
+                        objOrder.OrderItems.Add(newOrderItem);
+                    }
+                }
+
+                // Send Order to Business Layer for insert into Database
+                bOrderSuccessful = objBAL.InsertOrder(objOrder, Convert.ToInt32(Session["CustomerId"]));
+
+                // Removes Contents of the Cart
+                Session.Contents.Remove("Cart");
+
+                // Displays Purchase Confirmation and Removed Purchase Button
+                lblComplete.Visible = true;
+                btnCheckOut.Visible = false;
             }
-
-            // Send Order to Business Layer for insert into Database
-            bOrderSuccessful = objBAL.InsertOrder(objOrder, Convert.ToInt32(Session["CustomerId"]));
-
-            // Removes Contents of the Cart
-            Session.Contents.Remove("Cart");
-
-            // Redirects Customer to Confirmed purchase page
-            
+            catch (Exception)
+            {
+                // display error message if something went wrong
+                lblError.Visible = true;
+            }
         }
     }
 }

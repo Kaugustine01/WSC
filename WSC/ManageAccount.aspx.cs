@@ -26,7 +26,6 @@ namespace WSC
                     Customer objCus = new Customer();
                     objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, Convert.ToInt32(Session["UserID"]).ToString());
 
-                    txtCustomerId.Text = Convert.ToString(objCus.CustomerId);
                     txtUserName.Text = Convert.ToString(Session["UserName"]);
                     txtFirstName.Text = objCus.FirstName;
                     txtLastName.Text = objCus.LastName;
@@ -54,7 +53,7 @@ namespace WSC
                 Customer objCus = new Customer();
 
                 //Update Customer Record 
-                objCus = new Customer(Convert.ToInt32(txtCustomerId.Text), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
+                objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
                 objCus = objBAL.UpdateCustomer(objCus);
 
                 lblComplete.Visible = true;
