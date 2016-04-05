@@ -118,9 +118,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MasterPage.master" />
-    <Content Include="App_Code\dsLoginInformation.xsc">
-      <DependentUpon>dsLoginInformation.xsd</DependentUpon>
-    </Content>
     <Content Include="App_Code\Customer.xsc">
       <DependentUpon>Customer.xsd</DependentUpon>
     </Content>
@@ -131,14 +128,6 @@
     </None>
     <Content Include="App_Code\Customer.xss">
       <DependentUpon>Customer.xsd</DependentUpon>
-    </Content>
-    <None Include="App_Code\dsLoginInformation.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsLoginInformation.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="App_Code\dsLoginInformation.xss">
-      <DependentUpon>dsLoginInformation.xsd</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -177,11 +166,6 @@
     <Compile Include="Admin\ManageUsers.aspx.designer.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\dsLoginInformation.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsLoginInformation.xsd</DependentUpon>
-    </Content>
     <Content Include="App_Code\Customer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
