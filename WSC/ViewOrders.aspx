@@ -30,6 +30,8 @@
             </asp:GridView>
             <br />
             <br />
+            <!-- Error to say cart is empty when user clicks on Check Out Page while the cart is empty. -->
+            <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>There was an error.</b></asp:Label>
          </center>
     </div>
 </asp:Content>

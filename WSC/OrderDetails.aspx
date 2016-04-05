@@ -40,7 +40,7 @@
 
                 <!-- Status -->
                 <asp:Label ID="lblStatus" runat="server" Text="Status:" Width="130px"></asp:Label>
-                <asp:TextBox ID="txtStatus" runat="server" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="txtStatus" runat="server" ReadOnly="true" ></asp:TextBox>
                 <br />
                 <br />
 
@@ -58,6 +58,9 @@
 
                 <!-- Used to Display the total of the Order -->
                 <asp:Label ID="lblTotal" runat="server" Text="Total:" Width="130px"></asp:Label>
+
+                <!-- Display Error -->
+                <asp:Label ID="lblError" runat="server" Text="There was an Error" Width="130px" Visible="false"></asp:Label>
             </asp:Panel>
             <br />
             <br />

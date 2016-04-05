@@ -22,93 +22,98 @@ namespace WSC
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            // Populates the GridView with Session Cart information or displays the error that the cart is empty
-            if (!this.IsPostBack)
+            try
             {
-                objBAL = new BusinessLayer();
-
-                //Get CatalogItems
-                lCatalogItem = objBAL.GetCatalogItems();
-
-
-                // Populate Grid View if Cart is not Empty, if cart is empty display error.
-                if (Session["OrderItems"] != null)
+                // Populates the GridView with Session Cart information or displays the error that the cart is empty
+                if (!this.IsPostBack)
                 {
-                    Order oCustOrder = new Order();
-                    oCustOrder = Session["OrderItems"] as Order;
+                    objBAL = new BusinessLayer();
+
+                    //Get CatalogItems
+                    lCatalogItem = objBAL.GetCatalogItems();
 
 
-                    //Bind Catalog Info to the OrderItems
-                    AddCatalogInfoToOrderItems(ref lCatalogItem, ref oCustOrder);
-
-                    ViewOrderGridView.DataSource = oCustOrder.OrderItems;
-                    ViewOrderGridView.DataBind();
-
-                    // Populates the Label (lblTotal) with the Total Amount of the Order
-                    foreach (GridViewRow row in ViewOrderGridView.Rows)
+                    // Populate Grid View if Cart is not Empty, if cart is empty display error.
+                    if (Session["OrderItems"] != null)
                     {
-                        if (row.RowType == DataControlRowType.DataRow)
+                        Order oCustOrder = new Order();
+                        oCustOrder = Session["OrderItems"] as Order;
+
+
+                        //Bind Catalog Info to the OrderItems
+                        AddCatalogInfoToOrderItems(ref lCatalogItem, ref oCustOrder);
+
+                        ViewOrderGridView.DataSource = oCustOrder.OrderItems;
+                        ViewOrderGridView.DataBind();
+
+                        // Populates the Label (lblTotal) with the Total Amount of the Order
+                        foreach (GridViewRow row in ViewOrderGridView.Rows)
                         {
-                            grdTotal = grdTotal + decimal.Parse(row.Cells[5].Text);
+                            if (row.RowType == DataControlRowType.DataRow)
+                            {
+                                grdTotal = grdTotal + decimal.Parse(row.Cells[5].Text);
+                            }
+                        }
+
+                        lblTotal.Text = "Total: " + grdTotal.ToString("c");
+
+                        // Order Number and Order Date
+                        txtOrderDate.Text = (oCustOrder.OrderDate).ToString();
+                        txtOrderNumber.Text = (oCustOrder.OrderId).ToString();
+
+                        // Payment on Delivery
+                        if (oCustOrder.IsPaymentOnDelivery == true)
+                        {
+                            txtPaymentDelivery.Text = "Yes";
+                        }
+                        else
+                        {
+                            txtPaymentDelivery.Text = "No";
+                        }
+
+                        // Payment Type
+                        if (oCustOrder.PaymentId == 1)
+                        {
+                            txtPaymentType.Text = "Card";
+                        }
+                        else if (oCustOrder.PaymentId == 2)
+                        {
+                            txtPaymentType.Text = "PayPal";
+                        }
+
+                        // Status
+                        if (oCustOrder.StatusId == 4)
+                        {
+                            txtStatus.Text = "Cancelled";
+                        }
+                        else if (oCustOrder.StatusId == 3)
+                        {
+                            txtStatus.Text = "Complete";
+                        }
+                        else if (oCustOrder.StatusId == 2)
+                        {
+                            txtStatus.Text = "Validated";
+                        }
+                        else
+                        {
+                            txtStatus.Text = "Processing";
+                        }
+
+                        // Deposit
+                        if (txtPaymentDelivery.Text == "Yes")
+                        {
+                            txtDeposit.Visible = true;
+                            lblDeposit.Visible = true;
+                            txtDeposit.Text = (oCustOrder.DepositAmt).ToString("C");
                         }
                     }
-
-                    lblTotal.Text = "Total: " + grdTotal.ToString("c");
-
-                    // Order Number and Order Date
-                    txtOrderDate.Text = (oCustOrder.OrderDate).ToString();
-                    txtOrderNumber.Text = (oCustOrder.OrderId).ToString();
-
-                    // Payment on Delivery
-                    if (oCustOrder.IsPaymentOnDelivery == true)
-                    {
-                        txtPaymentDelivery.Text = "Yes";
-                    }
-                    else
-                    {
-                        txtPaymentDelivery.Text = "No";
-                    }
-
-                    // Payment Type
-                    if (oCustOrder.PaymentId == 1)
-                    {
-                        txtPaymentType.Text = "Card";
-                    }
-                    else if (oCustOrder.PaymentId == 2)
-                    {
-                        txtPaymentType.Text = "PayPal";
-                    }
-
-                    // Status
-                    if (oCustOrder.StatusId == 4)
-                    {
-                        txtStatus.Text = "Cancelled";
-                    }
-                    else if (oCustOrder.StatusId == 3)
-                    {
-                        txtStatus.Text = "Complete";
-                    }
-                    else if (oCustOrder.StatusId == 2)
-                    {
-                        txtStatus.Text = "Validated";
-                    }
-                    else
-                    {
-                        txtStatus.Text = "Processing";
-                    }
-
-                    // Deposit
-                    if (txtPaymentDelivery.Text == "Yes")
-                    {
-                        txtDeposit.Visible = true;
-                        lblDeposit.Visible = true;
-                        txtDeposit.Text = (oCustOrder.DepositAmt).ToString();
-                    }
-
                 }
             }
+            catch (Exception)
+            {
+                lblError.Visible = true;
+            }
+            
         }
 
         private static void AddCatalogInfoToOrderItems(ref List<CatalogItem> lCatalogItem, ref Order objOrder)

@@ -3,8 +3,3 @@ C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\DAL\bin\Debu
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\DAL\obj\Debug\DAL.dll
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\DAL\obj\Debug\DAL.pdb
-C:\Users\Daniel\Source\Repos\WSC\DAL\bin\Debug\DAL.dll
-C:\Users\Daniel\Source\Repos\WSC\DAL\bin\Debug\DAL.pdb
-C:\Users\Daniel\Source\Repos\WSC\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
-C:\Users\Daniel\Source\Repos\WSC\DAL\obj\Debug\DAL.dll
-C:\Users\Daniel\Source\Repos\WSC\DAL\obj\Debug\DAL.pdb

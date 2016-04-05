@@ -6,6 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
 
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    Manage Order Details Process
+    Details:    This program is used to Populate and Edit Order Details of an order.
+ */
+
 namespace WSC.Admin
 {
     public partial class ViewOrderItems : System.Web.UI.Page
@@ -17,7 +24,7 @@ namespace WSC.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["SecurityLevel"] == "M")
+            try
             {
                 // Populates the GridView with Session Cart information or displays the error that the cart is empty
                 if (!this.IsPostBack)
@@ -98,15 +105,18 @@ namespace WSC.Admin
                         if (txtPaymentDelivery.Text == "Yes")
                         {
                             txtDeposit.Visible = true;
+                            lblDeposit.Visible = true;
                             txtDeposit.Text = (oCustOrder.DepositAmt).ToString();
                         }
                     }
                 }
             }
-            else
+            catch (Exception)
             {
-                Response.Redirect("NoAccess.aspx");
+                lblError.Text = "There was an error.";
+                lblError.Visible = true;
             }
+            
         }
 
         private static void AddCatalogInfoToOrderItems(ref List<CatalogItem> lCatalogItem, ref Order objOrder)
@@ -119,6 +129,46 @@ namespace WSC.Admin
                 objOrderItem.CatalogItemDescr = ObjCatalogItem.CatalogItemDescr;
                 objOrderItem.CatalogImagePath = ObjCatalogItem.CatalogImagePath;
             }
+        }
+
+        protected void Update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // initiate variables
+                objBAL = new BusinessLayer();
+                bool bOrderSuccessful = false;
+                Order oCustOrder = new Order();
+                oCustOrder = Session["OrderItems"] as Order;
+
+                // Updated oCustOrder Status
+                if (ddlUpdateStatus.Text == "Validated")
+                {
+                    oCustOrder.StatusId = 2;
+                }
+                else if (ddlUpdateStatus.Text == "Closed")
+                {
+                    oCustOrder.StatusId = 3;
+                }
+                else if (ddlUpdateStatus.Text == "Cancelled")
+                {
+                    oCustOrder.StatusId = 4;
+                }
+
+
+                //Update order, must have items or will throw exception
+                bOrderSuccessful = objBAL.UpdateOrder(oCustOrder, 3);
+
+                // display Complete Label
+                lblComplete.Visible = true;
+
+                // Turn off visibility of Submit Button
+                btnUpdate.Visible = false;
+            }
+            catch (Exception)
+            {
+                lblError.Visible = true;
+            }   
         }
     }
 }

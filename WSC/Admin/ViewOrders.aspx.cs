@@ -26,11 +26,32 @@ namespace WSC.Admin
                         ManageOrdersGridView.DataSource = objOrders;
                         ManageOrdersGridView.DataBind();
                     }
+
+                    // edits the values of the status field
+                    foreach (GridViewRow row in ManageOrdersGridView.Rows)
+                    {
+                        // Status
+                        if (row.Cells[3].Text == "4")
+                        {
+                            row.Cells[3].Text = "Cancelled";
+                        }
+                        else if (row.Cells[3].Text == "3")
+                        {
+                            row.Cells[3].Text = "Complete";
+                        }
+                        else if (row.Cells[3].Text == "2")
+                        {
+                            row.Cells[3].Text = "Validated";
+                        }
+                        else
+                        {
+                            row.Cells[3].Text = "Processing";
+                        }
+                    }
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    lblError.Visible = true;
                 }
                 
             }
@@ -42,43 +63,56 @@ namespace WSC.Admin
 
         protected void OnSelectedIndexChange(object sender, EventArgs e)
         {
-
-            if (Session["OrderItems"] == null)
+            try
             {
-                Session["OrderItems"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
-            }
-
-            //Get Order out of session          
-            var objOrder = Session["OrderItems"] as Order;
-
-            string orderId = ManageOrdersGridView.SelectedRow.Cells[1].Text;
-
-            BusinessLayer objBAL = new BusinessLayer();
-
-            List<Order> objOrders = null;
-            objOrders = objBAL.GetOrdersByCustomerId(Convert.ToInt32(Session["CustomerId"]));
-
-            int lIndex = 0;
-
-            foreach (Order order in objOrders)
-            {
-                if (order.OrderId == int.Parse(orderId))
+                // creates order items session variable
+                if (Session["OrderItems"] == null)
                 {
-                    Order selectedOrder = new Order();
-
-                    selectedOrder = objOrders.ElementAt(lIndex);
-                    objOrder = selectedOrder;
-
-                    Session["OrderItems"] = objOrder;
+                    Session["OrderItems"] = new Order(0, false, 0.00m, 2, 1, DateTime.Now);
                 }
 
-                lIndex = lIndex + 1;
-            }
+                // Get Order out of session          
+                var objOrder = Session["OrderItems"] as Order;
 
-            if (Session["OrderItems"] != null)
-            {
-                Response.Redirect("~/Admin/ViewOrders.aspx");
+                // identifies the order to be displayed in the order details form
+                string orderId = ManageOrdersGridView.SelectedRow.Cells[1].Text;
+
+                // creates Business Layer object
+                BusinessLayer objBAL = new BusinessLayer();
+
+                // pulls a list of the customers orders
+                List<Order> objOrders = null;
+                objOrders = objBAL.GetAllOpenOrders();
+
+                // used to index the orders
+                int lIndex = 0;
+
+                // added the order information to the Order Items Session Variable
+                foreach (Order order in objOrders)
+                {
+                    if (order.OrderId == int.Parse(orderId))
+                    {
+                        Order selectedOrder = new Order();
+
+                        selectedOrder = objOrders.ElementAt(lIndex);
+                        objOrder = selectedOrder;
+
+                        Session["OrderItems"] = objOrder;
+                    }
+
+                    lIndex = lIndex + 1;
+                }
+
+                if (Session["OrderItems"] != null)
+                {
+                    Response.Redirect("~/Admin/ViewOrderItems.aspx");
+                }
             }
+            catch (Exception)
+            {
+                lblError.Visible = true;
+            }
+            
         }
     }
 }
