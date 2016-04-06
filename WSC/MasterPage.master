@@ -26,7 +26,7 @@
                 <asp:HyperLink ID="hplWelcome" NavigateUrl="~/Customer/ManageAccount.aspx" Text="Welcome" runat="server" Visible="false" />
                 <asp:HyperLink ID="hplLogin" NavigateUrl="~/Login.aspx" Text="Login" runat="server" Visible="true" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:HyperLink ID="hplRegister" NavigateUrl="~/Customer/Registration.aspx" Text="Sign Up" runat="server" Visible="true" />                
+                <asp:HyperLink ID="hplRegister" NavigateUrl="~/Registration.aspx" Text="Sign Up" runat="server" Visible="true" />                
                 <asp:LinkButton ID="hplLogout" Visible="false" runat="server" OnClick="Logout_Click">Logout</asp:LinkButton>
             </div>
         </div>
