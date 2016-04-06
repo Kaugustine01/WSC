@@ -12,15 +12,18 @@
 
         public string CatalogImagePath { get; set; }
 
+        public bool? Active { get; set; }
+
         public CatalogItem() { }
 
-        public CatalogItem(int nCatalogItemId, string sCatalogItemName, string sCatalogItemDescr, decimal dPrice, string sCatalogImagePath)
+        public CatalogItem(int nCatalogItemId, string sCatalogItemName, string sCatalogItemDescr, decimal dPrice, string sCatalogImagePath, bool bActive)
         {
             CatalogItemId = nCatalogItemId;
             CatalogItemName = sCatalogItemName;
             CatalogItemDescr = sCatalogItemDescr;
             Price = dPrice;
             CatalogImagePath = sCatalogImagePath;
+            Active = bActive;
         }
     }
 }

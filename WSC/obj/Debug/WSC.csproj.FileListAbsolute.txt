@@ -72,9 +72,6 @@ C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\DAL.pdb
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.dll
 C:\Users\Ken\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.pdb
-C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
-C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.dll
-C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.pdb
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\ApplicationInsights.config
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\roslyn\csc.exe
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -109,3 +106,6 @@ C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\Micr
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\DAL.pdb
+C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
+C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.dll
+C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.pdb

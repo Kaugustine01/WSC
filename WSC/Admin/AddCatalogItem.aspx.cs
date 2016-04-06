@@ -58,7 +58,7 @@ namespace WSC.Admin
                 }
 
                 //Insert New Item
-                lCatItems = objBAL.InsertCatalogItem(new CatalogItem(0, txtCatalogItem.Text, txtCatalogDescr.Text, Convert.ToDecimal(txtPrice.Text), sImagePath));
+                lCatItems = objBAL.InsertCatalogItem(new CatalogItem(0, txtCatalogItem.Text, txtCatalogDescr.Text, Convert.ToDecimal(txtPrice.Text), sImagePath,true));
 
                 // display the completion of the adding an item to the catalog
                 lblComplete.Visible = true;

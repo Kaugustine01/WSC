@@ -159,6 +159,56 @@ namespace DAL
 
             return false;
         }
+
+        /// <summary>
+        /// Update User
+        /// </summary>
+        /// <param name="nUserID">UserId</param>
+        /// <param name="sUserName">Username</param>
+        /// <param name="sPassword">Password</param>
+        /// <param name="sRole">Role [M,C,S]</param>
+        /// <returns></returns>
+        public bool UpdateUser(int nUserID, string sUserName, string sPassword, string sRole)
+        {
+            OleDbCommand dbCommand;            
+
+            try
+            {      
+                //New Database connection
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+
+                    // Open database connection
+                    dbConnection.Open();
+
+                    // SQL statement insert the customer
+                    string sqlStmt = @"Update UserT SET 
+                                        UserName = @username,
+                                        Password = @password,
+                                        Role = @role
+                                     WHERE UserID = @userid";
+
+                    // New command passing sql statement and the connection to the database
+                    dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+
+                    // Parameters   
+                    dbCommand.Parameters.Add(new OleDbParameter("@username", sUserName));
+                    dbCommand.Parameters.Add(new OleDbParameter("@password", sPassword));
+                    dbCommand.Parameters.Add(new OleDbParameter("@role", sRole));
+                    dbCommand.Parameters.Add(new OleDbParameter("@userid", nUserID));
+
+                    //Execute query
+                    if (dbCommand.ExecuteNonQuery() > 0)
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return false;
+        }
         #endregion
 
         #region Customer
@@ -351,14 +401,15 @@ namespace DAL
         /// Get Catalog Items returned in a Data Table
         /// </summary>
         /// <returns>Datatable</returns>
-        public DataTable GetCatalogItems()
+        public DataTable GetCatalogItems(bool? bActive)
         {
             DataTable dtCatItems = null;
 
             try
             {
                 //Query to return Catalog Items
-                string queryString = "SELECT CatalogID, ItemPrice, CatalogImagePath, ItemDescription, CatalogItemName FROM CatalogT";
+                string queryString = string.Format("SELECT CatalogID, ItemPrice, CatalogImagePath, ItemDescription, CatalogItemName FROM CatalogT WHERE {0}",
+                    (bActive == null) ? "1 = 1" : string.Format("Active = {0}",bActive)) ;
 
                 //establish connection parameters
                 using (dbConnection = new OleDbConnection(sConnString))
@@ -368,7 +419,6 @@ namespace DAL
 
                     // Set the Connection to the new OleDbConnection.
                     command.Connection = dbConnection;
-
 
                     // Open the connection and execute the SQL command.
                     dbConnection.Open();
@@ -413,8 +463,8 @@ namespace DAL
                     dbConnection.Open();
 
                     // SQL statement insert the customer
-                    string sqlStmt = "INSERT INTO CatalogT([ItemPrice], [CatalogImagePath], [ItemDescription], [CatalogItemName]) " +
-                                     "VALUES (@itemprice,@catalogimagepath,@itemdescription,@catalogitemname)";
+                    string sqlStmt = "INSERT INTO CatalogT([ItemPrice], [CatalogImagePath], [ItemDescription], [CatalogItemName],[Active]) " +
+                                     "VALUES (@itemprice,@catalogimagepath,@itemdescription,@catalogitemname,'1')";
 
                     // New command passing sql statement and the connection to the database
                     dbCommand = new OleDbCommand(sqlStmt, dbConnection);
@@ -447,7 +497,7 @@ namespace DAL
         /// <param name="sItemDescription">Descr of item</param>
         /// <param name="sCatalogItemName">Item Name</param>
         /// <returns></returns>
-        public bool UpdateCatalogItem(int nCatalogID, decimal dItemPrice, string sCatalogImagePath, string sItemDescription, string sCatalogItemName)
+        public bool UpdateCatalogItem(int nCatalogID, decimal dItemPrice, string sCatalogImagePath, string sItemDescription, string sCatalogItemName, bool? bActive)
         {
             OleDbCommand dbCommand;
 
@@ -465,7 +515,8 @@ namespace DAL
                                         ItemPrice = @itemprice, 
                                         CatalogImagePath = @catalogimagepath, 
                                         ItemDescription = @itemdescription, 
-                                        CatalogItemName =  @catalogitemname
+                                        CatalogItemName =  @catalogitemname,
+                                        Active = @active
                                       WHERE CatalogID = @catalogid";
 
                     // New command passing sql statement and the connection to the database
@@ -477,6 +528,7 @@ namespace DAL
                     dbCommand.Parameters.Add(new OleDbParameter("@itemdescription", sItemDescription));
                     dbCommand.Parameters.Add(new OleDbParameter("@CatalogItemName", sCatalogItemName));
                     dbCommand.Parameters.Add(new OleDbParameter("@catalogid", nCatalogID));
+                    dbCommand.Parameters.Add(new OleDbParameter("@active", bActive));
 
                     //Execute query
                     if (dbCommand.ExecuteNonQuery() > 0)

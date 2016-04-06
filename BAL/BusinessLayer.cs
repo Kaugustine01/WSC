@@ -76,19 +76,8 @@ namespace BAL
 
             try
             {
-                //Check to ensure all fields are present
-                if (objUserAccount != null)
-                {
-                    if (string.IsNullOrEmpty(objUserAccount.UserName))
-                        throw new Exception("UserName can not be null or empty");
-
-                    if (string.IsNullOrEmpty(objUserAccount.Password))
-                        throw new Exception("Password can not be null or empty");
-                }
-                else
-                {
-                    throw new Exception("UserAccount is NULL");
-                }
+                //Check requried fields
+                CheckRequiredUserFields(objUserAccount);
 
                 //Deserialize role for insertion
                 switch (objUserAccount.UserType)
@@ -120,6 +109,84 @@ namespace BAL
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Update User
+        /// </summary>
+        /// <param name="objUserAccount">User Acct Object</param>
+        /// <returns>UserAccount object</returns>
+        public UserAccount UpdateUser(UserAccount objUserAccount)
+        {
+            string sUserType = string.Empty;
+
+            try
+            {
+                //Check requried fields
+                CheckRequiredUserFields(objUserAccount);
+
+                //Ensure User was provided
+                if(objUserAccount.UserId ==0)
+                    throw new Exception("User does not exists");
+
+                //Deserialize role for insertion
+                switch (objUserAccount.UserType)
+                {
+                    case UserAccount.UserRole.Customer:
+                        sUserType = "C";
+                        break;
+                    case UserAccount.UserRole.OperationManager:
+                        sUserType = "M";
+                        break;
+                    case UserAccount.UserRole.Sales:
+                        sUserType = "S";
+                        break;
+                }
+
+                //Insert New User
+                if (objDAL.UpdateUser(objUserAccount.UserId,objUserAccount.UserName, objUserAccount.Password, sUserType))
+                {
+                    //Rehydrate UserAccount to ensure inserted correctly
+                    return GetUserAccount(objUserAccount.UserName, objUserAccount.Password);
+                }
+                else
+                {
+                    throw new Exception("User Failed to be inserted");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Check requried fields 
+        /// </summary>
+        /// <param name="objUserAccount"></param>
+        private void CheckRequiredUserFields(UserAccount objUserAccount)
+        {
+            try
+            {
+                //Check to ensure all fields are present
+                if (objUserAccount != null)
+                {
+                    if (string.IsNullOrEmpty(objUserAccount.UserName))
+                        throw new Exception("UserName can not be null or empty");
+
+                    if (string.IsNullOrEmpty(objUserAccount.Password))
+                        throw new Exception("Password can not be null or empty");
+                }
+                else
+                {
+                    throw new Exception("UserAccount is NULL");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
         #endregion
 
@@ -352,11 +419,36 @@ namespace BAL
         #endregion
 
         #region Catalog
+
+        /// <summary>
+        /// Get a list of all catalog items
+        /// </summary>       
+        /// <returns>List collection of Catalog Objects</returns>
+        public List<CatalogItem> GetCatalogItems()
+        {
+            //Create a List of Catalog Onjects
+            List<CatalogItem> lCatItems = null;
+
+            try
+            {
+                //Will pull all catalog items
+                lCatItems = GetCatalogItems(null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return Catalog List of catalog Items objects
+            return lCatItems;
+        }
+
         /// <summary>
         /// Get a list of catalog items
         /// </summary>
+        /// <param name="bActive">Active flag</param>
         /// <returns>List collection of Catalog Objects</returns>
-        public List<CatalogItem> GetCatalogItems()
+        public List<CatalogItem> GetCatalogItems(bool? bActive)
         {
             DataTable dtCatItems = null;
 
@@ -365,9 +457,8 @@ namespace BAL
 
             try
             {
-
-                //Fill Datatable with User Info By Username and Password
-                dtCatItems = objDAL.GetCatalogItems();
+                //Fill Datatable with catalog items
+                dtCatItems = objDAL.GetCatalogItems(bActive);
 
                 //Check to make sure datatable has rows
                 if (dtCatItems != null)
@@ -385,6 +476,7 @@ namespace BAL
                             objCatItem.CatalogImagePath = row["CatalogImagePath"].ToString();
                             objCatItem.CatalogItemDescr = row["ItemDescription"].ToString();
                             objCatItem.CatalogItemName = row["CatalogItemName"].ToString();
+                            objCatItem.Active = bActive;
 
                             //Add to list collection
                             lCatItems.Add(objCatItem);
@@ -446,8 +538,8 @@ namespace BAL
                 if (objCatalogItem.CatalogItemId == 0)
                     throw new Exception("CatalogID is required.");
 
-                //Update New Customer
-                if (objDAL.UpdateCatalogItem(objCatalogItem.CatalogItemId, objCatalogItem.Price, objCatalogItem.CatalogImagePath, objCatalogItem.CatalogItemDescr, objCatalogItem.CatalogItemName))
+                //Update Customer
+                if (objDAL.UpdateCatalogItem(objCatalogItem.CatalogItemId, objCatalogItem.Price, objCatalogItem.CatalogImagePath, objCatalogItem.CatalogItemDescr, objCatalogItem.CatalogItemName, objCatalogItem.Active))
                 {
                     //Rehydrate CatalogList to ensure inserted correctly       
                     return GetCatalogItems();

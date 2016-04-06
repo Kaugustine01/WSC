@@ -12,7 +12,7 @@ namespace WSC
         {
             try
             {
-                //UserAccountTest();
+                UserAccountTest();
                 //CustomerTest();
                 CatalogTest();
                 //OrderTest();
@@ -30,6 +30,8 @@ namespace WSC
 
         public void UserAccountTest()
         {
+            UserAccount objUA = null;
+
             try
             {
                 //Check existing
@@ -37,8 +39,11 @@ namespace WSC
 
                 //Insert User, will check if already exists.
                 //If already exists will throw exception
-                UserAccount objUA = new UserAccount(0, "KAugustine", "test", UserAccount.UserRole.Customer);
+                objUA = new UserAccount(0, "KAugustine", "test", UserAccount.UserRole.Customer);
                 objUA = objBAL.InsertUser(objUA);
+
+                //Update User
+                objUA = objBAL.UpdateUser(new UserAccount(3, "KAugustine", "test", UserAccount.UserRole.Customer));
             }
             catch (Exception ex)
             {
@@ -79,13 +84,16 @@ namespace WSC
             List<CatalogItem> lCatItems = null;
 
             //Insert New Item
-            lCatItems = objBAL.InsertCatalogItem(new CatalogItem(0, "Test New", "Test Description", 12m, @"c:\"));
+            lCatItems = objBAL.InsertCatalogItem(new CatalogItem(0, "Test New", "Test Description", 12m, @"c:\",true));
 
             //Update Existing Item
-            lCatItems = objBAL.UpdateCatalogItem(new CatalogItem(3, "Test Update", "Test Description Update", 3m, @"c:\Update"));
+            lCatItems = objBAL.UpdateCatalogItem(new CatalogItem(3, "Test Update", "Test Description Update", 3m, @"c:\Update",false));
 
-            //Retrieve Catalog Items
+            //Retrieve All Catalog Items
             lCatItems = objBAL.GetCatalogItems();
+
+            //Retrieve Active Catalog Items
+            lCatItems = objBAL.GetCatalogItems(true);
         }
 
         public void OrderTest()
