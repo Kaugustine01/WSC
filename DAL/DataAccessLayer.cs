@@ -183,10 +183,10 @@ namespace DAL
 
                     // SQL statement insert the customer
                     string sqlStmt = @"Update UserT SET 
-                                        UserName = @username,
-                                        Password = @password,
-                                        Role = @role
-                                     WHERE UserID = @userid";
+                                        [UserName] = @username,
+                                        [Password] = @password,
+                                        [Role] = @role
+                                     WHERE [UserID] = @userid";
 
                     // New command passing sql statement and the connection to the database
                     dbCommand = new OleDbCommand(sqlStmt, dbConnection);
@@ -512,11 +512,11 @@ namespace DAL
 
                     // SQL statement insert the customer
                     string sqlStmt = @"Update CatalogT SET
-                                        ItemPrice = @itemprice, 
-                                        CatalogImagePath = @catalogimagepath, 
-                                        ItemDescription = @itemdescription, 
-                                        CatalogItemName =  @catalogitemname,
-                                        Active = @active
+                                        [ItemPrice] = @itemprice, 
+                                        [CatalogImagePath] = @catalogimagepath, 
+                                        [ItemDescription] = @itemdescription, 
+                                        [CatalogItemName] =  @catalogitemname,
+                                        [Active] = @active
                                       WHERE CatalogID = @catalogid";
 
                     // New command passing sql statement and the connection to the database
@@ -526,9 +526,10 @@ namespace DAL
                     dbCommand.Parameters.Add(new OleDbParameter("@itemprice", dItemPrice));
                     dbCommand.Parameters.Add(new OleDbParameter("@catalogimagepath", sCatalogImagePath));
                     dbCommand.Parameters.Add(new OleDbParameter("@itemdescription", sItemDescription));
-                    dbCommand.Parameters.Add(new OleDbParameter("@CatalogItemName", sCatalogItemName));
-                    dbCommand.Parameters.Add(new OleDbParameter("@catalogid", nCatalogID));
+                    dbCommand.Parameters.Add(new OleDbParameter("@catalogitemname", sCatalogItemName));
                     dbCommand.Parameters.Add(new OleDbParameter("@active", bActive));
+                    dbCommand.Parameters.Add(new OleDbParameter("@catalogid", nCatalogID));
+                   
 
                     //Execute query
                     if (dbCommand.ExecuteNonQuery() > 0)

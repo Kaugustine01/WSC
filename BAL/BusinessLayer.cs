@@ -546,7 +546,7 @@ namespace BAL
                 }
                 else
                 {
-                    throw new Exception("Customer failed to update");
+                    throw new Exception("Cstslog failed to update");
                 }
             }
             catch (Exception ex)
