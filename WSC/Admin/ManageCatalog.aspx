@@ -22,7 +22,7 @@
             <br />
 
             <!-- This displays a grid view of the Catalog. -->
-            <asp:GridView ID="CatalogGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="100%">
+            <asp:GridView ID="CatalogGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="100%" OnSelectedIndexChanged="OnSelectedIndexChange">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
                 <RowStyle BackColor="#c5d5cb" />
                 <AlternatingRowStyle BackColor="#e3e0cf" />
@@ -44,7 +44,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="" >
                         <ItemTemplate>
-                            <asp:Button ID="btnUpdateCatalogItem" class="button" runat="server" Text="Update Item" OnClick="UpdateCatalogItem_Click" Visible="true" />
+                            <asp:Button ID="btnUpdateCatalogItem" class="button" runat="server" Text="Update Item" Visible="true" CommandName="Select" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
