@@ -408,7 +408,7 @@ namespace DAL
             try
             {
                 //Query to return Catalog Items
-                string queryString = string.Format("SELECT CatalogID, ItemPrice, CatalogImagePath, ItemDescription, CatalogItemName FROM CatalogT WHERE {0}",
+                string queryString = string.Format("SELECT CatalogID, ItemPrice, CatalogImagePath, ItemDescription, CatalogItemName, Active FROM CatalogT WHERE {0}",
                     (bActive == null) ? "1 = 1" : string.Format("Active = {0}",bActive)) ;
 
                 //establish connection parameters

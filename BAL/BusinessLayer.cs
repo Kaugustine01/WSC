@@ -476,7 +476,7 @@ namespace BAL
                             objCatItem.CatalogImagePath = row["CatalogImagePath"].ToString();
                             objCatItem.CatalogItemDescr = row["ItemDescription"].ToString();
                             objCatItem.CatalogItemName = row["CatalogItemName"].ToString();
-                            objCatItem.Active = bActive;
+                            objCatItem.Active = bool.Parse(row["Active"].ToString());                           
 
                             //Add to list collection
                             lCatItems.Add(objCatItem);
