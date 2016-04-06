@@ -28,15 +28,11 @@
                 <AlternatingRowStyle BackColor="#e3e0cf" />
                 
                 <Columns>
-                    <asp:TemplateField HeaderText="" >
-                        <ItemTemplate>
-                            <asp:CheckBox ID="chkRow" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
                     <asp:BoundField DataField="CatalogItemID" HeaderText="Item ID" SortExpression="CatalogID" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemName" HeaderText="Item Name" SortExpression="CatalogItemName" ReadOnly="true" />
                     <asp:BoundField DataField="CatalogItemDescr" HeaderText="Description" SortExpression="ItemDescription" ReadOnly="true" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="ItemPrice" ReadOnly="true" />
+                    <asp:BoundField DataField="Active" HeaderText="Active" SortExpression="Active" ReadOnly="true" />
                     <asp:TemplateField HeaderText="" >
                         <ItemTemplate>                          
                             <asp:Image ID="imgCatalogItem" runat="server" ImageUrl='<%# Eval("CatalogImagePath","~/{0}") %>' />
@@ -51,11 +47,6 @@
             </asp:GridView>
             <br />
             <br />
-
-            <!-- Button to Move to the Check Out Page -->
-            <asp:Button ID="btnDeleteChkRow" class="button" runat="server" Text="Delete Item" OnClick="DeleteChkRow_Click" Visible="true" />
-
-            &nbsp;&nbsp;&nbsp;&nbsp;
 
             <!-- Button to Add an Item to the Catalog -->
             <asp:Button ID="btnAddCatalogItem" class="button" runat="server" Text="Add Item" OnClick="AddCatalogItem_Click" Visible="true" />

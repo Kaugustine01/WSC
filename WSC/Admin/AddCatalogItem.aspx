@@ -20,21 +20,21 @@
         <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Left">
 
             <!-- Catalog Item -->
-            <asp:Label ID="lbCatalogItem" runat="server" Text="Catalog Item:" Width="130px"></asp:Label>
+            <asp:Label ID="lbCatalogItem" runat="server" Text="Catalog Item:" Width="200px"></asp:Label>
             <asp:TextBox ID="txtCatalogItem" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                 ControlToValidate="txtCatalogItem" ErrorMessage="Catalog Item Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- Catalog Description -->
-            <asp:Label ID="lblCatalogDescr" runat="server" Text="Catalog Description:" Width="130px"></asp:Label>
+            <asp:Label ID="lblCatalogDescr" runat="server" Text="Catalog Description:" Width="200px"></asp:Label>
             <asp:TextBox ID="txtCatalogDescr" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                 ControlToValidate="txtCatalogDescr" ErrorMessage="Catalog Description Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
             <!-- Catalog Image -->
-            <asp:Label ID="lblCatalogImage" runat="server" Text="Catalog Image:" Width="130px"></asp:Label>
+            <asp:Label ID="lblCatalogImage" runat="server" Text="Catalog Image:" Width="200px"></asp:Label>
             <asp:DropDownList ID="ddlCatalogImage" runat="server">
                 <asp:ListItem>--Select--</asp:ListItem>
                 <asp:ListItem>Plaque</asp:ListItem>
@@ -47,12 +47,22 @@
             <br />
 
             <!-- Catalog Item Price -->
-            <asp:Label ID="lblPrice" runat="server" Text="Price:" Width="130px"></asp:Label>
+            <asp:Label ID="lblPrice" runat="server" Text="Price:" Width="200px"></asp:Label>
             <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
                 ControlToValidate="txtPrice" ErrorMessage="Price Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
             <br />
+
+            <!-- Catalog Item Active -->
+            <asp:Label ID="lblActive" runat="server" Text="Active" Width="200px"></asp:Label>
+            <asp:DropDownList ID="ddlActive" runat="server">
+                <asp:ListItem>--Select--</asp:ListItem>
+                <asp:ListItem>Yes</asp:ListItem>
+                <asp:ListItem>No</asp:ListItem>
+            </asp:DropDownList>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlActive"
+                    ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup" Fore-Color="Red"></asp:RequiredFieldValidator>
 
             <!-- LinkButton for Submission -->
             <asp:Button ID="btnSubmit" class="button" runat="server" Text="Submit" OnClick="Submit_Click" ValidationGroup="ValGroup" Visible="true" />

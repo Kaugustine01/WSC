@@ -45,7 +45,7 @@ namespace WSC
                 List<CatalogItem> lCatItems = null;
 
                 //Retrieve Catalog Items
-                lCatItems = objBAL.GetCatalogItems();
+                lCatItems = objBAL.GetCatalogItems(true);
 
                 CatalogGridView.DataSource = lCatItems;
                 CatalogGridView.DataBind();
