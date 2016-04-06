@@ -109,6 +109,7 @@ C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\bin\DAL.
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.dll
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\WSC\obj\Debug\WSC.pdb
+C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\ApplicationInsights.config
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\roslyn\csc.exe
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -143,6 +144,5 @@ C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Daniel\Source\Repos\WSC\WSC\bin\DAL.pdb
-C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.dll
 C:\Users\Daniel\Source\Repos\WSC\WSC\obj\Debug\WSC.pdb

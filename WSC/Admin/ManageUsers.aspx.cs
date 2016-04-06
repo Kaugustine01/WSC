@@ -39,22 +39,30 @@ namespace WSC.Admin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            // creates customer list
-            List < Customer > lstCust= null;
+            try
+            {
+                // creates customer list
+                List<Customer> lstCust = null;
 
-            // addes customer to the list
-            lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
+                // addes customer to the list
+                lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
 
-            // binds the customer list to grid.
-            ManageUsersGridView.DataSource = lstCust;
-            ManageUsersGridView.DataBind();
+                // binds the customer list to grid.
+                ManageUsersGridView.DataSource = lstCust;
+                ManageUsersGridView.DataBind();
 
-            // makes edit fields visable
-            lblUserName.Visible = true;
-            lblUserType.Visible = true;
-            txtUserName.Visible = true;
-            ddlUserType.Visible = true;
-            btnUpdateUser.Visible = true;
+                // makes edit fields visable
+                lblUserName.Visible = true;
+                lblUserType.Visible = true;
+                txtUserName.Visible = true;
+                ddlUserType.Visible = true;
+                btnUpdateUser.Visible = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         protected void UpdateUser_Click(object sender, EventArgs e)

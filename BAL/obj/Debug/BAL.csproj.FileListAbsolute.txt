@@ -5,13 +5,6 @@ C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\bin\Debu
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\obj\Debug\BAL.dll
 C:\Users\Kaugus001\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\obj\Debug\BAL.pdb
-C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\BAL.dll
-C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\BAL.pdb
-C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\DAL.dll
-C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\DAL.pdb
-C:\Users\Daniel\Source\Repos\WSC\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
-C:\Users\Daniel\Source\Repos\WSC\BAL\obj\Debug\BAL.dll
-C:\Users\Daniel\Source\Repos\WSC\BAL\obj\Debug\BAL.pdb
 C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\bin\Debug\BAL.dll
 C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\bin\Debug\BAL.pdb
 C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\bin\Debug\DAL.dll
@@ -19,3 +12,10 @@ C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\bin\Debug\DA
 C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
 C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\obj\Debug\BAL.dll
 C:\Users\ftlki\Documents\Visual Studio 2015\Projects\GitHub\WSC\BAL\obj\Debug\BAL.pdb
+C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\BAL.dll
+C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\BAL.pdb
+C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\DAL.dll
+C:\Users\Daniel\Source\Repos\WSC\BAL\bin\Debug\DAL.pdb
+C:\Users\Daniel\Source\Repos\WSC\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\WSC\BAL\obj\Debug\BAL.dll
+C:\Users\Daniel\Source\Repos\WSC\BAL\obj\Debug\BAL.pdb

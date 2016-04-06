@@ -50,7 +50,7 @@
                 <asp:ListItem>Shirt</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlCatalogImage"
-                    ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup" Fore-Color="Red"></asp:RequiredFieldValidator>
+                    ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup" ForeColor="Red"></asp:RequiredFieldValidator>
             <br />
             <br />
 
@@ -70,7 +70,9 @@
                 <asp:ListItem>No</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlActive"
-                    ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup" Fore-Color="Red"></asp:RequiredFieldValidator>
+                    ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup" ForeColor="Red"></asp:RequiredFieldValidator>
+            <br />
+            <br />
 
             <!-- LinkButton for Submission -->
             <asp:Button ID="btnSubmit" class="button" runat="server" Text="Submit" OnClick="Submit_Click" ValidationGroup="ValGroup" Visible="true" />

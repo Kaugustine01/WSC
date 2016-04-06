@@ -150,7 +150,7 @@
             <asp:Label ID="lblUpdateComplete" runat="server" Visible="false" ForeColor="Red"><b>Your password has been updated.</b></asp:Label>
 
             <!-- Error for the form not being properly submitted. -->
-            <asp:Label ID="Label2" runat="server" Visible="false" ForeColor="Red"><b>Password entered was incorrect.</b></asp:Label>
+            <asp:Label ID="lblWrongPassword" runat="server" Visible="false" ForeColor="Red"><b>Something went wrong, please check your Password and try again.</b></asp:Label>
             <br />
             <br />
             <br />

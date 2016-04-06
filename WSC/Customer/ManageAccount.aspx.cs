@@ -63,13 +63,15 @@ namespace WSC
 
                 lblError.Visible = true;
             }
-            
+
         }
 
         protected void UpdatePassword_Click(object sender, EventArgs e)
         {
-            UserAccount objUA = null;
-            
+            try
+            {
+                UserAccount objUA = null;
+
                 //Check existing
                 objUA = objBAL.GetUserAccount(Session["UserName"].ToString(), txtOldPassword.Text);
 
@@ -77,6 +79,15 @@ namespace WSC
                 {
                     objUA = objBAL.UpdateUser(new UserAccount(Convert.ToInt32(Session["UserId"]), Session["UserName"].ToString(), txtNewPassword.Text, UserAccount.UserRole.Customer));
                 }
+
+                lblUpdateComplete.Visible = true;
+                btnUpdatePassword.Visible = false;
+            }
+            catch (Exception)
+            {
+                lblWrongPassword.Visible = true;
+            }
+
         }
     }
 }
