@@ -98,11 +98,63 @@
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" ValidationGroup="ValGroup"/>
             <br />
 
-             <!-- Properly submitted. -->
+            <!-- Properly submitted. -->
             <asp:Label ID="lblComplete" runat="server" Visible="false" ForeColor="Red"><b>Account has been updated.</b></asp:Label>
 
             <!-- Error for the form not being properly submitted. -->
             <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>Sorry there was an error.</b></asp:Label>
+            <br />
+            <br />
+            <br />
+
+            <!-- Update Password -->
+            <p>Below is used to update your password, each field is required.</p>
+            <p><b>Password Requirements: </b>Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 Special Character.</p>
+            <br />
+            <br />
+            
+            <!-- Old Password -->
+            <asp:Label ID="lblOldPassword" runat="server" Text="Old Password:" Width="200px"></asp:Label>
+            <asp:TextBox ID="txtOldPassword" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                ControlToValidate="txtOldPassword" ErrorMessage="Password Required." ForeColor="Red" ValidationGroup="ValGroup2"></asp:RequiredFieldValidator>
+            <br />
+            <br />
+
+            <!-- New Password -->
+            <asp:Label ID="lblNewPassword" runat="server" Text="New Password:" Width="200px"></asp:Label>
+            <asp:TextBox ID="txtNewPassword" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server"
+                ControlToValidate="txtNewPassword" ErrorMessage="Password Required." ForeColor="Red" ValidationGroup="ValGroup2"></asp:RequiredFieldValidator>
+            <br />
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtNewPassword"
+                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 Special Character" ForeColor="Red" ValidationGroup="ValGroup2"/>
+            <br />
+
+            <!-- Confirm New Password -->
+            <asp:Label ID="lblNewConfirmPassword" runat="server" Text="Confirm New Password:" Width="200px"></asp:Label>
+            <asp:TextBox ID="txtConfirmPassword" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server"
+                ControlToValidate="txtConfirmPassword" ErrorMessage="Confirm Password Required." ForeColor="Red" ValidationGroup="ValGroup2"></asp:RequiredFieldValidator>
+            <br />
+            <asp:CompareValidator ID="comparePassword" runat="server" ControlToValidate="txtConfirmPassword"
+                ControlToCompare="txtNewPassword" ErrorMessage="Password Does Not Match" ForeColor="Red" ValidationGroup="ValGroup2"></asp:CompareValidator>
+            <br />
+
+            <!-- LinkButton for Submission -->
+            <asp:Button ID="btnUpdatePassword" runat="server" Text="Update Password" OnClick="UpdatePassword_Click" ValidationGroup="ValGroup2"/>
+            <br />
+
+            <!-- Properly submitted. -->
+            <asp:Label ID="lblUpdateComplete" runat="server" Visible="false" ForeColor="Red"><b>Your password has been updated.</b></asp:Label>
+
+            <!-- Error for the form not being properly submitted. -->
+            <asp:Label ID="Label2" runat="server" Visible="false" ForeColor="Red"><b>Password entered was incorrect.</b></asp:Label>
+            <br />
+            <br />
+            <br />
+            
         </asp:Panel>
     </div>
 </asp:Content>

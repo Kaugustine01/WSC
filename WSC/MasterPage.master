@@ -49,7 +49,7 @@
             <br />
             <asp:Button ID="btnAddEmployees" class="button" Text="Add Employees" OnClick="AddEmployees_Click" runat="server" Visible="false" />
             <br />
-            <asp:Button ID="btnManageEmployees" class="button" Text="Manage Employees" OnClick="ManageEmployees_Click" runat="server" Visible="false" />
+            <asp:Button ID="btnManageUsers" class="button" Text="Manage Users" OnClick="ManageUsers_Click" runat="server" Visible="false" />
             <br />
             <asp:Button ID="btnManageCatalog" class="button" Text="Manage Catalog" OnClick="ManageCatalog_Click" runat="server" Visible="false" />
             <br />

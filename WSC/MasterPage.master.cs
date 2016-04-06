@@ -28,12 +28,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
         else if (Session["SecurityLevel"] == "M")
         {
             btnCustViewOrders.Visible = false;
-            btnManageAccount.Visible = false;
+            btnManageAccount.Visible = true;
             btnViewCart.Visible = false;
             lblAdmin.Visible = true;
             btnAddEmployees.Visible = true;
             btnAdmViewOrders.Visible = true;
-            btnManageEmployees.Visible = true;
+            btnManageUsers.Visible = true;
             btnManageCatalog.Visible = true;
             hplWelcome.Text = "Welcome " + Session["UserName"].ToString();
             hplWelcome.Visible = true;
@@ -46,7 +46,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         else if (Session["SecurityLevel"] == "S")
         {
             btnCustViewOrders.Visible = false;
-            btnManageAccount.Visible = false;
+            btnManageAccount.Visible = true;
             btnViewCart.Visible = false;
             btnManageCatalog.Visible = false;
             lblAdmin.Visible = true;
@@ -67,7 +67,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblAdmin.Visible = false;
             btnAddEmployees.Visible = false;
             btnAdmViewOrders.Visible = false;
-            btnManageEmployees.Visible = false;
+            btnManageUsers.Visible = false;
             hplWelcome.Visible = false;
             hplRegister.Visible = true;
             hplLogin.Visible = true;
@@ -118,9 +118,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
 
     // Manage Employees page Redirect
-    protected void ManageEmployees_Click(Object sender, EventArgs e)
+    protected void ManageUsers_Click(Object sender, EventArgs e)
     {
-        Response.Redirect("~/Admin/ManageEmployees.aspx");
+        Response.Redirect("~/Admin/ManageUsers.aspx");
     }
 
     protected void ManageCatalog_Click(Object sender, EventArgs e)

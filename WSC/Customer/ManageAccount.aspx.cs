@@ -20,7 +20,7 @@ namespace WSC
             if (!this.IsPostBack)
             {
                 // If user is logged in as a customer will fill in the manage account form with customer information
-                if (Session["SecurityLevel"] == "C")
+                if (Session["SecurityLevel"] == "C" || Session["SecurityLevel"] == "M" || Session["SecurityLevel"] == "S")
                 {
 
                     Customer objCus = new Customer();
@@ -64,6 +64,19 @@ namespace WSC
                 lblError.Visible = true;
             }
             
+        }
+
+        protected void UpdatePassword_Click(object sender, EventArgs e)
+        {
+            UserAccount objUA = null;
+            
+                //Check existing
+                objUA = objBAL.GetUserAccount(Session["UserName"].ToString(), txtOldPassword.Text);
+
+                if (objUA != null)
+                {
+                    objUA = objBAL.UpdateUser(new UserAccount(Convert.ToInt32(Session["UserId"]), Session["UserName"].ToString(), txtNewPassword.Text, UserAccount.UserRole.Customer));
+                }
         }
     }
 }
