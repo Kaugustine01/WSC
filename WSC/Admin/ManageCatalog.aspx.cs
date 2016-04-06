@@ -77,7 +77,7 @@ namespace WSC.Admin
                 var catalogItem = Session["CatalogItem"] as CatalogItem;
 
                 // identifies the order to be displayed in the order details form
-                string catalogId = CatalogGridView.SelectedRow.Cells[1].Text;
+                string catalogId = CatalogGridView.SelectedRow.Cells[0].Text;
 
                 // creates Business Layer object
                 BusinessLayer objBAL = new BusinessLayer();
@@ -112,8 +112,10 @@ namespace WSC.Admin
             }
             catch (Exception)
             {
+
                 lblError.Visible = true;
             }
+                
         }
     }
 }

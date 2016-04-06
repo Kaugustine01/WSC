@@ -39,6 +39,8 @@ namespace WSC.Admin
                 // creates string to update the image path
                 string sImagePath = "";
 
+                bool Active = true;
+
                 // updates sImagePath to add to Database
                 if (ddlCatalogImage.Text == "Plaque")
                 {
@@ -57,8 +59,15 @@ namespace WSC.Admin
                     sImagePath = @"Images\CatalogItems\Shirt.jpg";
                 }
 
+                // update Active Bool
+                if (ddlActive.Text == "No")
+                {
+                    Active = false;
+                }
+
+
                 //Insert New Item
-                lCatItems = objBAL.InsertCatalogItem(new CatalogItem(0, txtCatalogItem.Text, txtCatalogDescr.Text, Convert.ToDecimal(txtPrice.Text), sImagePath,true));
+                lCatItems = objBAL.InsertCatalogItem(new CatalogItem(0, txtCatalogItem.Text, txtCatalogDescr.Text, Convert.ToDecimal(txtPrice.Text), sImagePath, Active));
 
                 // display the completion of the adding an item to the catalog
                 lblComplete.Visible = true;

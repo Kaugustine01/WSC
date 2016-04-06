@@ -6,6 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
 
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    Update Catalog Process
+    Details:    This program is used to Update an existing item in the Catalog.
+ */
+
 namespace WSC.Admin
 {
     public partial class UpdateCatalogItem : System.Web.UI.Page
@@ -19,14 +26,17 @@ namespace WSC.Admin
                 {
                     if (Session["CatalogItem"] != null)
                     {
+                        // Create and get catalogItem
                         CatalogItem catalogItem = new CatalogItem();
                         catalogItem = Session["CatalogItem"] as CatalogItem;
 
+                        // Add Text to TextBoxs
                         txtCatalogDescr.Text = catalogItem.CatalogItemDescr;
                         txtCatalogItem.Text = catalogItem.CatalogItemName;
                         txtPrice.Text = (catalogItem.Price).ToString();
                         txtCatalogId.Text = (catalogItem.CatalogItemId).ToString();
 
+                        // Updated ddlCatalogImage
                         if (catalogItem.CatalogImagePath == @"Images\CatalogItems\Plaque.jpg")
                         {
                             ddlCatalogImage.Text = "Plaque";
@@ -44,6 +54,16 @@ namespace WSC.Admin
                             ddlCatalogImage.Text = "Shirt";
                         }
 
+                        // update ddlActive
+                        if (catalogItem.Active == true)
+                        {
+                            ddlActive.Text = "Yes";
+                        }
+                        else
+                        {
+                            ddlActive.Text = "No";
+                        }
+
                     }
                 }
             }
@@ -56,8 +76,6 @@ namespace WSC.Admin
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            try
-            {
                 // creates a catalog item list to add a new item.
                 List<CatalogItem> lCatItems = null;
 
@@ -69,6 +87,8 @@ namespace WSC.Admin
 
                 // creates string to update the image path
                 string sImagePath = "";
+
+                bool active = true;
 
                 // updates sImagePath to add to Database
                 if (ddlCatalogImage.Text == "Plaque")
@@ -88,12 +108,20 @@ namespace WSC.Admin
                     sImagePath = @"Images\CatalogItems\Shirt.jpg";
                 }
 
+                // update active if ddlActive is no
+                if (ddlActive.Text == "No")
+                {
+                    active = false;
+                }
+
                 // Add items to catalogItem
                 catalogItem.CatalogItemId = Convert.ToInt32(txtCatalogId.Text);
                 catalogItem.CatalogItemName = txtCatalogItem.Text;
                 catalogItem.CatalogItemDescr = txtCatalogDescr.Text;
                 catalogItem.Price = Convert.ToDecimal(txtPrice.Text);
                 catalogItem.CatalogImagePath = sImagePath;
+                catalogItem.Active = active;
+                
 
                 //Update Existing Item
                 lCatItems = objBAL.UpdateCatalogItem(catalogItem);
@@ -102,14 +130,7 @@ namespace WSC.Admin
                 lblComplete.Visible = true;
                 btnSubmit.Visible = false;
             }
-            catch (Exception)
-            {
-                // Shows error if there is an issue.
-                lblError.Visible = true;
-            }
+
             
         }
     }
-
-
-}
