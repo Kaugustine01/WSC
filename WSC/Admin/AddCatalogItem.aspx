@@ -13,7 +13,7 @@
 
     <!-- Add Catalog Form -->
     <div class="content">
-        <center><h1>Add Catalog Form</h1></center>
+        <center><h1>Add Catalog Item Form</h1></center>
         <p>
             <b>Price: </b> - Correct Price format is 10.55
         </p>
