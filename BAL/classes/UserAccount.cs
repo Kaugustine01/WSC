@@ -7,7 +7,9 @@
         public string UserName { get; set; }
 
         public string Password { get; set; }
-    
+
+        public string Email { get; set; }
+
         public UserRole UserType { get; set; }
 
         public enum UserRole
@@ -19,12 +21,13 @@
 
         public UserAccount() { }
 
-        public UserAccount(int nUserId, string sUserName, string sPassword, UserRole eUserRole)
+        public UserAccount(int nUserId, string sUserName, string sPassword, UserRole eUserRole, string sEmail)
         {
             UserId = nUserId;
             UserName = sUserName;
             Password = sPassword;
             UserType = eUserRole;
+            Email = sEmail;
         }
     }
 }

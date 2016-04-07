@@ -27,7 +27,7 @@ namespace DAL
             try
             {
                 //Query to return User Info
-                string queryString = "SELECT UserID, UserName, Password, Role FROM UserT WHERE UserName = @username and Password = @password";
+                string queryString = "SELECT UserID, UserName, Password, Role, Email FROM UserT WHERE UserName = @username and Password = @password";
 
                 //establish connection parameters
                 using (dbConnection = new OleDbConnection(sConnString))
@@ -116,7 +116,7 @@ namespace DAL
         /// <param name="sPassword">password</param>
         /// <param name="sRole">role</param>
         /// <returns>boolean</returns>
-        public bool InsertUser(string sUserName, string sPassword, string sRole)
+        public bool InsertUser(string sUserName, string sPassword, string sRole, string sEmail)
         {  
             OleDbCommand dbCommand;
             int nUserId = 0;
@@ -136,8 +136,8 @@ namespace DAL
                     dbConnection.Open();
 
                     // SQL statement insert the customer
-                    string sqlStmt = "INSERT INTO UserT([UserName],[Password],[Role]) " +
-                                     "VALUES (@username,@password,@role)";
+                    string sqlStmt = "INSERT INTO UserT([UserName],[Password],[Role],[Email]) " +
+                                     "VALUES (@username,@password,@role,@email)";
 
                     // New command passing sql statement and the connection to the database
                     dbCommand = new OleDbCommand(sqlStmt, dbConnection);
@@ -146,6 +146,7 @@ namespace DAL
                     dbCommand.Parameters.Add(new OleDbParameter("@username", sUserName));
                     dbCommand.Parameters.Add(new OleDbParameter("@password", sPassword));
                     dbCommand.Parameters.Add(new OleDbParameter("@role", sRole));
+                    dbCommand.Parameters.Add(new OleDbParameter("@email", sEmail));
 
                     //Execute query
                     if (dbCommand.ExecuteNonQuery() > 0)
@@ -168,7 +169,7 @@ namespace DAL
         /// <param name="sPassword">Password</param>
         /// <param name="sRole">Role [M,C,S]</param>
         /// <returns></returns>
-        public bool UpdateUser(int nUserID, string sUserName, string sPassword, string sRole)
+        public bool UpdateUser(int nUserID, string sUserName, string sPassword, string sRole, string sEmail)
         {
             OleDbCommand dbCommand;
             StringBuilder objStringBuilder = null;
@@ -191,7 +192,7 @@ namespace DAL
                     if (!string.IsNullOrEmpty(sPassword))
                         objStringBuilder.AppendLine("[Password] = @password,");
 
-                    objStringBuilder.AppendLine("[Role] = @role WHERE [UserID] = @userid");                                                      
+                    objStringBuilder.AppendLine("[Role] = @role,[Email] = @email WHERE [UserID] = @userid");                                                      
 
                     // New command passing sql statement and the connection to the database
                     dbCommand = new OleDbCommand(objStringBuilder.ToString(), dbConnection);
@@ -200,6 +201,7 @@ namespace DAL
                     dbCommand.Parameters.Add(new OleDbParameter("@username", sUserName));
                     dbCommand.Parameters.Add(new OleDbParameter("@password", sPassword));
                     dbCommand.Parameters.Add(new OleDbParameter("@role", sRole));
+                    dbCommand.Parameters.Add(new OleDbParameter("@email", sEmail));
                     dbCommand.Parameters.Add(new OleDbParameter("@userid", nUserID));
 
                     //Execute query

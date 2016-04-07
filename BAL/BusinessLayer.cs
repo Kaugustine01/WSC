@@ -95,7 +95,7 @@ namespace BAL
 
 
                 //Insert New User
-                if (objDAL.InsertUser(objUserAccount.UserName, objUserAccount.Password, sUserType))
+                if (objDAL.InsertUser(objUserAccount.UserName, objUserAccount.Password, sUserType, objUserAccount.Email))
                 {
                     //Rehydrate UserAccount to ensure inserted correctly
                     return GetUserAccount(objUserAccount.UserName, objUserAccount.Password);
@@ -179,7 +179,7 @@ namespace BAL
                 }
 
                 //Insert New User
-                if (objDAL.UpdateUser(objUserAccount.UserId,objUserAccount.UserName, objUserAccount.Password, sUserType))
+                if (objDAL.UpdateUser(objUserAccount.UserId,objUserAccount.UserName, objUserAccount.Password, sUserType, objUserAccount.Email))
                 {
                     //Rehydrate UserAccount to ensure inserted correctly
                     return GetUserAccount(objUserAccount.UserName, objUserAccount.Password);
@@ -211,6 +211,9 @@ namespace BAL
 
                     if (string.IsNullOrEmpty(objUserAccount.Password))
                         throw new Exception("Password can not be null or empty");
+
+                    if (string.IsNullOrEmpty(objUserAccount.Email))
+                        throw new Exception("Email can not be null or empty");
                 }
                 else
                 {
