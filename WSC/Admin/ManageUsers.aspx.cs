@@ -57,17 +57,25 @@ namespace WSC.Admin
                 txtUserName.Visible = true;
                 ddlUserType.Visible = true;
                 btnUpdateUser.Visible = true;
+
+                // objBAL.GetUserAccount()
             }
             catch (Exception)
             {
                 throw;
             }
-            
         }
 
         protected void UpdateUser_Click(object sender, EventArgs e)
         {
+            UserAccount cAdmin = new UserAccount();
+            UserAccount uUsers = new UserAccount();
 
+            // uUsers.
+            // cAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+
+
+            // objBAL.UpdateUser()
         }
     }
 }

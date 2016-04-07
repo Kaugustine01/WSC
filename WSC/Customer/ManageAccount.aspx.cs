@@ -35,7 +35,8 @@ namespace WSC
                     txtState.Text = objCus.State;
                     txtZipCode.Text = objCus.ZipCode;
                     txtPhone.Text = objCus.PhoneNo;
-                    
+                    txtEmail.Text = Session["UserEmail"].ToString();
+
 
                     custid = objCus.CustomerId;
                 }
@@ -49,23 +50,23 @@ namespace WSC
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             // Submit button process, this will update the customer information in the database.
-            
-                Customer objCus = new Customer();
 
-                UserAccount cUser = new UserAccount();
+            Customer objCus = new Customer();
 
-                cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+            UserAccount cUser = null;
 
-                cUser.Email = txtEmail.Text;
+            cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
 
-                objBAL.UpdateUser(cUser, cUser);
+            cUser.Email = txtEmail.Text;
 
-                //Update Customer Record 
-                objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
-                objCus = objBAL.UpdateCustomer(objCus);
+            objBAL.UpdateUser(cUser);
 
-                lblComplete.Visible = true;
-            
+            //Update Customer Record 
+            objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
+            objCus = objBAL.UpdateCustomer(objCus);
+
+            lblComplete.Visible = true;
+
 
 
         }
