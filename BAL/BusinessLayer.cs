@@ -39,6 +39,7 @@ namespace BAL
                         objUA.UserName = dtUser.Rows[0]["UserName"].ToString();
                         objUA.Password = dtUser.Rows[0]["Password"].ToString();
                         sUserType = dtUser.Rows[0]["Role"].ToString();
+                        objUA.Email = dtUser.Rows[0]["Email"].ToString();
 
                         //Transform Datatable value to Enum
                         switch (sUserType)
