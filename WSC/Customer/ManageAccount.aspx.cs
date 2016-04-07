@@ -35,6 +35,7 @@ namespace WSC
                     txtState.Text = objCus.State;
                     txtZipCode.Text = objCus.ZipCode;
                     txtPhone.Text = objCus.PhoneNo;
+                    txtEmail.Text = Session["UserEmail"].ToString();
 
 
                     custid = objCus.CustomerId;
@@ -52,19 +53,13 @@ namespace WSC
 
             Customer objCus = new Customer();
 
-            UserAccount cUser = new UserAccount();
-
-            UserAccount nUser = new UserAccount();
+            UserAccount cUser = null;
 
             cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
 
-            nUser.UserId = cUser.UserId;
-            nUser.UserName = cUser.UserName;
-            nUser.UserType = cUser.UserType;
-            nUser.Password = cUser.Password;
-            nUser.Email = txtEmail.Text;
+            cUser.Email = txtEmail.Text;
 
-            objBAL.UpdateUser(nUser);
+            objBAL.UpdateUser(cUser);
 
             //Update Customer Record 
             objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);

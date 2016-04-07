@@ -76,6 +76,12 @@
         <br />
         <br />
 
+        <!-- Password -->
+        <asp:Label ID="lblPassword" runat="server" Text="Password: " Visible="false"></asp:Label>
+        <asp:TextBox ID="txtPassword" runat="server" ReadOnly="false" Visible="false"></asp:TextBox>
+        <br />
+        <br />
+
         <!-- Button to Update User -->
         <asp:Button ID="btnUpdateUser" runat="server" Text="Update User" OnClick="UpdateUser_Click" ValidationGroup="ValGroup2" Visible="false"/>
         <br />

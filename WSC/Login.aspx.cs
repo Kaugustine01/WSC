@@ -32,6 +32,7 @@ namespace WSC
 
                 Session["UserID"] = objUA.UserId;
                 Session["UserName"] = objUA.UserName;
+                Session["UserEmail"] = objUA.Email;
 
                 Customer objCus = new Customer();
                 objCus = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, Convert.ToInt32(Session["UserID"]).ToString());

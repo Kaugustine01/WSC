@@ -18,6 +18,7 @@ namespace WSC
                 //OrderTest();
                 //GetLookupsTest();
                 //SampleCartSession();
+                CrytoTest();
                 SendEmailTest();
 
             }
@@ -39,10 +40,10 @@ namespace WSC
 
                 //Insert User, will check if already exists.
                 //If already exists will throw exception
-                objUA = objBAL.InsertUser(new UserAccount(0, "KAugustine", "test", UserAccount.UserRole.Customer, ""));
+                objUA = objBAL.InsertUser(new UserAccount(0, "KAugustine", "test", UserAccount.UserRole.Customer,"test@test.com"));
 
                 //Update User
-                objUA = objBAL.UpdateUser(new UserAccount(3, "KAugustine", "test", UserAccount.UserRole.Customer, ""));
+                objUA = objBAL.UpdateUser(new UserAccount(3, "KAugustine", "test", UserAccount.UserRole.Customer,"test2@test.com"));
             }
             catch (Exception ex)
             {
@@ -174,7 +175,13 @@ namespace WSC
             objEmail.To = "kennethpaugustine@gmail.com";
             objEmail.Subject = "This is only a test";
             objEmail.Body = "This is a test of the body";
-            objEmail.SendIt();
+            objEmail.SendIt();           
+        }
+
+        public void CrytoTest()
+        {
+            string sEncryptedString = Crypto.Encrypt("This is a test");
+            string sDecryptedString = Crypto.Decrypt(sEncryptedString);
         }
 
         //TODO       
