@@ -67,6 +67,76 @@ namespace BAL
         }
 
         /// <summary>
+        /// Get UserAccount Object by UserID, Manager\Admin only
+        /// </summary>
+        /// <param name="objLoggedInUser">Logged in Userobject</param>
+        /// <param name="nUserID">userid for get</param>
+        /// <returns></returns>
+        public UserAccount GetUserAccount(UserAccount objLoggedInUser, int nUserID)
+        {
+            DataTable dtUser = null;
+            UserAccount objUA = new UserAccount();
+            string sUserType = string.Empty;
+
+            try
+            {
+                //User Id is required
+                if (nUserID > 0)
+                {
+                    if (objLoggedInUser != null)
+                    {
+                        //Check for Manager role
+                        if (objLoggedInUser.UserType == UserAccount.UserRole.OperationManager)
+                        {
+                            //Fill Datatable with User Info By Username and Password
+                            dtUser = objDAL.GetUserAccountByUserID(nUserID);
+
+                            //Check to make sure datatable has rows
+                            if (dtUser != null)
+                            {
+                                if (dtUser.Rows.Count > 0)
+                                {
+                                    //Hydrate Object from datatable
+                                    objUA.UserId = int.Parse(dtUser.Rows[0]["UserID"].ToString());
+                                    objUA.UserName = dtUser.Rows[0]["UserName"].ToString();
+                                    sUserType = dtUser.Rows[0]["Role"].ToString();
+                                    objUA.Email = dtUser.Rows[0]["Email"].ToString();
+
+                                    //Transform Datatable value to Enum
+                                    switch (sUserType)
+                                    {
+                                        case "C":
+                                            objUA.UserType = UserAccount.UserRole.Customer;
+                                            break;
+                                        case "M":
+                                            objUA.UserType = UserAccount.UserRole.OperationManager;
+                                            break;
+                                        case "S":
+                                            objUA.UserType = UserAccount.UserRole.Sales;
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                            throw new Exception("In order to update another users acct, you must be a manager\admin");
+                    }
+                    else
+                        throw new Exception("Logged in UserAccount object is null");
+                }
+                else
+                    throw new Exception("User ID is required");            
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return UserAccount Object
+            return objUA;
+        }
+
+        /// <summary>
         /// Inserts new user into the database if its not already present
         /// </summary>
         /// <param name="objUserAccount">UserAccount Object</param>

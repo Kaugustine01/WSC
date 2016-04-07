@@ -65,6 +65,53 @@ namespace DAL
         }
 
         /// <summary>
+        /// Get User Account by UserID, No Password Info
+        /// </summary>
+        /// <param name="nUserID">UserID</param>
+        /// <returns>DataTable</returns>
+        public DataTable GetUserAccountByUserID(int nUserID)
+        {
+            DataTable dtUser = null;
+
+            try
+            {
+                //Query to return User Info
+                string queryString = "SELECT UserID, UserName, Role, Email FROM UserT WHERE UserID = @userid and Password = @password";
+
+                //establish connection parameters
+                using (dbConnection = new OleDbConnection(sConnString))
+                {
+                    // Insert the SQL statement into the command                
+                    OleDbCommand command = new OleDbCommand(queryString);
+
+                    // Parameters to prevent injection  
+                    command.Parameters.Add(new OleDbParameter("@userid", nUserID));
+                                       
+                    // Set the Connection to the new OleDbConnection.
+                    command.Connection = dbConnection;
+
+                    // Open the connection and execute the SQL command.
+                    dbConnection.Open();
+
+                    //Fill DataTable with the User Info
+                    dtUser = new DataTable();
+                    OleDbDataAdapter DataAdapter = new OleDbDataAdapter(command);
+                    DataAdapter.Fill(dtUser);
+
+                    // The connection is automatically closed when the
+                    // code exits the using block.
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            //Return the datatable filled with User Data
+            return dtUser;
+        }
+
+        /// <summary>
         /// Get UserId by Username
         /// </summary>
         /// <param name="sUserName">username</param>
