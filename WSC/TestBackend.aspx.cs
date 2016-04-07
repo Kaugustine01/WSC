@@ -12,13 +12,13 @@ namespace WSC
         {
             try
             {
-                UserAccountTest();
+                //UserAccountTest();
                 //CustomerTest();
                 //CatalogTest();
                 //OrderTest();
                 //GetLookupsTest();
-
                 //SampleCartSession();
+                SendEmailTest();
 
             }
             catch (Exception ex)
@@ -166,6 +166,15 @@ namespace WSC
             //Business layer.
             int nCustomerId = 3; 
             objBAL.InsertOrder(Session["Cart"] as Order, nCustomerId);
+        }
+
+        public void SendEmailTest()
+        {
+            Email objEmail = new Email();
+            objEmail.To = "kennethpaugustine@gmail.com";
+            objEmail.Subject = "This is only a test";
+            objEmail.Body = "This is a test of the body";
+            objEmail.SendIt();
         }
 
         //TODO       

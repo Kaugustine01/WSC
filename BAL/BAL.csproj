@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,6 +44,7 @@
     <Compile Include="BusinessLayer.cs" />
     <Compile Include="classes\CatalogItem.cs" />
     <Compile Include="classes\Customer.cs" />
+    <Compile Include="classes\Email.cs" />
     <Compile Include="classes\Order.cs" />
     <Compile Include="classes\PaymentTypes.cs" />
     <Compile Include="classes\Statuses.cs" />
