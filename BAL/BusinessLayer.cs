@@ -112,6 +112,41 @@ namespace BAL
         }
 
         /// <summary>
+        /// Update another user acct, only to be used by operation manager\admin
+        /// </summary>
+        /// <param name="objLoggedInUser">UserAcctObject of whose logged in</param>
+        /// <param name="objUserChg">UserAcctObject of the User to Update</param>
+        /// <returns></returns>
+        public UserAccount UpdateUser(UserAccount objLoggedInUser, UserAccount objUserChg)
+        {           
+            try
+            {
+                if (objUserChg != null)
+                {
+                    if (objLoggedInUser != null)
+                    {
+                        //Check for Manager role
+                        if (objLoggedInUser.UserType == UserAccount.UserRole.OperationManager)
+                        {
+                            return UpdateUser(objUserChg);
+                        }
+                        else
+                            throw new Exception("In order to update another users acct, you must be a manager\admin");  
+                    }
+                    else
+                        throw new Exception("Logged in UserAccount object is null");
+                }
+                else
+                    throw new Exception("User to change UserAccount object is null");
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Update User
         /// </summary>
         /// <param name="objUserAccount">User Acct Object</param>

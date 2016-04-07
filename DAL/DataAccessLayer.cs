@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.OleDb;
 using System.Data;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DAL
 {
@@ -170,10 +171,13 @@ namespace DAL
         /// <returns></returns>
         public bool UpdateUser(int nUserID, string sUserName, string sPassword, string sRole)
         {
-            OleDbCommand dbCommand;            
+            OleDbCommand dbCommand;
+            StringBuilder objStringBuilder = null;
 
             try
-            {      
+            {
+                objStringBuilder = new StringBuilder();
+
                 //New Database connection
                 using (dbConnection = new OleDbConnection(sConnString))
                 {
@@ -181,15 +185,17 @@ namespace DAL
                     // Open database connection
                     dbConnection.Open();
 
-                    // SQL statement insert the customer
-                    string sqlStmt = @"Update UserT SET 
-                                        [UserName] = @username,
-                                        [Password] = @password,
-                                        [Role] = @role
-                                     WHERE [UserID] = @userid";
+                    // SQL statement insert the User
+                    objStringBuilder.AppendLine("Update UserT SET [UserName] = @username,");
+
+                    //Password field is optional
+                    if (!string.IsNullOrEmpty(sPassword))
+                        objStringBuilder.AppendLine("[Password] = @password,");
+
+                    objStringBuilder.AppendLine("[Role] = @role WHERE [UserID] = @userid");                                                      
 
                     // New command passing sql statement and the connection to the database
-                    dbCommand = new OleDbCommand(sqlStmt, dbConnection);
+                    dbCommand = new OleDbCommand(objStringBuilder.ToString(), dbConnection);
 
                     // Parameters   
                     dbCommand.Parameters.Add(new OleDbParameter("@username", sUserName));
