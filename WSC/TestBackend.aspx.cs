@@ -39,10 +39,10 @@ namespace WSC
 
                 //Insert User, will check if already exists.
                 //If already exists will throw exception
-                objUA = objBAL.InsertUser(new UserAccount(0, "KAugustine", "test", UserAccount.UserRole.Customer));
+                objUA = objBAL.InsertUser(new UserAccount(0, "KAugustine", "test", UserAccount.UserRole.Customer, ""));
 
                 //Update User
-                objUA = objBAL.UpdateUser(new UserAccount(3, "KAugustine", "test", UserAccount.UserRole.Customer));
+                objUA = objBAL.UpdateUser(new UserAccount(3, "KAugustine", "test", UserAccount.UserRole.Customer, ""));
             }
             catch (Exception ex)
             {

@@ -50,6 +50,14 @@
                 ControlToCompare="txtPassword" ErrorMessage="Password Does Not Match" ForeColor="Red" ValidationGroup="ValGroup"></asp:CompareValidator>
             <br />
 
+            <!-- Email Address -->
+            <asp:Label ID="lblEmail" runat="server" Text="Email:" Width="130px"></asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server"
+                ControlToValidate="txtEmail" ErrorMessage="Email Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
+            <br />
+
             <!-- First Name -->
             <asp:Label ID="lblFirstName" runat="server" Text="First Name" Width="130px"></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
@@ -65,10 +73,15 @@
             <br />
 
             <!-- Address -->
-            <asp:Label ID="lblAddress" runat="server" Text="Address:" Width="130px"></asp:Label>
+            <asp:Label ID="lblAddress" runat="server" Text="Address Line 1:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtAddress" runat="server" Width="300px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
                 ControlToValidate="txtAddress" ErrorMessage="Address Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <br />
+
+            <!-- Address Line 2 -->
+            <asp:Label ID="lblAddress2" runat="server" Text="Address Line 2:" Width="130px"></asp:Label>
+            <asp:TextBox ID="txtAddress2" runat="server" Width="300px"></asp:TextBox>
             <br />
 
             <!-- City -->

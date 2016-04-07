@@ -29,12 +29,12 @@ namespace WSC
             {
 
                 // Creates User Account for the Customer and stores into the database
-                UserAccount objUA = new UserAccount(0, txtUserName.Text, txtPassword.Text, UserAccount.UserRole.Customer);
+                UserAccount objUA = new UserAccount(0, txtUserName.Text, txtPassword.Text, UserAccount.UserRole.Customer, txtEmail.Text);
                 objUA = objBAL.InsertUser(objUA);
 
 
                 // Creates Customer and stores into the database.
-                objCustomer = new Customer(0, objUA.UserId, txtFirstName.Text, txtLastName.Text, txtAddress.Text, "", txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
+                objCustomer = new Customer(0, objUA.UserId, txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddress2.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
                 objCustomer = objBAL.InsertCustomer(objCustomer);
 
                 // Displays that the registration was complete

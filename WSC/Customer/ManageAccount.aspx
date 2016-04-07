@@ -29,6 +29,14 @@
                 ControlToValidate="txtUserName" ErrorMessage="User Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <br />
 
+            <!-- Email Address -->
+            <asp:Label ID="lblEmail" runat="server" Text="Email:" Width="130px"></asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server"
+                ControlToValidate="txtEmail" ErrorMessage="Email Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator>
+            <br />
+
             <!-- First Name -->
             <asp:Label ID="lblFirstName" runat="server" Text="First Name" Width="130px"></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
