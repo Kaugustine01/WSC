@@ -21,7 +21,7 @@
         <asp:Label ID="lblSearchLastName" runat="server" Text="Search Last Name"></asp:Label>
         <asp:TextBox ID="txtSearchLastName" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                ControlToValidate="txtSearchLastName" ErrorMessage="Last Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            ControlToValidate="txtSearchLastName" ErrorMessage="Last Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
         <br />
         <br />
 
@@ -37,7 +37,7 @@
         <br />
         <br />
         <!--    Grid View of Users -->
-        <asp:GridView ID="ManageUsersGridView" AutoGenerateColumns="false" runat="server" CellPadding="5" Width="100%">
+        <asp:GridView ID="ManageUsersGridView" AutoGenerateColumns="false" runat="server" CellPadding="5" Width="100%" OnSelectedIndexChanged="OnSelectedIndexChange">
             <HeaderStyle BackColor="Black" ForeColor="White" />
             <RowStyle BackColor="#c5d5cb" />
             <AlternatingRowStyle BackColor="#e3e0cf" />
@@ -52,14 +52,33 @@
                 <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" ReadOnly="false" />
                 <asp:BoundField DataField="ZipCode" HeaderText="Zip" SortExpression="Zip" ReadOnly="false" />
                 <asp:BoundField DataField="PhoneNo" HeaderText="Phone Number" SortExpression="PhoneNo" ReadOnly="false" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnSelectUse" class="button" runat="server" Text="Select" Visible="true" CommandName="Select" ValidationGroup="ValGroup3"/>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
+        <br />
+        <br />
+
+        <!-- Password -->
+        <asp:Label ID="lblPassword" runat="server" Text="Password: " Visible="false"></asp:Label>
+        <asp:TextBox ID="txtPassword" runat="server" ReadOnly="false" Visible="false"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword"
+            ErrorMessage="Password Required" ValidationGroup="ValGroup2" Fore-Color="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
 
         <!-- Displays users User Name -->
         <asp:Label ID="lblUserName" runat="server" Text="User Name: " Visible="false"></asp:Label>
         <asp:TextBox ID="txtUserName" runat="server" ReadOnly="true" Visible="false"></asp:TextBox>
+        <br />
+        <br />
+
+        <!-- Displays users Email -->
+        <asp:Label ID="lblEmail" runat="server" Text="Email: " Visible="false"></asp:Label>
+        <asp:TextBox ID="txtEmail" runat="server" ReadOnly="true" Visible="false"></asp:TextBox>
         <br />
         <br />
 
@@ -72,19 +91,22 @@
             <asp:ListItem>Operations Manager</asp:ListItem>
         </asp:DropDownList>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlUserType"
-                    ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup2" Fore-Color="Red"></asp:RequiredFieldValidator>
+            ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup2" Fore-Color="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
 
         <!-- Password -->
-        <asp:Label ID="lblPassword" runat="server" Text="Password: " Visible="false"></asp:Label>
-        <asp:TextBox ID="txtPassword" runat="server" ReadOnly="false" Visible="false"></asp:TextBox>
+        <asp:Label ID="lblPassword2" runat="server" Text="Password: " Visible="false"></asp:Label>
+        <asp:TextBox ID="txtPassword2" runat="server" ReadOnly="false" Visible="false"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPassword2"
+            ErrorMessage="Password Required" ValidationGroup="ValGroup2" Fore-Color="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
 
         <!-- Button to Update User -->
-        <asp:Button ID="btnUpdateUser" runat="server" Text="Update User" OnClick="UpdateUser_Click" ValidationGroup="ValGroup2" Visible="false"/>
+        <asp:Button ID="btnUpdateUser" runat="server" Text="Update User" OnClick="UpdateUser_Click" ValidationGroup="ValGroup2" Visible="false" />
         <br />
+
         <!-- Properly submitted. -->
         <asp:Label ID="lblUserUpdateConfirmed" runat="server" Visible="false" ForeColor="Red"><b>Users has been updated.</b></asp:Label>
 

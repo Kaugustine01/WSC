@@ -26,7 +26,7 @@ namespace WSC.Admin
             if (Session["SecurityLevel"] == "M")
             {
                 // binds the gridview
-                if(!IsPostBack)
+                if (!IsPostBack)
                 {
                     ManageUsersGridView.DataBind();
                 }
@@ -39,31 +39,18 @@ namespace WSC.Admin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // creates customer list
-                List<Customer> lstCust = null;
+            // creates customer list
+            List<Customer> lstCust = null;
 
-                // addes customer to the list
-                lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
+            // addes customer to the list
+            lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
 
-                // binds the customer list to grid.
-                ManageUsersGridView.DataSource = lstCust;
-                ManageUsersGridView.DataBind();
+            // binds the customer list to grid.
+            ManageUsersGridView.DataSource = lstCust;
+            ManageUsersGridView.DataBind();
 
-                // makes edit fields visable
-                lblUserName.Visible = true;
-                lblUserType.Visible = true;
-                txtUserName.Visible = true;
-                ddlUserType.Visible = true;
-                btnUpdateUser.Visible = true;
-
-                // objBAL.GetUserAccount()
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            lblPassword.Visible = true;
+            txtPassword.Visible = true;
         }
 
         protected void UpdateUser_Click(object sender, EventArgs e)
@@ -76,6 +63,39 @@ namespace WSC.Admin
 
 
             // objBAL.UpdateUser()
+        }
+
+        protected void OnSelectedIndexChange(object sender, EventArgs e)
+        {
+            // create user id variable
+            int userId = Convert.ToInt32(ManageUsersGridView.SelectedRow.Cells[1].Text);
+
+            UserAccount uAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+
+            UserAccount cUser = objBAL.GetUserAccount(uAdmin, userId);
+
+            txtUserName.Text = cUser.UserName;
+            txtEmail.Text = cUser.Email;
+
+            if (cUser.UserType == UserAccount.UserRole.Customer)
+            {
+                ddlUserType.Text = "Customer";
+            }
+            else if (cUser.UserType == UserAccount.UserRole.Sales)
+            {
+                ddlUserType.Text = "Sales";
+            }
+            else if (cUser.UserType == UserAccount.UserRole.OperationManager)
+            {
+                ddlUserType.Text = "Operations Manager";
+            }
+
+            // makes edit fields visable
+            lblUserName.Visible = true;
+            lblUserType.Visible = true;
+            txtUserName.Visible = true;
+            ddlUserType.Visible = true;
+            btnUpdateUser.Visible = true;
         }
     }
 }
