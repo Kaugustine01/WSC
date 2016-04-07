@@ -19,7 +19,7 @@ namespace BAL
             Password = "]40Ef$;l9?,p3Ld";
             SaltValue = "123987";
             HashName = "SHA1";
-            InitVector = "WellHelloThere";
+            InitVector = "WellHelloThereDV";
             KeySize = 256;
             PasswordIterations = 5;
         }               
