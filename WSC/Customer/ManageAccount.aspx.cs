@@ -35,7 +35,7 @@ namespace WSC
                     txtState.Text = objCus.State;
                     txtZipCode.Text = objCus.ZipCode;
                     txtPhone.Text = objCus.PhoneNo;
-                    
+
 
                     custid = objCus.CustomerId;
                 }
@@ -49,23 +49,29 @@ namespace WSC
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             // Submit button process, this will update the customer information in the database.
-            
-                Customer objCus = new Customer();
 
-                UserAccount cUser = new UserAccount();
+            Customer objCus = new Customer();
 
-                cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+            UserAccount cUser = new UserAccount();
 
-                cUser.Email = txtEmail.Text;
+            UserAccount nUser = new UserAccount();
 
-                objBAL.UpdateUser(cUser, cUser);
+            cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
 
-                //Update Customer Record 
-                objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
-                objCus = objBAL.UpdateCustomer(objCus);
+            nUser.UserId = cUser.UserId;
+            nUser.UserName = cUser.UserName;
+            nUser.UserType = cUser.UserType;
+            nUser.Password = cUser.Password;
+            nUser.Email = txtEmail.Text;
 
-                lblComplete.Visible = true;
-            
+            objBAL.UpdateUser(nUser);
+
+            //Update Customer Record 
+            objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
+            objCus = objBAL.UpdateCustomer(objCus);
+
+            lblComplete.Visible = true;
+
 
 
         }
