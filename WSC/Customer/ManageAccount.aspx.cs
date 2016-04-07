@@ -35,6 +35,7 @@ namespace WSC
                     txtState.Text = objCus.State;
                     txtZipCode.Text = objCus.ZipCode;
                     txtPhone.Text = objCus.PhoneNo;
+                    
 
                     custid = objCus.CustomerId;
                 }
@@ -48,21 +49,24 @@ namespace WSC
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             // Submit button process, this will update the customer information in the database.
-            try
-            {
+            
                 Customer objCus = new Customer();
+
+                UserAccount cUser = new UserAccount();
+
+                cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+
+                cUser.Email = txtEmail.Text;
+
+                objBAL.UpdateUser(cUser, cUser);
 
                 //Update Customer Record 
                 objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
                 objCus = objBAL.UpdateCustomer(objCus);
 
                 lblComplete.Visible = true;
-            }
-            catch (Exception)
-            {
+            
 
-                lblError.Visible = true;
-            }
 
         }
 
@@ -77,7 +81,7 @@ namespace WSC
 
                 if (objUA != null)
                 {
-                    objUA = objBAL.UpdateUser(new UserAccount(Convert.ToInt32(Session["UserId"]), Session["UserName"].ToString(), txtNewPassword.Text, UserAccount.UserRole.Customer));
+                    objUA = objBAL.UpdateUser(new UserAccount(Convert.ToInt32(Session["UserId"]), Session["UserName"].ToString(), txtNewPassword.Text, UserAccount.UserRole.Customer, txtEmail.Text));
                 }
 
                 lblUpdateComplete.Visible = true;
