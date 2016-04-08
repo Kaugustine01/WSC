@@ -278,10 +278,7 @@ namespace BAL
                 if (objUserAccount != null)
                 {
                     if (string.IsNullOrEmpty(objUserAccount.UserName))
-                        throw new Exception("UserName can not be null or empty");
-
-                    if (string.IsNullOrEmpty(objUserAccount.Password))
-                        throw new Exception("Password can not be null or empty");
+                        throw new Exception("UserName can not be null or empty");        
 
                     if (string.IsNullOrEmpty(objUserAccount.Email))
                         throw new Exception("Email can not be null or empty");
