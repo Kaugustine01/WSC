@@ -66,7 +66,7 @@
         <asp:Label ID="lblPassword" runat="server" Text="Password: " Visible="false"></asp:Label>
         <asp:TextBox ID="txtPassword" runat="server" ReadOnly="false" Visible="false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword"
-            ErrorMessage="Password Required" ValidationGroup="ValGroup2" Fore-Color="Red"></asp:RequiredFieldValidator>
+            ErrorMessage="Password Required" ValidationGroup="ValGroup3" Fore-Color="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
 
