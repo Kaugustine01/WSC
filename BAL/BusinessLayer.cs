@@ -137,6 +137,23 @@ namespace BAL
         }
 
         /// <summary>
+        /// Get User By Username
+        /// </summary>
+        /// <param name="sUsername"></param>
+        /// <returns>UserId</returns>
+        public int GetUserIdByUserName(string sUsername)
+        {
+            try
+            {
+                return objDAL.GetUserIdByUserName(sUsername);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }           
+        }
+
+        /// <summary>
         /// Inserts new user into the database if its not already present
         /// </summary>
         /// <param name="objUserAccount">UserAccount Object</param>
@@ -1078,6 +1095,20 @@ namespace BAL
             //Return new datatable with order items
             return dtOrderItems;
 
+        }
+        #endregion
+
+        #region Other
+        public static DateTime ConvertFromUnixTimestamp(double timestamp)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return origin.AddSeconds(timestamp);
+        }
+        public double ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            TimeSpan diff = date - origin;
+            return Math.Floor(diff.TotalSeconds);
         }
         #endregion
     }

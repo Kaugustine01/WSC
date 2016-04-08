@@ -178,12 +178,8 @@ namespace WSC
         }
 
         public void SendEmailTest()
-        {
-            Email objEmail = new Email();
-            objEmail.To = "kennethpaugustine@gmail.com";
-            objEmail.Subject = "This is only a test";
-            objEmail.Body = "This is a test of the body";
-            objEmail.SendIt();           
+        {        
+            Email.SendIt("kennethpaugustine@gmail.com", "This is only a test", "This is a test of the body");           
         }
 
         public void CrytoTest()
