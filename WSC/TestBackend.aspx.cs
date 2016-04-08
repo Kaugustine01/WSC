@@ -12,8 +12,8 @@ namespace WSC
         {
             try
             {
-                UserAccountTest();
-                //CustomerTest();
+                //UserAccountTest();
+                CustomerTest();
                 //CatalogTest();
                 //OrderTest();
                 //GetLookupsTest();
@@ -58,12 +58,16 @@ namespace WSC
         public void CustomerTest()
         {
             Customer objCustomer = null;
+            List<Customer> lCustomers = null; 
 
             try
             {
 
+                
+                lCustomers = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, "Bays");
+
                 //Get Customer by Search Filters
-                objCustomer = objBAL.GetCustomerByFilter(Customer.SearchFilter.LastName, "Augustine");
+                objCustomer = objBAL.GetCustomerByFilter(Customer.SearchFilter.LastName, "Bays");
 
                 objCustomer = objBAL.GetCustomerByFilter(Customer.SearchFilter.UserId, "3");
 

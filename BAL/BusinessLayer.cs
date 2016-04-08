@@ -399,19 +399,22 @@ namespace BAL
                 {
                     if (dtCus.Rows.Count > 0)
                     {
-                        objCus = new Customer();
-                        objCus.CustomerId = int.Parse(dtCus.Rows[0]["CustomerID"].ToString());
-                        objCus.UserId = int.Parse(dtCus.Rows[0]["UserID"].ToString());
-                        objCus.FirstName = dtCus.Rows[0]["CustomerFirstName"].ToString();
-                        objCus.LastName = dtCus.Rows[0]["CustomerLastName"].ToString();
-                        objCus.Address = dtCus.Rows[0]["CustomerAddress"].ToString();
-                        objCus.Address2 = dtCus.Rows[0]["CustomerAddress2"].ToString();
-                        objCus.City = dtCus.Rows[0]["CustomerCity"].ToString();
-                        objCus.State = dtCus.Rows[0]["CustomerState"].ToString();
-                        objCus.ZipCode = dtCus.Rows[0]["CustomerZip"].ToString();
-                        objCus.PhoneNo = dtCus.Rows[0]["CustomerPhoneNo"].ToString();
+                        foreach (DataRow row in dtCus.Rows) {
 
-                        lCustomer.Add(objCus);
+                            objCus = new Customer();
+                            objCus.CustomerId = int.Parse(row["CustomerID"].ToString());
+                            objCus.UserId = int.Parse(row["UserID"].ToString());
+                            objCus.FirstName = row["CustomerFirstName"].ToString();
+                            objCus.LastName = row["CustomerLastName"].ToString();
+                            objCus.Address = row["CustomerAddress"].ToString();
+                            objCus.Address2 = row["CustomerAddress2"].ToString();
+                            objCus.City = row["CustomerCity"].ToString();
+                            objCus.State = row["CustomerState"].ToString();
+                            objCus.ZipCode = row["CustomerZip"].ToString();
+                            objCus.PhoneNo = row["CustomerPhoneNo"].ToString();
+
+                            lCustomer.Add(objCus);
+                        }
                     }
                 }
             }
