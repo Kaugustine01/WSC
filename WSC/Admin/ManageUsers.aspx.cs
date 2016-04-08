@@ -25,6 +25,8 @@ namespace WSC.Admin
         {
             if (Session["SecurityLevel"] == "M")
             {
+                
+
                 // binds the gridview
                 if (!IsPostBack)
                 {
@@ -58,22 +60,38 @@ namespace WSC.Admin
             UserAccount cAdmin = new UserAccount();
             UserAccount uUsers = new UserAccount();
 
-            // uUsers.
-            // cAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+            uUsers.UserId = Convert.ToInt32(Session["SelectedUser"]);
+            uUsers.UserName = txtUserName.Text;
+            uUsers.Email = txtEmail.Text;
 
+            if (ddlUserType.Text == "Customer" )
+            {
+                uUsers.UserType = UserAccount.UserRole.Customer;
+            }
+            else if (ddlUserType.Text == "Sales" )
+            {
+                uUsers.UserType = UserAccount.UserRole.Sales;
+            }
+            else if (ddlUserType.Text == "Operations Manager" )
+            {
+                uUsers.UserType = UserAccount.UserRole.OperationManager;
+            }
 
-            // objBAL.UpdateUser()
+            cAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword2.Text);
+
+            objBAL.UpdateUser(cAdmin, uUsers);
         }
 
         protected void OnSelectedIndexChange(object sender, EventArgs e)
         {
             // create user id variable
-            int userId = Convert.ToInt32(ManageUsersGridView.SelectedRow.Cells[1].Text);
+            Session["SelectedUser"] = ManageUsersGridView.SelectedRow.Cells[1].Text;
 
             UserAccount uAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
 
-            UserAccount cUser = objBAL.GetUserAccount(uAdmin, userId);
+            UserAccount cUser = objBAL.GetUserAccount(uAdmin, Convert.ToInt32(Session["SelectedUser"]));
 
+            
             txtUserName.Text = cUser.UserName;
             txtEmail.Text = cUser.Email;
 
@@ -96,6 +114,14 @@ namespace WSC.Admin
             txtUserName.Visible = true;
             ddlUserType.Visible = true;
             btnUpdateUser.Visible = true;
+            lblEmail.Visible = true;
+            txtEmail.Visible = true;
+            btnUpdateUser.Visible = true;
+            lblPassword.Visible = false;
+            txtPassword.Visible = false;
+            txtPassword.Text = "";
+            txtPassword2.Visible = true;
+            lblPassword2.Visible = true;
         }
     }
 }
