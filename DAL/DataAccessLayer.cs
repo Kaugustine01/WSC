@@ -76,7 +76,7 @@ namespace DAL
             try
             {
                 //Query to return User Info
-                string queryString = "SELECT UserID, UserName, Role, Email FROM UserT WHERE UserID = @userid and Password = @password";
+                string queryString = "SELECT UserID, UserName, Role, Email FROM UserT WHERE UserID = @userid";
 
                 //establish connection parameters
                 using (dbConnection = new OleDbConnection(sConnString))

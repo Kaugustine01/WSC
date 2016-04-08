@@ -12,14 +12,14 @@ namespace WSC
         {
             try
             {
-                //UserAccountTest();
+                UserAccountTest();
                 //CustomerTest();
                 //CatalogTest();
                 //OrderTest();
                 //GetLookupsTest();
                 //SampleCartSession();
-                CrytoTest();
-                SendEmailTest();
+                //CrytoTest();
+                //SendEmailTest();
 
             }
             catch (Exception ex)
@@ -32,11 +32,15 @@ namespace WSC
         public void UserAccountTest()
         {
             UserAccount objUA = null;
+            UserAccount objMgrUA = null;
 
             try
             {
                 //Retrieve UserAcct existing
-                objUA = objBAL.GetUserAccount("KAugustine", "test");
+                objMgrUA = objBAL.GetUserAccount("dbays", "NoRe@son28v");
+
+                //Retrieve User By ID
+                objUA = objBAL.GetUserAccount(objMgrUA, 3);                
 
                 //Insert User, will check if already exists.
                 //If already exists will throw exception
