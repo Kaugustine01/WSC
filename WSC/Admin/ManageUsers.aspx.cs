@@ -25,8 +25,6 @@ namespace WSC.Admin
         {
             if (Session["SecurityLevel"] == "M")
             {
-                
-
                 // binds the gridview
                 if (!IsPostBack)
                 {
@@ -51,8 +49,21 @@ namespace WSC.Admin
             ManageUsersGridView.DataSource = lstCust;
             ManageUsersGridView.DataBind();
 
+            // set password field to true visibility
             lblPassword.Visible = true;
             txtPassword.Visible = true;
+
+            // set everything to false visibility
+            lblUserName.Visible = false;
+            lblUserType.Visible = false;
+            txtUserName.Visible = false;
+            ddlUserType.Visible = false;
+            btnUpdateUser.Visible = false;
+            lblEmail.Visible = false;
+            txtEmail.Visible = false;
+            btnUpdateUser.Visible = false;
+            txtPassword2.Visible = false;
+            lblPassword2.Visible = false;
         }
 
         protected void UpdateUser_Click(object sender, EventArgs e)
