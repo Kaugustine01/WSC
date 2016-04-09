@@ -21,6 +21,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             hplWelcome.Visible = true;
             hplRegister.Visible = false;
             hplLogin.Visible = false;
+            hplForgotPassword.Visible = false;
             hplLogout.Visible = true;
         }
 
@@ -39,6 +40,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             hplWelcome.Visible = true;
             hplRegister.Visible = false;
             hplLogin.Visible = false;
+            hplForgotPassword.Visible = false;
             hplLogout.Visible = true;
         }
 
@@ -55,6 +57,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             hplWelcome.Visible = true;
             hplRegister.Visible = false;
             hplLogin.Visible = false;
+            hplForgotPassword.Visible = false;
             hplLogout.Visible = true;
         }
 
@@ -71,6 +74,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             hplWelcome.Visible = false;
             hplRegister.Visible = true;
             hplLogin.Visible = true;
+            hplForgotPassword.Visible = true;
             hplLogout.Visible = false;
         }
     }
