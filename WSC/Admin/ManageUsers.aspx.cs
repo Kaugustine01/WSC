@@ -39,100 +39,121 @@ namespace WSC.Admin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            // creates customer list
-            List<Customer> lstCust = null;
+            try
+            {
+                // creates customer list
+                List<Customer> lstCust = null;
 
-            // addes customer to the list
-            lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
+                // addes customer to the list
+                lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
 
-            // binds the customer list to grid.
-            ManageUsersGridView.DataSource = lstCust;
-            ManageUsersGridView.DataBind();
+                // binds the customer list to grid.
+                ManageUsersGridView.DataSource = lstCust;
+                ManageUsersGridView.DataBind();
 
-            // set password field to true visibility
-            lblPassword.Visible = true;
-            txtPassword.Visible = true;
+                // set password field to true visibility
+                lblPassword.Visible = true;
+                txtPassword.Visible = true;
 
-            // set everything to false visibility
-            lblUserName.Visible = false;
-            lblUserType.Visible = false;
-            txtUserName.Visible = false;
-            ddlUserType.Visible = false;
-            btnUpdateUser.Visible = false;
-            lblEmail.Visible = false;
-            txtEmail.Visible = false;
-            btnUpdateUser.Visible = false;
-            txtPassword2.Visible = false;
-            lblPassword2.Visible = false;
+                // set everything to false visibility
+                lblUserName.Visible = false;
+                lblUserType.Visible = false;
+                txtUserName.Visible = false;
+                ddlUserType.Visible = false;
+                btnUpdateUser.Visible = false;
+                lblEmail.Visible = false;
+                txtEmail.Visible = false;
+                btnUpdateUser.Visible = false;
+                txtPassword2.Visible = false;
+                lblPassword2.Visible = false;
+                lblUserUpdateConfirmed.Visible = false;
+
+            }
+            catch (Exception)
+            {
+                lblUserUpdateFailed.Visible = true;
+            }
+            
         }
 
         protected void UpdateUser_Click(object sender, EventArgs e)
         {
-            UserAccount cAdmin = new UserAccount();
-            UserAccount uUsers = new UserAccount();
+                UserAccount cAdmin = new UserAccount();
+                UserAccount uUsers = new UserAccount();
 
-            uUsers.UserId = Convert.ToInt32(Session["SelectedUser"]);
-            uUsers.UserName = txtUserName.Text;
-            uUsers.Email = txtEmail.Text;
+                uUsers.UserId = Convert.ToInt32(Session["SelectedUser"]);
+                uUsers.UserName = txtUserName.Text;
+                uUsers.Email = txtEmail.Text;
 
-            if (ddlUserType.Text == "Customer" )
-            {
-                uUsers.UserType = UserAccount.UserRole.Customer;
-            }
-            else if (ddlUserType.Text == "Sales" )
-            {
-                uUsers.UserType = UserAccount.UserRole.Sales;
-            }
-            else if (ddlUserType.Text == "Operations Manager" )
-            {
-                uUsers.UserType = UserAccount.UserRole.OperationManager;
-            }
+                if (ddlUserType.Text == "Customer")
+                {
+                    uUsers.UserType = UserAccount.UserRole.Customer;
+                }
+                else if (ddlUserType.Text == "Sales")
+                {
+                    uUsers.UserType = UserAccount.UserRole.Sales;
+                }
+                else if (ddlUserType.Text == "Operations Manager")
+                {
+                    uUsers.UserType = UserAccount.UserRole.OperationManager;
+                }
 
-            cAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword2.Text);
+                cAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword2.Text);
 
-            objBAL.UpdateUser(cAdmin, uUsers);
+                objBAL.UpdateUser(cAdmin, uUsers);
+
+                lblUserUpdateConfirmed.Visible = true;
+            
         }
 
         protected void OnSelectedIndexChange(object sender, EventArgs e)
         {
-            // create user id variable
-            Session["SelectedUser"] = ManageUsersGridView.SelectedRow.Cells[1].Text;
+            try
+            {
+                // create user id variable
+                Session["SelectedUser"] = ManageUsersGridView.SelectedRow.Cells[1].Text;
 
-            UserAccount uAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+                UserAccount uAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
 
-            UserAccount cUser = objBAL.GetUserAccount(uAdmin, Convert.ToInt32(Session["SelectedUser"]));
+                UserAccount cUser = objBAL.GetUserAccount(uAdmin, Convert.ToInt32(Session["SelectedUser"]));
 
+
+                txtUserName.Text = cUser.UserName;
+                txtEmail.Text = cUser.Email;
+
+                if (cUser.UserType == UserAccount.UserRole.Customer)
+                {
+                    ddlUserType.Text = "Customer";
+                }
+                else if (cUser.UserType == UserAccount.UserRole.Sales)
+                {
+                    ddlUserType.Text = "Sales";
+                }
+                else if (cUser.UserType == UserAccount.UserRole.OperationManager)
+                {
+                    ddlUserType.Text = "Operations Manager";
+                }
+
+                // makes edit fields visable
+                lblUserName.Visible = true;
+                lblUserType.Visible = true;
+                txtUserName.Visible = true;
+                ddlUserType.Visible = true;
+                btnUpdateUser.Visible = true;
+                lblEmail.Visible = true;
+                txtEmail.Visible = true;
+                btnUpdateUser.Visible = true;
+                lblPassword.Visible = false;
+                txtPassword.Visible = false;
+                txtPassword.Text = "";
+                txtPassword2.Visible = true;
+                lblPassword2.Visible = true;
+            }
+            catch (Exception)
+            {
+                lblUserUpdateFailed.Visible = true;
+            }
             
-            txtUserName.Text = cUser.UserName;
-            txtEmail.Text = cUser.Email;
-
-            if (cUser.UserType == UserAccount.UserRole.Customer)
-            {
-                ddlUserType.Text = "Customer";
-            }
-            else if (cUser.UserType == UserAccount.UserRole.Sales)
-            {
-                ddlUserType.Text = "Sales";
-            }
-            else if (cUser.UserType == UserAccount.UserRole.OperationManager)
-            {
-                ddlUserType.Text = "Operations Manager";
-            }
-
-            // makes edit fields visable
-            lblUserName.Visible = true;
-            lblUserType.Visible = true;
-            txtUserName.Visible = true;
-            ddlUserType.Visible = true;
-            btnUpdateUser.Visible = true;
-            lblEmail.Visible = true;
-            txtEmail.Visible = true;
-            btnUpdateUser.Visible = true;
-            lblPassword.Visible = false;
-            txtPassword.Visible = false;
-            txtPassword.Text = "";
-            txtPassword2.Visible = true;
-            lblPassword2.Visible = true;
         }
     }
 }
