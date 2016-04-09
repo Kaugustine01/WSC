@@ -246,7 +246,8 @@ namespace DAL
 
                     // Parameters   
                     dbCommand.Parameters.Add(new OleDbParameter("@username", sUserName));
-                    dbCommand.Parameters.Add(new OleDbParameter("@password", sPassword));
+                    if (!string.IsNullOrEmpty(sPassword))
+                        dbCommand.Parameters.Add(new OleDbParameter("@password", sPassword));
                     dbCommand.Parameters.Add(new OleDbParameter("@role", sRole));
                     dbCommand.Parameters.Add(new OleDbParameter("@email", sEmail));
                     dbCommand.Parameters.Add(new OleDbParameter("@userid", nUserID));
