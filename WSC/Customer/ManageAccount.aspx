@@ -42,6 +42,8 @@
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                 ControlToValidate="txtFirstName" ErrorMessage="First Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Letters Only" 
+                ControlToValidate="txtFirstName" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
             <br />
 
             <!-- Last Name -->
@@ -49,6 +51,8 @@
             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
                 ControlToValidate="txtLastName" ErrorMessage="Last Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Letters Only" 
+                ControlToValidate="txtLastName" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
             <br />
 
             <!-- Address -->
@@ -68,13 +72,18 @@
             <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
                 ControlToValidate="txtCity" ErrorMessage="City Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator11" runat="server" ErrorMessage="Letters Only" 
+                ControlToValidate="txtCity" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
             <br />
 
+
             <!-- State -->
-            <asp:Label ID="lblState" runat="server" Text="State:" Width="130px"></asp:Label>
+            <asp:Label ID="lblState" runat="server" Text="State:" Width="130px" Rows="1" MaxLength="2"></asp:Label>
             <asp:TextBox ID="txtState" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
                 ControlToValidate="txtState" ErrorMessage="State Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="Letters Only" 
+                ControlToValidate="txtState" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator>
             <br />
 
             <!-- Zip Code -->
@@ -82,11 +91,15 @@
             <asp:TextBox ID="txtZipCode" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
                 ControlToValidate="txtZipCode" ErrorMessage="Zip Code Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" 
+                ControlToValidate="txtZipCode" ErrorMessage="Please enter numbers only" ForeColor="Red" ValidationGroup="ValGroup" ValidationExpression="\d+"></asp:RegularExpressionValidator>
             <br />
 
             <!-- Phone Number -->
             <asp:Label ID="lblPhone" runat="server" Text="Phone Number:" Width="130px"></asp:Label>
             <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server"
+                ControlToValidate="txtPhone" ErrorMessage="Phone Number Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                 ErrorMessage="Enter valid Phone number" ControlToValidate="txtPhone" 
                 ValidationExpression="^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$" ForeColor="Red" ValidationGroup="ValGroup"></asp:RegularExpressionValidator>

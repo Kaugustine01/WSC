@@ -32,7 +32,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             btnManageAccount.Visible = true;
             btnViewCart.Visible = false;
             lblAdmin.Visible = true;
-            btnAddEmployees.Visible = true;
             btnAdmViewOrders.Visible = true;
             btnManageUsers.Visible = true;
             btnManageCatalog.Visible = true;
@@ -68,7 +67,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             btnManageAccount.Visible = false;
             btnViewCart.Visible = false;
             lblAdmin.Visible = false;
-            btnAddEmployees.Visible = false;
             btnAdmViewOrders.Visible = false;
             btnManageUsers.Visible = false;
             hplWelcome.Visible = false;
