@@ -32,14 +32,6 @@
             <p><b>Password Requirements: </b>Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 Special Character.</p>
             <br />
             <br />
-            
-            <!-- Old Password -->
-            <asp:Label ID="lblOldPassword" runat="server" Text="Old Password:" Width="200px"></asp:Label>
-            <asp:TextBox ID="txtOldPassword" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                ControlToValidate="txtOldPassword" ErrorMessage="Password Required." ForeColor="Red" ValidationGroup="ValGroup2"></asp:RequiredFieldValidator>
-            <br />
-            <br />
 
             <!-- New Password -->
             <asp:Label ID="lblNewPassword" runat="server" Text="New Password:" Width="200px"></asp:Label>

@@ -109,14 +109,11 @@ namespace WSC
                 lblWrongPassword.Visible = false;
 
                 //Cast UserSession into object
-                var ua = Session["UserAccount"] as UserAccount;
-                
-                //Check existing
-                objUA = objBAL.GetUserAccount(ua.UserName, txtOldPassword.Text);
+                var ua = Session["UserAccount"] as UserAccount;   
 
-                if (objUA != null)
+                if (ua != null)
                 {
-                    if (objUA.UserId > 0)
+                    if (ua.UserId > 0)
                     {
                         objUA = objBAL.UpdateUser(new UserAccount(ua.UserId, ua.UserName, txtNewPassword.Text, ua.UserType, ua.Email));
 
