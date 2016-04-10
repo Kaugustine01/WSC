@@ -73,11 +73,12 @@ namespace WSC.Admin
             {
                 lblUserUpdateFailed.Visible = true;
             }
-            
         }
 
         protected void UpdateUser_Click(object sender, EventArgs e)
         {
+            try
+            {
                 UserAccount cAdmin = new UserAccount();
                 UserAccount uUsers = new UserAccount();
 
@@ -103,7 +104,12 @@ namespace WSC.Admin
                 objBAL.UpdateUser(cAdmin, uUsers);
 
                 lblUserUpdateConfirmed.Visible = true;
-            
+            }
+            catch (Exception)
+            {
+
+                lblUserUpdateFailed.Visible = true;
+            }
         }
 
         protected void OnSelectedIndexChange(object sender, EventArgs e)
