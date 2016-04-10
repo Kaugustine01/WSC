@@ -146,7 +146,7 @@ namespace WSC
             var WebAddress = new UriBuilder(Request.Url.Scheme, Request.Url.Host, Request.Url.Port);            
             
             //Get UserAccount
-            objUA = objBAL.GetUserAccount(new UserAccount(0, "", "", UserAccount.UserRole.OperationManager,""), nUserId);
+            objUA = objBAL.GetUserAccount(new UserAccount(), nUserId);
 
             //html for email
             sHtml = string.Format(@"Hi,<br /><br />Please click on the link below to reset your password.
@@ -179,7 +179,7 @@ namespace WSC
                     if (span.Minutes < 45)
                     {
                         //Get UserAccount
-                        objUA = objBAL.GetUserAccount(new UserAccount(0, "", "", UserAccount.UserRole.OperationManager, ""), int.Parse(arrToken[0]));
+                        objUA = objBAL.GetUserAccount(new UserAccount(), int.Parse(arrToken[0]));
 
                         if (objUA != null)
                             if (objUA.UserId > 0)

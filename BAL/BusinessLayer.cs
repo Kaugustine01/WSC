@@ -270,7 +270,7 @@ namespace BAL
                 if (objDAL.UpdateUser(objUserAccount.UserId,objUserAccount.UserName, objUserAccount.Password, sUserType, objUserAccount.Email))
                 {
                     //Rehydrate UserAccount to ensure inserted correctly
-                    return GetUserAccount(objUserAccount.UserName, objUserAccount.Password);
+                    return GetUserAccount(new UserAccount(), objUserAccount.UserId);
                 }
                 else
                 {
