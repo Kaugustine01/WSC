@@ -10,6 +10,9 @@
     <form id="form1" runat="server">
     <div class="h1">
         <asp:Label ID="lblException" runat="server" Text=""></asp:Label>
+        
+        Sample Drop Down List
+        <asp:DropDownList ID="ddlPmtTypes" runat="server"></asp:DropDownList>
     </div>
     </form>
 </body>

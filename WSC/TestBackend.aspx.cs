@@ -13,13 +13,24 @@ namespace WSC
             try
             {
                 //UserAccountTest();
-                CustomerTest();
+                //CustomerTest();
                 //CatalogTest();
                 //OrderTest();
                 //GetLookupsTest();
                 //SampleCartSession();
                 //CrytoTest();
                 //SendEmailTest();
+
+                //Bind Drop Down List
+                if (!IsPostBack)
+                {
+                    PaymentTypes objPaymentTypes = new PaymentTypes();                    
+
+                    ddlPmtTypes.DataTextField = "OrderPaymentType";
+                    ddlPmtTypes.DataValueField = "PaymentId";
+                    ddlPmtTypes.DataSource = objPaymentTypes.lOrderPaymentTypes;
+                    ddlPmtTypes.DataBind();
+                }
 
             }
             catch (Exception ex)
