@@ -72,11 +72,16 @@
                 <!-- Payment Type -->
                 <asp:Label ID="lblPaymentType" runat="server" Text="Payment Type: " Width="200px"></asp:Label>
                 <asp:DropDownList ID="ddlPaymentType" runat="server">
-                    <asp:ListItem>Card</asp:ListItem>
+                    <asp:ListItem>--Select--</asp:ListItem>
+                    <asp:ListItem>COD</asp:ListItem>
+                    <asp:ListItem>Credit Card</asp:ListItem>
                     <asp:ListItem>Check</asp:ListItem>
-                    <asp:ListItem>Cash</asp:ListItem>
+                    <asp:ListItem>PayPal</asp:ListItem>
+                    <asp:ListItem>BitCoin</asp:ListItem>
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlPaymentType" ErrorMessage="Payment Type is Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlPaymentType"
+                        ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup2" Fore-Color="Red"></asp:RequiredFieldValidator>
+                </asp:DropDownList>
                 <br />            
             </asp:Panel>
             <br />
@@ -89,7 +94,7 @@
             <asp:Label ID="lblComplete" runat="server" Visible="false" ForeColor="Red"><b>Your Purchase has been Completed</b></asp:Label>
 
             <!-- Error for the form not being properly submitted. -->
-            <asp:Label ID="Label1" runat="server" Visible="false" ForeColor="Red"><b>Sorry something went wrong.</b></asp:Label>
+            <asp:Label ID="lblError2" runat="server" Visible="false" ForeColor="Red"><b>Sorry something went wrong.</b></asp:Label>
         </center>
     </div>
 </asp:Content>

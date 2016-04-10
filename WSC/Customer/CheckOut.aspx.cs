@@ -50,7 +50,7 @@ namespace WSC
                 }
 
                 deposit = deposit * 10 / 100;
-                txtDeposit.Text = deposit.ToString();
+                txtDeposit.Text = deposit.ToString("c");
 
                 // Populates the Label (lblTotal) with the Total Amount of the Order
                 foreach (GridViewRow row in CartGridView.Rows)
@@ -68,8 +68,6 @@ namespace WSC
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
-            try
-            {
                 // Creates Bool to see if order was succesful
                 bool bOrderSuccessful = false;
 
@@ -81,8 +79,31 @@ namespace WSC
                     depositBool = true;
                 }
 
+                int paymentType = 0;
+
+                if (ddlPaymentType.Text == "COD")
+                {
+                    paymentType = 1;
+                }
+                else if (ddlPaymentType.Text == "Credit Card")
+                {
+                    paymentType = 2;
+                }
+                else if (ddlPaymentType.Text == "Check")
+                {
+                    paymentType = 3;
+                }
+                else if (ddlPaymentType.Text == "PayPal")
+                {
+                    paymentType = 4;
+                }
+                else if (ddlPaymentType.Text == "BitCoin")
+                {
+                    paymentType = 5;
+                }
+
                 // Create New Order
-                Order objOrder = new Order(0, depositBool, decimal.Parse(txtDeposit.Text), 2, 1, DateTime.Now);
+                Order objOrder = new Order(0, depositBool, decimal.Parse(txtDeposit.Text, System.Globalization.NumberStyles.Currency), paymentType, 1, DateTime.Now);
 
 
                 // Populate Items and Add to Order
@@ -113,12 +134,7 @@ namespace WSC
                 // Displays Purchase Confirmation and Removed Purchase Button
                 lblComplete.Visible = true;
                 btnCheckOut.Visible = false;
-            }
-            catch (Exception)
-            {
-                // display error message if something went wrong
-                lblError.Visible = true;
-            }
+            
         }
     }
 }

@@ -104,6 +104,8 @@ namespace WSC.Admin
                 objBAL.UpdateUser(cAdmin, uUsers);
 
                 lblUserUpdateConfirmed.Visible = true;
+
+                btnUpdateUser.Visible = false;
             }
             catch (Exception)
             {

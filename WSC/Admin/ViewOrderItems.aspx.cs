@@ -76,11 +76,23 @@ namespace WSC.Admin
                         // Payment Type
                         if (oCustOrder.PaymentId == 1)
                         {
-                            txtPaymentType.Text = "Card";
+                            txtPaymentType.Text = "COD";
                         }
                         else if (oCustOrder.PaymentId == 2)
                         {
+                            txtPaymentType.Text = "Credit Card";
+                        }
+                        else if (oCustOrder.PaymentId == 3)
+                        {
+                            txtPaymentType.Text = "Check";
+                        }
+                        else if (oCustOrder.PaymentId == 4)
+                        {
                             txtPaymentType.Text = "PayPal";
+                        }
+                        else if (oCustOrder.PaymentId == 5)
+                        {
+                            txtPaymentType.Text = "BitCoin";
                         }
 
                         // Status

@@ -16,6 +16,10 @@
             <h1>
                View Orders
             </h1>
+
+            <!-- If the users doe not have any orders.. -->
+            <asp:Label ID="lblNoOrders" runat="server" Visible="false" ForeColor="Red"><b>You have no previous orders to display.</b></asp:Label>
+
             <!-- This displays a grid view of the Order customers placed orders. -->
             <asp:GridView ID="ManageOrdersGridView" AutoGenerateColumns="False" runat="server" CellPadding="5" Width="100%" OnSelectedIndexChanged="OnSelectedIndexChange">
                 <HeaderStyle BackColor="Black" ForeColor="White"/>
@@ -30,7 +34,7 @@
             </asp:GridView>
             <br />
             <br />
-            <!-- Error to say cart is empty when user clicks on Check Out Page while the cart is empty. -->
+            <!-- Display Error Message if somethign goes wrong. -->
             <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>There was an error.</b></asp:Label>
          </center>
     </div>

@@ -28,9 +28,16 @@ namespace WSC
                     List<Order> objOrders = null;
                     objOrders = objBAL.GetOrdersByCustomerId(Convert.ToInt32(Session["CustomerId"]));
 
-                    // adds customer orders to the gridview
-                    ManageOrdersGridView.DataSource = objOrders;
-                    ManageOrdersGridView.DataBind();
+                    if (objOrders != null)
+                    {
+                        // adds customer orders to the gridview
+                        ManageOrdersGridView.DataSource = objOrders;
+                        ManageOrdersGridView.DataBind();
+                    }
+                    else
+                    {
+                        lblNoOrders.Visible = true;
+                    }
 
                     // edits the values of the status field
                     foreach (GridViewRow row in ManageOrdersGridView.Rows)
