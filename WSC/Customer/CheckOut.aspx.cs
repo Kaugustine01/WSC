@@ -68,6 +68,8 @@ namespace WSC
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
+            try
+            {
                 // Creates Bool to see if order was succesful
                 bool bOrderSuccessful = false;
 
@@ -134,7 +136,11 @@ namespace WSC
                 // Displays Purchase Confirmation and Removed Purchase Button
                 lblComplete.Visible = true;
                 btnCheckOut.Visible = false;
-            
+            }
+            catch (Exception)
+            {
+                lblError2.Visible = true;
+            }  
         }
     }
 }

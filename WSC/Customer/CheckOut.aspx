@@ -58,10 +58,12 @@
                 <!-- Payment on Delivery -->
                 <asp:Label ID="lblPaymentOnDelivery" runat="server" Text="Payment on Delivery: " Width="200px"></asp:Label>
                 <asp:DropDownList ID="ddlPaymentOnDelivery" runat="server" >
+                    <asp:ListItem>--Select--</asp:ListItem>
                     <asp:ListItem>Yes</asp:ListItem>
                     <asp:ListItem>No</asp:ListItem>
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlPaymentOnDelivery" ErrorMessage="Payment on Delivery Required." ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" InitialValue="--Select--" ControlToValidate="ddlPaymentOnDelivery" 
+                    ErrorMessage="Payment on Delivery Required." ForeColor="Red" ValidationGroup="ValGroup" ></asp:RequiredFieldValidator>
                 <br />
 
                 <!-- Deposit Amount -->
@@ -80,15 +82,14 @@
                     <asp:ListItem>BitCoin</asp:ListItem>
                 </asp:DropDownList>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlPaymentType"
-                        ErrorMessage="Value Required" InitialValue="--Select--" ValidationGroup="ValGroup2" Fore-Color="Red"></asp:RequiredFieldValidator>
-                </asp:DropDownList>
+                        ErrorMessage="Value Required" InitialValue="--Select--" ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
                 <br />            
             </asp:Panel>
             <br />
             <br />
 
             <!-- Check Out Button -->
-            <asp:Button ID="btnCheckOut" runat="server" Text="Confirm Purchase" OnClick="Checkout_Click" Visible="true" />
+            <asp:Button ID="btnCheckOut" runat="server" Text="Confirm Purchase" OnClick="Checkout_Click" Visible="true" ValidationGroup="ValGroup" />
 
             <!-- Properly submitted. -->
             <asp:Label ID="lblComplete" runat="server" Visible="false" ForeColor="Red"><b>Your Purchase has been Completed</b></asp:Label>
