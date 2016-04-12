@@ -503,8 +503,9 @@ namespace DAL
         /// <param name="sCatalogImagePath">Image path on server</param>
         /// <param name="sItemDescription">Descr of item</param>
         /// <param name="sCatalogItemName">Item Name</param>
+        /// <param name="bActive">Active flag</param>
         /// <returns></returns>
-        public bool InsertCatalogItem(decimal dItemPrice, string sCatalogImagePath, string sItemDescription, string sCatalogItemName)
+        public bool InsertCatalogItem(decimal dItemPrice, string sCatalogImagePath, string sItemDescription, string sCatalogItemName, bool bActive)
         {
             OleDbCommand dbCommand;
 
@@ -519,7 +520,7 @@ namespace DAL
 
                     // SQL statement insert the customer
                     string sqlStmt = "INSERT INTO CatalogT([ItemPrice], [CatalogImagePath], [ItemDescription], [CatalogItemName],[Active]) " +
-                                     "VALUES (@itemprice,@catalogimagepath,@itemdescription,@catalogitemname,'1')";
+                                     "VALUES (@itemprice,@catalogimagepath,@itemdescription,@catalogitemname,@active)";
 
                     // New command passing sql statement and the connection to the database
                     dbCommand = new OleDbCommand(sqlStmt, dbConnection);
@@ -528,7 +529,8 @@ namespace DAL
                     dbCommand.Parameters.Add(new OleDbParameter("@itemprice", dItemPrice));
                     dbCommand.Parameters.Add(new OleDbParameter("@catalogimagepath", sCatalogImagePath));
                     dbCommand.Parameters.Add(new OleDbParameter("@itemdescription", sItemDescription));
-                    dbCommand.Parameters.Add(new OleDbParameter("@CatalogItemName", sCatalogItemName));
+                    dbCommand.Parameters.Add(new OleDbParameter("@catalogitemname", sCatalogItemName));
+                    dbCommand.Parameters.Add(new OleDbParameter("@active", bActive));
 
                     //Execute query
                     if (dbCommand.ExecuteNonQuery() > 0)

@@ -632,7 +632,7 @@ namespace BAL
             try
             {
                 //Insert New Customer
-                if (objDAL.InsertCatalogItem(objCatalogItem.Price, objCatalogItem.CatalogImagePath, objCatalogItem.CatalogItemDescr, objCatalogItem.CatalogItemName))
+                if (objDAL.InsertCatalogItem(objCatalogItem.Price, objCatalogItem.CatalogImagePath, objCatalogItem.CatalogItemDescr, objCatalogItem.CatalogItemName, objCatalogItem.Active))
                 {
                     //Rehydrate CatalogList to ensure inserted correctly       
                     return GetCatalogItems();

@@ -12,11 +12,11 @@
 
         public string CatalogImagePath { get; set; }
 
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         public CatalogItem() { }
 
-        public CatalogItem(int nCatalogItemId, string sCatalogItemName, string sCatalogItemDescr, decimal dPrice, string sCatalogImagePath, bool? bActive)
+        public CatalogItem(int nCatalogItemId, string sCatalogItemName, string sCatalogItemDescr, decimal dPrice, string sCatalogImagePath, bool bActive)
         {
             CatalogItemId = nCatalogItemId;
             CatalogItemName = sCatalogItemName;
