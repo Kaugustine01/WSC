@@ -2,6 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!--
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    View Orders Form
+    Details:    This form is for the Employees and Admin to view the Orders.
+    -->
     <div class="content">
         <center>
             <h1>

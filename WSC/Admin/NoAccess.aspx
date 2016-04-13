@@ -2,6 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!--
+    Programmer: Daniel Bays
+    Date:       4/05/2016
+    Purpose:    No Access Page
+    Details:    This program is used display that the user doesn't have access.
+    -->
     <div class="content">
         <center>
             <h1>No Access</h1>

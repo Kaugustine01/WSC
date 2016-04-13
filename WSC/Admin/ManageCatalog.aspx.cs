@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using BAL;
 
 /*
@@ -22,14 +19,15 @@ namespace WSC.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (Session["SecurityLevel"] == "M")
             {
-                // Populates the GridView with Catalog Information from the Database
-                if (!this.IsPostBack)
+                try
                 {
-                    // Displays the Catalog if the user is an Operations Manager
-                    if (Session["SecurityLevel"] == "M")
+                    // Populates the GridView with Catalog Information from the Database
+                    if (!this.IsPostBack)
                     {
+                        // Displays the Catalog if the user is an Operations Manager
+
                         List<CatalogItem> lCatItems = null;
 
                         //Retrieve Catalog Items
@@ -37,16 +35,17 @@ namespace WSC.Admin
 
                         CatalogGridView.DataSource = lCatItems;
                         CatalogGridView.DataBind();
-                    }
-                    else
-                    {
-                        Response.Redirect("~/NoAccess.aspx");
+
                     }
                 }
+                catch (Exception)
+                {
+                    lblError.Visible = true;
+                }
             }
-            catch (Exception)
+            else
             {
-                lblError.Visible = true;
+                Response.Redirect("~/NoAccess.aspx");
             }
         }
 
@@ -112,10 +111,9 @@ namespace WSC.Admin
             }
             catch (Exception)
             {
-
                 lblError.Visible = true;
             }
-                
+
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/13/2016
+    Purpose:    No Access Page
+    Details:    This program is used display that the user doesn't have access.
+ */
 
 namespace WSC.Admin
 {

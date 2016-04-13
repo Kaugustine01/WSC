@@ -43,7 +43,7 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                 ControlToValidate="txtFirstName" ErrorMessage="First Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Letters Only" 
-                ControlToValidate="txtFirstName" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
+                ControlToValidate="txtFirstName" ValidationExpression="[aA-zZ]*" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
             <br />
 
             <!-- Last Name -->
@@ -52,7 +52,7 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
                 ControlToValidate="txtLastName" ErrorMessage="Last Name Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Letters Only" 
-                ControlToValidate="txtLastName" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
+                ControlToValidate="txtLastName" ValidationExpression="[aA-zZ]*" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
             <br />
 
             <!-- Address -->
@@ -73,7 +73,7 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
                 ControlToValidate="txtCity" ErrorMessage="City Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator11" runat="server" ErrorMessage="Letters Only" 
-                ControlToValidate="txtCity" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
+                ControlToValidate="txtCity" ValidationExpression="[aA-zZ]*" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator> 
             <br />
 
 
@@ -83,7 +83,7 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
                 ControlToValidate="txtState" ErrorMessage="State Required." ForeColor="Red" ValidationGroup="ValGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="Letters Only" 
-                ControlToValidate="txtState" ValidationExpression="[aA-zZ]" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator>
+                ControlToValidate="txtState" ValidationExpression="[aA-zZ]*" ValidationGroup="ValGroup" ForeColor="Red"></asp:RegularExpressionValidator>
             <br />
 
             <!-- Zip Code -->

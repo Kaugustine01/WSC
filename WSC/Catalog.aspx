@@ -49,7 +49,7 @@
                     <asp:TemplateField HeaderText="Quantity">
                         <ItemTemplate>
                             <asp:TextBox ID="txtQty" runat="server" />
-                             <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Range: 0 - 100" ControlToValidate="txtQty" MaximumValue="100" MinimumValue="0" Type="Double" ValidationGroup="ValGroup"></asp:RangeValidator>
+                             <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Range: 1 - 100" ControlToValidate="txtQty" MaximumValue="100" MinimumValue="1" Type="Double" ValidationGroup="ValGroup"></asp:RangeValidator>
                         </ItemTemplate>
                     </asp:TemplateField>  
                     <asp:TemplateField HeaderText="Content">

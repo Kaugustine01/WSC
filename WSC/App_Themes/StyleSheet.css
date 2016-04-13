@@ -44,7 +44,6 @@ body {
 }
 
 .content {
-    width: auto;
     overflow: hidden;
     padding: 10px;
     background-color: #9fa8a3;
@@ -53,6 +52,7 @@ body {
     margin-bottom: 10px;
     overflow: auto;
     min-height: 400px;
+    width: auto;
 }
 
 .footer {

@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using BAL;
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    View Orders Process
+    Details:    This program is used for the Admin to View the current Orders.
+ */
 
 namespace WSC.Admin
 {
@@ -16,10 +21,12 @@ namespace WSC.Admin
             {
                 try
                 {
+                    // creates object for use
                     BusinessLayer objBAL = new BusinessLayer();
 
                     if (!this.IsPostBack)
                     {
+                        // Binds the GridView
                         List<Order> objOrders = null;
                         objOrders = objBAL.GetAllOpenOrders();
 

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using BAL;
 
 /*
@@ -79,13 +75,16 @@ namespace WSC.Admin
         {
             try
             {
+                // Creates objects for use
                 UserAccount cAdmin = new UserAccount();
                 UserAccount uUsers = new UserAccount();
 
+                // Initates the Objects
                 uUsers.UserId = Convert.ToInt32(Session["SelectedUser"]);
                 uUsers.UserName = txtUserName.Text;
                 uUsers.Email = txtEmail.Text;
 
+                // updates the user role
                 if (ddlUserType.Text == "Customer")
                 {
                     uUsers.UserType = UserAccount.UserRole.Customer;
@@ -99,12 +98,14 @@ namespace WSC.Admin
                     uUsers.UserType = UserAccount.UserRole.OperationManager;
                 }
 
+                // Checks Admin Account for Verification.
                 cAdmin = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword2.Text);
 
+                // Updates Databae
                 objBAL.UpdateUser(cAdmin, uUsers);
 
+                // Shows succcess label and removes submit button
                 lblUserUpdateConfirmed.Visible = true;
-
                 btnUpdateUser.Visible = false;
             }
             catch (Exception)
@@ -125,10 +126,11 @@ namespace WSC.Admin
 
                 UserAccount cUser = objBAL.GetUserAccount(uAdmin, Convert.ToInt32(Session["SelectedUser"]));
 
-
+                // Adds to the user's text boxes
                 txtUserName.Text = cUser.UserName;
                 txtEmail.Text = cUser.Email;
 
+                // shows users role
                 if (cUser.UserType == UserAccount.UserRole.Customer)
                 {
                     ddlUserType.Text = "Customer";
@@ -161,7 +163,6 @@ namespace WSC.Admin
             {
                 lblUserUpdateFailed.Visible = true;
             }
-            
         }
     }
 }

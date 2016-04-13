@@ -68,7 +68,7 @@
 
                 <!-- Deposit Amount -->
                 <asp:Label ID="lblDeposit" runat="server" Text="Deposit Amount: " Width="200px"></asp:Label>
-                <asp:TextBox ID="txtDeposit" runat="server" ReadOnly="true"/>
+                <asp:TextBox ID="txtDeposit" runat="server" ReadOnly="true"/> Will be Charged if Payment is on Delivery
                 <br />
 
                 <!-- Payment Type -->

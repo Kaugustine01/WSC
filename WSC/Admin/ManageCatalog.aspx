@@ -57,7 +57,7 @@
             <asp:Label ID="lblDeletedCatalogItems" runat="server" Visible="false" ForeColor="Red"><b>Items were Deleted</b></asp:Label>
 
             <!-- Label to display Error. -->
-            <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>There was an error.</b></asp:Label>
+            <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"><b>Something went wrong.</b></asp:Label>
 
         </center>
     </div>
