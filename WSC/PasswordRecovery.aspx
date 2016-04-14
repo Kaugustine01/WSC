@@ -3,11 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <!--
-    Programmer: Daniel Bays
+    Programmer: Kenneth Augustine
     Date:       4/05/2016
-    Purpose:    Login Page
-    Details:    This page is for the user to login.
+    Purpose:    Forgot Password Page
+    Details:    This page is for the user to change their password.
     -->
 
     <div class="content">

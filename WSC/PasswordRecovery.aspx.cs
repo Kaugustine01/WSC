@@ -1,10 +1,13 @@
 ﻿using System;
 using BAL;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
+/*
+    Programmer: Kenneth Augustine
+    Date:       04/05/2016
+    Purpose:    Forgot Password
+    Details:    This program is used for password Recovery.
+ */
 
 namespace WSC
 {    public partial class PasswordRecovery : System.Web.UI.Page

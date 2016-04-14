@@ -12,6 +12,8 @@
 
     <div class="content">
         <center>
+            
+            <!-- Login Controler for the user to login -->
             <asp:Login ID="Login1" runat="server" OnAuthenticate="OnAuthenticate" BackColor="#F7F7DE" BorderColor="#CCCC99"
                 BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="10pt" UserName="" >
                 <TitleTextStyle BackColor="#6B696B" Font-Bold="True" ForeColor="#FFFFFF" />

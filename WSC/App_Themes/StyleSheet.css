@@ -1,4 +1,11 @@
-﻿html {
+﻿/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    Style Sheet
+    Details:    This is used to format the display of the interface.
+ */
+
+html {
     background: linear-gradient(to right, #e3e0cf, #e3e0cf, white, white);
     background: -webkit-linear-gradient(left, #e3e0cf, #e3e0cf, white, white);
     background: -moz-linear-gradient(right, #e3e0cf, #e3e0cf, white, white);

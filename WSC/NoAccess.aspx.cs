@@ -1,9 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
+
+/*
+    Programmer: Daniel Bays
+    Date:       04/05/2016
+    Purpose:    No Access Page
+    Details:    This is to tell the user they dont have access.
+ */
 
 namespace WSC
 {
