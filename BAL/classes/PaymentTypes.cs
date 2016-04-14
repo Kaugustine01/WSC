@@ -3,6 +3,13 @@ using DAL;
 using System.Data;
 using System;
 
+/*
+    Programmer: Kenneth Augustine
+    Date:       03/27/2016
+    Purpose:    PaymentType Object
+    Details:    Payment Types lookup 
+ */
+
 namespace BAL
 {
     public class PaymentTypes

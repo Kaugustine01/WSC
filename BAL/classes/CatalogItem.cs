@@ -1,4 +1,11 @@
-﻿namespace BAL
+﻿/*
+    Programmer: Kenneth Augustine
+    Date:       03/23/2016
+    Purpose:    Catalog Items Object
+    Details:    Catalog Item object
+ */
+
+namespace BAL
 {
     public class CatalogItem
     {

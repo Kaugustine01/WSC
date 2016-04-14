@@ -4,6 +4,13 @@ using System.Data.OleDb;
 using System.Data;
 using System.Text;
 
+/*
+    Programmer: Kenneth Augustine
+    Date:       03/22/2016
+    Purpose:    Data Layer
+    Details:    Data Layer Interfaces to the database.
+ */
+
 namespace DAL
 {
     public class DataAccessLayer

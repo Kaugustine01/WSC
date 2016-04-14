@@ -3,6 +3,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.IO;
 
+/*
+    Programmer: Kenneth Augustine
+    Date:       04/07/2016
+    Purpose:    Enryption
+    Details:    Encrypt and Decrypt using the Rijndael Algorithm
+ */
+
 namespace BAL
 {
     public static class Crypto

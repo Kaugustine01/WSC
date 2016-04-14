@@ -1,4 +1,11 @@
-﻿namespace BAL
+﻿/*
+    Programmer: Kenneth Augustine
+    Date:       03/23/2016
+    Purpose:    User Account Object
+    Details:    User Account Object, Login info and Role
+ */
+
+namespace BAL
 {
     public class UserAccount
     {

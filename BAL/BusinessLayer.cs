@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using DAL;
 using System.Data;
 
+/*
+    Programmer: Kenneth Augustine
+    Date:       03/22/2016
+    Purpose:    Business Layer
+    Details:    Business Layer Interfaces to the data layer.
+ */
+
 namespace BAL
 {
     public class BusinessLayer

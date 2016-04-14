@@ -1,4 +1,11 @@
-﻿namespace BAL
+﻿/*
+    Programmer: Kenneth Augustine
+    Date:       03/23/2016
+    Purpose:    Customer object
+    Details:    Customer Object
+ */
+
+namespace BAL
 {
     public class Customer 
     {

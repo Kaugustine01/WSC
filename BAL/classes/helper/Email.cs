@@ -3,6 +3,13 @@ using System.Net;
 using System.Net.Mail;
 using System.Configuration;
 
+/*
+    Programmer: Kenneth Augustine
+    Date:       04/7/2016
+    Purpose:    Email
+    Details:    This program is used for sending emails.
+ */
+
 namespace BAL
 {
     public static class Email

@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
+/*
+    Programmer: Kenneth Augustine
+    Date:       03/23/2016
+    Purpose:    Order Object
+    Details:    Order Object includes OrderItems
+ */
+
 namespace BAL
 {
     public class Order
