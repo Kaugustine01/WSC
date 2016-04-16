@@ -17,7 +17,7 @@ namespace WSC.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["SecurityLevel"] == "M")
+            if (Session["SecurityLevel"] == "M" || Session["SecurityLevel"] == "S")
             {
                 try
                 {
