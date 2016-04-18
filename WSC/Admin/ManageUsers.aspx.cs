@@ -43,26 +43,33 @@ namespace WSC.Admin
                 // addes customer to the list
                 lstCust = objBAL.GetCustomerListByFilter(Customer.SearchFilter.LastName, txtSearchLastName.Text);
 
-                // binds the customer list to grid.
-                ManageUsersGridView.DataSource = lstCust;
-                ManageUsersGridView.DataBind();
+                if (lstCust.Count > 0)
+                {
+                    // binds the customer list to grid.
+                    ManageUsersGridView.DataSource = lstCust;
+                    ManageUsersGridView.DataBind();
 
-                // set password field to true visibility
-                lblPassword.Visible = true;
-                txtPassword.Visible = true;
+                    // set password field to true visibility
+                    lblPassword.Visible = true;
+                    txtPassword.Visible = true;
 
-                // set everything to false visibility
-                lblUserName.Visible = false;
-                lblUserType.Visible = false;
-                txtUserName.Visible = false;
-                ddlUserType.Visible = false;
-                btnUpdateUser.Visible = false;
-                lblEmail.Visible = false;
-                txtEmail.Visible = false;
-                btnUpdateUser.Visible = false;
-                txtPassword2.Visible = false;
-                lblPassword2.Visible = false;
-                lblUserUpdateConfirmed.Visible = false;
+                    // set everything to false visibility
+                    lblUserName.Visible = false;
+                    lblUserType.Visible = false;
+                    txtUserName.Visible = false;
+                    ddlUserType.Visible = false;
+                    btnUpdateUser.Visible = false;
+                    lblEmail.Visible = false;
+                    txtEmail.Visible = false;
+                    btnUpdateUser.Visible = false;
+                    txtPassword2.Visible = false;
+                    lblPassword2.Visible = false;
+                    lblUserUpdateConfirmed.Visible = false;
+                }
+                else
+                {
+                    lblError.Visible = true;
+                }
 
             }
             catch (Exception)
