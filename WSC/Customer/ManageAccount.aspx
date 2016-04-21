@@ -119,6 +119,10 @@
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" onClick="btnSubmit_Click" ValidationGroup="ValGroup"/>
             <br />
 
+            <asp:Label ID="lblError3" runat="server" Visible="false" ForeColor="Red"><b>Sorry the password you entered was incorrect.</b></asp:Label>
+            <br />
+            <br />
+
             <!-- Properly submitted. -->
             <asp:Label ID="lblComplete" runat="server" Visible="false" ForeColor="Red"><b>Account has been updated.</b></asp:Label>
 

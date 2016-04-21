@@ -49,23 +49,31 @@ namespace WSC
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Submit button process, this will update the customer information in the database.
+            try
+            {
+                // Submit button process, this will update the customer information in the database.
 
-            Customer objCus = new Customer();
+                Customer objCus = new Customer();
 
-            UserAccount cUser = null;
+                UserAccount cUser = null;
 
-            cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
+                cUser = objBAL.GetUserAccount(Session["UserName"].ToString(), txtPassword.Text);
 
-            cUser.Email = txtEmail.Text;
+                cUser.Email = txtEmail.Text;
 
-            objBAL.UpdateUser(cUser);
+                objBAL.UpdateUser(cUser);
 
-            //Update Customer Record 
-            objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
-            objCus = objBAL.UpdateCustomer(objCus);
+                //Update Customer Record 
+                objCus = new Customer(Convert.ToInt32(Session["CustomerId"]), Convert.ToInt32(Session["UserId"]), txtFirstName.Text, txtLastName.Text, txtAddress.Text, txtAddressTwo.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtPhone.Text);
+                objCus = objBAL.UpdateCustomer(objCus);
 
-            lblComplete.Visible = true;
+                lblComplete.Visible = true;
+            }
+            catch (Exception)
+            {
+                lblError3.Visible = true;
+            }
+            
 
 
 
