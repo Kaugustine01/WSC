@@ -51,6 +51,7 @@ namespace WSC
         {
             try
             {
+                lblComplete.Visible = false;
                 lblError3.Visible = false;
 
                 // Submit button process, this will update the customer information in the database.
