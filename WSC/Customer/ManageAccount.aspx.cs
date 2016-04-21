@@ -51,6 +51,8 @@ namespace WSC
         {
             try
             {
+                lblError3.Visible = false;
+
                 // Submit button process, this will update the customer information in the database.
 
                 Customer objCus = new Customer();
